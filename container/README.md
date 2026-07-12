@@ -856,4 +856,4 @@ class OrderService {
 
 ## License
 
-MIT © [Academorix](https://github.com/stackra-inc)
+MIT © [Stackra](https://github.com/stackra-inc)

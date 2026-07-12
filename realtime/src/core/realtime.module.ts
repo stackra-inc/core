@@ -55,9 +55,7 @@ export class RealtimeModule {
    * @param options - Async options with useFactory and inject
    * @returns Dynamic module definition
    */
-  public static forRootAsync(
-    options: IAsyncModuleOptions<IRealtimeModuleOptions>
-  ): DynamicModule {
+  public static forRootAsync(options: IAsyncModuleOptions<IRealtimeModuleOptions>): DynamicModule {
     return {
       module: RealtimeModule,
       global: true,

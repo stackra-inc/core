@@ -11,4 +11,3 @@ export interface ILockOptions {
   /** Max time to wait for acquisition in ms. @default 30000 */
   timeoutMs?: number;
 }
-

@@ -1,0 +1,192 @@
+{
+  "name": "@stackra/ui",
+  "version": "0.1.0",
+  "description": "Client-side UI kit for the Stackra framework — re-exports HeroUI OSS and Pro components, adds custom composites, hooks, providers, and heroicons subpaths.",
+  "license": "MIT",
+  "author": {
+    "name": "Stackra L.L.C",
+    "email": "dev@stackra.com",
+    "url": "https://stackra.com"
+  },
+  "keywords": [
+    "stackra",
+    "ui",
+    "react",
+    "heroui",
+    "heroui-pro",
+    "heroicons",
+    "tailwind",
+    "components",
+    "client-side"
+  ],
+  "homepage": "https://github.com/stackra-inc/core/tree/main/ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stackra-inc/core.git",
+    "directory": "ui"
+  },
+  "bugs": {
+    "url": "https://github.com/stackra-inc/core/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js"
+      },
+      "./react": {
+        "types": "./dist/react.d.ts",
+        "import": "./dist/react.mjs",
+        "require": "./dist/react.js"
+      },
+      "./icons/iconify": {
+        "types": "./dist/icons/iconify.d.ts",
+        "import": "./dist/icons/iconify.mjs",
+        "require": "./dist/icons/iconify.js"
+      },
+      "./icons/gravity-ui": {
+        "import": "./dist/icons/gravity-ui.mjs",
+        "require": "./dist/icons/gravity-ui.js"
+      },
+      "./icons/gravity-ui.json": "./src/icons/gravity-ui/icons.json",
+      "./icons/heroicon/outline": {
+        "types": "./dist/icons/heroicon/outline.d.ts",
+        "import": "./dist/icons/heroicon/outline.mjs",
+        "require": "./dist/icons/heroicon/outline.js"
+      },
+      "./icons/heroicon/solid": {
+        "types": "./dist/icons/heroicon/solid.d.ts",
+        "import": "./dist/icons/heroicon/solid.mjs",
+        "require": "./dist/icons/heroicon/solid.js"
+      },
+      "./icons/heroicon/mini": {
+        "types": "./dist/icons/heroicon/mini.d.ts",
+        "import": "./dist/icons/heroicon/mini.mjs",
+        "require": "./dist/icons/heroicon/mini.js"
+      },
+      "./icons/heroicon/micro": {
+        "types": "./dist/icons/heroicon/micro.d.ts",
+        "import": "./dist/icons/heroicon/micro.mjs",
+        "require": "./dist/icons/heroicon/micro.js"
+      },
+      "./react/styles": "./src/react/styles/globals.css",
+      "./react/styles/*": "./src/react/styles/*"
+    }
+  },
+  "packageManager": "pnpm@11.12.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "require": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./react": {
+      "types": "./src/react/index.ts",
+      "import": "./src/react/index.ts",
+      "require": "./src/react/index.ts",
+      "default": "./src/react/index.ts"
+    },
+    "./icons/iconify": {
+      "types": "./src/icons/iconify.tsx",
+      "import": "./src/icons/iconify.tsx",
+      "require": "./src/icons/iconify.tsx",
+      "default": "./src/icons/iconify.tsx"
+    },
+    "./icons/gravity-ui": {
+      "import": "./src/icons/gravity-ui/index.js",
+      "require": "./src/icons/gravity-ui/index.js",
+      "default": "./src/icons/gravity-ui/index.js"
+    },
+    "./icons/gravity-ui.json": "./src/icons/gravity-ui/icons.json",
+    "./icons/heroicon/outline": {
+      "types": "./src/icons/heroicon/outline.ts",
+      "import": "./src/icons/heroicon/outline.ts",
+      "require": "./src/icons/heroicon/outline.ts",
+      "default": "./src/icons/heroicon/outline.ts"
+    },
+    "./icons/heroicon/solid": {
+      "types": "./src/icons/heroicon/solid.ts",
+      "import": "./src/icons/heroicon/solid.ts",
+      "require": "./src/icons/heroicon/solid.ts",
+      "default": "./src/icons/heroicon/solid.ts"
+    },
+    "./icons/heroicon/mini": {
+      "types": "./src/icons/heroicon/mini.ts",
+      "import": "./src/icons/heroicon/mini.ts",
+      "require": "./src/icons/heroicon/mini.ts",
+      "default": "./src/icons/heroicon/mini.ts"
+    },
+    "./icons/heroicon/micro": {
+      "types": "./src/icons/heroicon/micro.ts",
+      "import": "./src/icons/heroicon/micro.ts",
+      "require": "./src/icons/heroicon/micro.ts",
+      "default": "./src/icons/heroicon/micro.ts"
+    },
+    "./react/styles": "./src/react/styles/globals.css",
+    "./react/styles/*": "./src/react/styles/*"
+  },
+  "files": [
+    "dist",
+    "src/icons/gravity-ui/icons.json",
+    "src/react/styles",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage --passWithNoTests"
+  },
+  "peerDependencies": {
+    "@heroicons/react": "^2.0.0",
+    "@heroui-pro/react": "^1.0.0-beta.1",
+    "@heroui/react": "^3.2.2",
+    "@iconify/react": "^6.0.2",
+    "react": ">=19",
+    "react-dom": ">=19",
+    "tailwindcss": ">=4"
+  },
+  "peerDependenciesMeta": {
+    "@heroui-pro/react": {
+      "optional": true
+    },
+    "@iconify/react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@heroui-pro/react": "^1.0.0-beta.1",
+    "@heroui/react": "^3.2.2",
+    "@iconify/react": "^6.0.2",
+    "@stackra/testing": "workspace:*",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:types",
+    "@types/react-dom": "catalog:types",
+    "react": "catalog:react",
+    "react-dom": "catalog:react",
+    "rimraf": "catalog:",
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

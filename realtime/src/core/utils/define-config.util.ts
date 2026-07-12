@@ -33,7 +33,6 @@
  * See `.kiro/steering/config-architecture.md` for the full guide.
  */
 
-
 import type { IRealtimeModuleOptions } from '../interfaces';
 
 /**

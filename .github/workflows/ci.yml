@@ -29,6 +29,11 @@ jobs:
           cache: pnpm
 
       - name: Install
+        env:
+          # Authenticates the @heroui-pro/react postinstall with the CDN so
+          # Pro components + types are fetched on every CI run.
+          # https://heroui.pro/docs/react/getting-started/installation#cicd
+          HEROUI_AUTH_TOKEN: ${{ secrets.HEROUI_AUTH_TOKEN }}
         run: pnpm install --frozen-lockfile
 
       - name: Typecheck

@@ -32,6 +32,11 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - name: Install
+        env:
+          # Authenticates the @heroui-pro/react postinstall with the CDN so
+          # Pro components + types are fetched during release builds too.
+          # https://heroui.pro/docs/react/getting-started/installation#cicd
+          HEROUI_AUTH_TOKEN: ${{ secrets.HEROUI_AUTH_TOKEN }}
         run: pnpm install --frozen-lockfile
 
       # -----------------------------------------------------------------

@@ -17,6 +17,7 @@ packages:
   - 'scheduler'
   - 'support'
   - 'testing'
+  - 'ui'
 
 # ---------------------------------------------------------------------------
 # Default catalog — referenced as "catalog:" in package.json files.
@@ -48,7 +49,18 @@ catalogs:
 # ---------------------------------------------------------------------------
 # Native packages that pnpm should be allowed to run install scripts for.
 # Anything not in this list is blocked by pnpm 10's postinstall policy.
+#
+# Notes:
+#   - `@swc/core` / `esbuild` compile native bindings on install.
+#   - `heroui-pro` / `@heroui-pro/react` run a postinstall that downloads
+#     licensed component artifacts from HeroUI's CDN using $HEROUI_AUTH_TOKEN
+#     or an interactive login. Without this allowlist entry the postinstall
+#     is skipped and Pro components fail at import time. See
+#     https://heroui.pro/docs/native/getting-started/installation for the
+#     manual flow.
 # ---------------------------------------------------------------------------
 onlyBuiltDependencies:
+  - '@heroui-pro/react'
   - '@swc/core'
   - esbuild
+  - heroui-pro

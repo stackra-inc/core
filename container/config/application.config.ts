@@ -27,7 +27,7 @@
  *
  * | Variable          | Description                                  | Default          |
  * |-------------------|----------------------------------------------|------------------|
- * | `APP_NAME`        | Application name (shown in logs)             | `'Academorix API'`  |
+ * | `APP_NAME`        | Application name (shown in logs)             | `'Stackra API'`  |
  * | `PORT`            | Server port                                  | `3000`           |
  * | `HOST`            | Server bind address                          | `'0.0.0.0'`      |
  * | `NODE_ENV`        | Environment (disables swagger in production) | `'development'`  |
@@ -56,7 +56,7 @@ export const applicationConfig = defineConfig<IApplicationOptions>({
   | and error reports. The port and host determine where the server binds.
   |
   */
-  name: process.env.APP_NAME ?? 'Academorix API',
+  name: process.env.APP_NAME ?? 'Stackra API',
   port: Number(process.env.PORT ?? 3000),
   host: process.env.HOST ?? '0.0.0.0',
 

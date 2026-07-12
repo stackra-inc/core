@@ -33,7 +33,6 @@
  * See `.kiro/steering/config-architecture.md` for the full guide.
  */
 
-
 import type { ISchedulerModuleOptions } from '../interfaces/scheduler-module-options.interface';
 
 /**

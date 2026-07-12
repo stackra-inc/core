@@ -54,9 +54,7 @@ export class QueueModule {
    * @param options - Async options with useFactory and inject
    * @returns Dynamic module definition
    */
-  public static forRootAsync(
-    options: IAsyncModuleOptions<IQueueModuleOptions>
-  ): DynamicModule {
+  public static forRootAsync(options: IAsyncModuleOptions<IQueueModuleOptions>): DynamicModule {
     return {
       module: QueueModule,
       global: true,
