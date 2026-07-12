@@ -34,6 +34,45 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
+      # -----------------------------------------------------------------
+      # Diagnostic: verify NPM_TOKEN actually works before Changesets tries
+      # to publish. Prints identity + scope access so a 404 on PUT can be
+      # diagnosed as auth vs. scope permission vs. registry issue.
+      # -----------------------------------------------------------------
+      - name: Diagnose npm auth
+        env:
+          NPM_TOKEN: ${{ secrets.STACKRA_NPM_TOKEN }}
+        run: |
+          set +e
+          if [ -z "$NPM_TOKEN" ]; then
+            echo "::error::STACKRA_NPM_TOKEN is EMPTY. Check secret is set at repo or org level with visibility to this repo."
+            exit 1
+          fi
+          echo "NPM_TOKEN length: ${#NPM_TOKEN}"
+          echo "NPM_TOKEN prefix: ${NPM_TOKEN:0:8}..."
+
+          # Write authToken to user-level .npmrc (setup-node also does this,
+          # but be explicit so pnpm/npm both see it consistently).
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+          echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
+          echo "always-auth=true" >> ~/.npmrc
+
+          echo "--- npm whoami ---"
+          npm whoami
+          rc=$?
+          if [ $rc -ne 0 ]; then
+            echo "::error::npm whoami FAILED (exit $rc). Token is invalid, expired, or malformed."
+            exit 1
+          fi
+
+          echo "--- npm access list packages @stackra ---"
+          npm access list packages @stackra || echo "(no packages under @stackra yet — that's expected on first publish)"
+
+          echo "--- npm org ls stackra ---"
+          npm org ls stackra || echo "(cannot list org members — may not have org read permission)"
+
+          echo "--- npm token verification OK ---"
+
       - name: Create release PR or publish
         uses: changesets/action@v1
         with:
