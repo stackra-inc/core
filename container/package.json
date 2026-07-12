@@ -1,7 +1,7 @@
 {
   "name": "@stackra/container",
   "version": "2.1.0",
-  "description": "NestJS-compatible dependency injection container for browser, Node, and React — decorators, modules, lifecycle hooks, discovery, and NestJS bridge.",
+  "description": "Client-side dependency injection container for browser and React — decorators, modules, lifecycle hooks, and discovery.",
   "license": "MIT",
   "author": {
     "name": "Stackra L.L.C",
@@ -13,7 +13,6 @@
     "dependency-injection",
     "ioc",
     "container",
-    "nestjs",
     "react",
     "decorators",
     "typescript"
@@ -42,11 +41,6 @@
         "types": "./dist/react.d.ts",
         "import": "./dist/react.mjs",
         "require": "./dist/react.js"
-      },
-      "./nestjs": {
-        "types": "./dist/nestjs.d.ts",
-        "import": "./dist/nestjs.mjs",
-        "require": "./dist/nestjs.js"
       }
     }
   },
@@ -60,8 +54,7 @@
   "types": "./src/core/index.ts",
   "exports": {
     ".": "./src/core/index.ts",
-    "./react": "./src/react/index.ts",
-    "./nestjs": "./src/nestjs/index.ts"
+    "./react": "./src/react/index.ts"
   },
   "files": [
     "dist",
@@ -82,30 +75,16 @@
     "reflect-metadata": "catalog:"
   },
   "peerDependencies": {
-    "@nestjs/common": "*",
-    "@nestjs/core": "*",
     "@stackra/contracts": "workspace:^",
     "react": "*",
-    "reflect-metadata": "*",
-    "rxjs": "*"
+    "reflect-metadata": "*"
   },
   "peerDependenciesMeta": {
-    "@nestjs/common": {
-      "optional": true
-    },
-    "@nestjs/core": {
-      "optional": true
-    },
     "react": {
-      "optional": true
-    },
-    "rxjs": {
       "optional": true
     }
   },
   "devDependencies": {
-    "@nestjs/common": "catalog:nestjs",
-    "@nestjs/core": "catalog:nestjs",
     "@stackra/contracts": "workspace:*",
     "@stackra/testing": "workspace:*",
     "@types/node": "catalog:",
@@ -113,7 +92,6 @@
     "react": "catalog:react",
     "reflect-metadata": "catalog:",
     "rimraf": "catalog:",
-    "rxjs": "catalog:",
     "tsup": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"

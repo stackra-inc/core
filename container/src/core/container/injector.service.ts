@@ -282,7 +282,7 @@ export class Injector {
   /**
    * Detect Nest-style `{ token, optional }` factory inject wrappers.
    *
-   * Mirrors `isOptionalFactoryDependency` from `@nestjs/common`: both
+   * Mirrors `isOptionalFactoryDependency` from `@stackra/contracts`: both
    * `token` and `optional` must be defined and the value must not have
    * a `prototype` (which would identify it as a class constructor).
    *

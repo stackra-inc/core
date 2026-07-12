@@ -1,7 +1,7 @@
 {
   "name": "@stackra/events",
   "version": "0.1.0",
-  "description": "Unified cross-platform event bus — core, React, and testing entry points with typed emitters and discovery-based @OnEvent handlers.",
+  "description": "Cross-platform event bus for the Stackra framework — typed emitters, discovery-based @OnEvent handlers, and React bindings.",
   "license": "MIT",
   "author": {
     "name": "Stackra L.L.C",
@@ -12,7 +12,6 @@
     "stackra",
     "events",
     "event-bus",
-    "cross-platform",
     "react"
   ],
   "homepage": "https://github.com/stackra-inc/core/tree/main/events#readme",
@@ -83,17 +82,13 @@
     "@stackra/logger": "workspace:^",
     "@stackra/support": "workspace:^",
     "react": "*",
-    "reflect-metadata": "*",
-    "rxjs": "*"
+    "reflect-metadata": "*"
   },
   "peerDependenciesMeta": {
     "@stackra/logger": {
       "optional": true
     },
     "react": {
-      "optional": true
-    },
-    "rxjs": {
       "optional": true
     }
   },
@@ -108,7 +103,6 @@
     "react": "catalog:react",
     "reflect-metadata": "catalog:",
     "rimraf": "catalog:",
-    "rxjs": "catalog:",
     "tsup": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"

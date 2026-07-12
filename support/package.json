@@ -1,7 +1,7 @@
 {
   "name": "@stackra/support",
   "version": "0.1.0",
-  "description": "Foundation utility layer — Str, Arr, Num, Env, Pipeline, Fluent, Uri, BaseRegistry, Manager, and 20+ helpers used across every @stackra/* package.",
+  "description": "Foundation utility layer for the Stackra framework — Str, Arr, Num, Env, Pipeline, Fluent, Uri, BaseRegistry, Manager, and 20+ helpers.",
   "license": "MIT",
   "author": {
     "name": "Stackra L.L.C",
@@ -68,22 +68,13 @@
     "collect.js": "^4.36.1"
   },
   "peerDependencies": {
-    "@nestjs/common": "*",
-    "@nestjs/core": "*",
     "@stackra/container": "*",
     "@stackra/contracts": "*",
     "@vivtel/metadata": "*",
     "react": "*",
-    "reflect-metadata": "*",
-    "rxjs": "*"
+    "reflect-metadata": "*"
   },
   "peerDependenciesMeta": {
-    "@nestjs/common": {
-      "optional": true
-    },
-    "@nestjs/core": {
-      "optional": true
-    },
     "@stackra/container": {
       "optional": true
     },
@@ -97,9 +88,6 @@
       "optional": true
     },
     "reflect-metadata": {
-      "optional": true
-    },
-    "rxjs": {
       "optional": true
     }
   },

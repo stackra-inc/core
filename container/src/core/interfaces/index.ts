@@ -1,7 +1,7 @@
 /**
  * @file index.ts
  * @module @stackra/container/core/interfaces
- * @description Local interfaces — NOT in @nestjs/common or @stackra/contracts.
+ * @description Local interfaces — NOT in @stackra/contracts.
  */
 
 export type { IApplicationFactoryOptions } from './application-factory-options.interface';

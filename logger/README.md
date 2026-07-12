@@ -1,7 +1,7 @@
 # @stackra/logger
 
 Unified, channel-based logging system with three subpath exports: core (`.`),
-React (`./react`), and NestJS (`./nestjs`).
+React (`./react`).
 
 ## Installation
 
@@ -18,7 +18,6 @@ Peer dependencies:
 Optional peers (activate specific subpaths):
 
 - `react` — for `@stackra/logger/react` hooks
-- `@nestjs/common` + `@nestjs/core` — for `@stackra/logger/nestjs`
 - `pino` — for PinoReporter in NestJS
 
 ## Quick Start
@@ -47,33 +46,6 @@ class OrderService {
     this.logger.info('Creating order', { sku: dto.sku });
   }
 }
-```
-
-### NestJS Backend
-
-```typescript
-import { NestLoggerModule, NestLoggerServiceAdapter } from '@stackra/logger/nestjs';
-
-@Module({
-  imports: [
-    NestLoggerModule.forRoot({
-      default: 'app',
-      channels: {
-        app: { level: LogLevel.INFO, reporters: ['pino'] },
-        audit: { level: LogLevel.INFO, reporters: ['json'] },
-      },
-      requestLogging: true,
-      replaceNestLogger: true,
-      globalContext: { service: 'api' },
-      redact: { paths: ['password', 'token', '*.secret'] },
-    }),
-  ],
-})
-export class AppModule {}
-
-// In main.ts
-const app = await NestFactory.create(AppModule, { bufferLogs: true });
-app.useLogger(app.get(NestLoggerServiceAdapter));
 ```
 
 ### React Components

@@ -23,7 +23,6 @@ catalog:
   '@vivtel/metadata': ^1.0.5
   reflect-metadata: ^0.2.2
   rimraf: ^6.0.1
-  rxjs: ^7.8.2
   tsup: ^8.5.0
   typescript: ^6.0.0
   unplugin-swc: ^1.5.9
@@ -33,13 +32,6 @@ catalog:
 # Named catalogs — referenced as "catalog:<name>" in package.json files.
 # ---------------------------------------------------------------------------
 catalogs:
-  nestjs:
-    '@nestjs/common': ^11.0.0
-    '@nestjs/core': ^11.0.0
-    '@nestjs/microservices': ^11.0.0
-    '@nestjs/platform-express': ^11.0.0
-    '@nestjs/testing': ^11.0.0
-
   react:
     react: ^19.0.0
     react-dom: ^19.0.0

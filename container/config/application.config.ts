@@ -16,7 +16,7 @@
  *
  * ```typescript
  * // main.ts
- * * import { Application } from '@stackra/container/nestjs';
+ * * import { Application } from '@stackra/container';
  * import applicationConfig from './config/application.config';
  * import { AppModule } from './app.module';
  *
@@ -163,19 +163,6 @@ export const applicationConfig = defineConfig<IApplicationOptions>({
     forbidNonWhitelisted: true,
     transformOptions: { enableImplicitConversion: true },
   },
-
-  /*
-  |--------------------------------------------------------------------------
-  | API Documentation — Swagger / OpenAPI
-  |--------------------------------------------------------------------------
-  |
-  | Swagger configuration lives in its own package: @stackra/nestjs-swagger
-  | See: packages/infra/swagger/config/swagger.config.ts
-  |
-  | The swagger package has its own module (NestSwaggerModule.forRoot())
-  | registered separately in app.module.ts. No config needed here.
-  |
-  */
 
   /*
   |--------------------------------------------------------------------------

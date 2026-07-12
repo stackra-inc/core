@@ -2,7 +2,7 @@
  * @file application-options.interface.ts
  * @module @stackra/contracts/interfaces/container
  * @description Full configuration for Application.create() bootstrap.
- *   Extends beyond what @nestjs/common provides — adds our production concerns.
+ *   Extends beyond what @stackra/contracts provides — adds our production concerns.
  */
 
 /**

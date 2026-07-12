@@ -1,7 +1,7 @@
 {
   "name": "@stackra/logger",
   "version": "0.1.0",
-  "description": "Unified cross-platform logger — core, React, and NestJS entry points with pluggable reporters, enrichers, and formatters.",
+  "description": "Cross-platform logger for the Stackra framework — pluggable reporters, enrichers, and formatters, with React bindings.",
   "license": "MIT",
   "author": {
     "name": "Stackra L.L.C",
@@ -11,8 +11,7 @@
   "keywords": [
     "stackra",
     "logger",
-    "cross-platform",
-    "nestjs",
+    "logging",
     "react"
   ],
   "homepage": "https://github.com/stackra-inc/core/tree/main/logger#readme",
@@ -79,47 +78,27 @@
     "consola": "^3.4.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "*",
-    "@nestjs/core": "*",
     "@stackra/container": "workspace:^",
     "@stackra/contracts": "workspace:^",
     "@stackra/support": "workspace:^",
-    "pino": ">=9.0.0",
     "react": "*",
-    "reflect-metadata": "*",
-    "rxjs": "*"
+    "reflect-metadata": "*"
   },
   "peerDependenciesMeta": {
-    "@nestjs/common": {
-      "optional": true
-    },
-    "@nestjs/core": {
-      "optional": true
-    },
-    "pino": {
-      "optional": true
-    },
     "react": {
-      "optional": true
-    },
-    "rxjs": {
       "optional": true
     }
   },
   "devDependencies": {
-    "@nestjs/common": "catalog:nestjs",
-    "@nestjs/core": "catalog:nestjs",
     "@stackra/container": "workspace:*",
     "@stackra/contracts": "workspace:*",
     "@stackra/support": "workspace:*",
     "@stackra/testing": "workspace:*",
     "@types/node": "catalog:",
     "@types/react": "catalog:types",
-    "pino": ">=10.3.1",
     "react": "catalog:react",
     "reflect-metadata": "catalog:",
     "rimraf": "catalog:",
-    "rxjs": "catalog:",
     "tsup": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"

@@ -5,9 +5,6 @@
  *   Implements the full event emitter contract: typed dispatch, wildcard
  *   patterns (`*` single-segment, `**` multi-segment), prepended listeners,
  *   one-shot listeners, and async dispatch.
- *
- *   Replaces `eventemitter2` and `@nestjs/event-emitter` with a minimal,
- *   purpose-built implementation for the @stackra ecosystem.
  */
 
 import { Injectable, Inject, Optional } from '@stackra/container';

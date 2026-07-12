@@ -39,7 +39,7 @@ import {
 
 ### DI foundation
 
-Everything the DI container needs to describe modules and providers. Deliberately shaped like NestJS's interfaces so the container stays 1:1 compatible with third-party Nest code, without depending on `@nestjs/common` for types.
+Everything the DI container needs to describe modules and providers. Deliberately shaped like NestJS's interfaces so the container stays 1:1 compatible with third-party Nest code, without depending on `@stackra/contracts` for types.
 
 ```ts
 import type {

@@ -13,8 +13,7 @@
     "contracts",
     "interfaces",
     "tokens",
-    "dependency-injection",
-    "nestjs"
+    "dependency-injection"
   ],
   "homepage": "https://github.com/stackra-inc/core/tree/main/contracts#readme",
   "repository": {

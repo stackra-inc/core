@@ -48,7 +48,6 @@ All third-party versions live in `pnpm-workspace.yaml` under `catalog:` (default
     "reflect-metadata": "catalog:", // default catalog
   },
   "devDependencies": {
-    "@nestjs/common": "catalog:nestjs", // named catalog
     "react": "catalog:react",
     "@types/react": "catalog:types",
   },
