@@ -37,6 +37,11 @@
         "import": "./dist/index.mjs",
         "require": "./dist/index.js"
       },
+      "./matchers": {
+        "types": "./dist/matchers.d.ts",
+        "import": "./dist/matchers.mjs",
+        "require": "./dist/matchers.js"
+      },
       "./preset": {
         "types": "./dist/preset.d.ts",
         "import": "./dist/preset.mjs",
@@ -63,6 +68,7 @@
   "types": "./src/core/index.ts",
   "exports": {
     ".": "./src/core/index.ts",
+    "./matchers": "./src/matchers/index.ts",
     "./preset": "./src/preset/index.ts",
     "./setup": "./src/preset/setup.ts"
   },

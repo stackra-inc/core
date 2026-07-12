@@ -2,6 +2,7 @@ import { defineBaseConfig } from '../tsup.config.base';
 
 export default defineBaseConfig({
   index: 'src/core/index.ts',
+  matchers: 'src/matchers/index.ts',
   preset: 'src/preset/index.ts',
   setup: 'src/preset/setup.ts',
 });
