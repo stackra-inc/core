@@ -1,6 +1,6 @@
 {
   "name": "@stackra/contracts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Shared interfaces, types, enums, and DI tokens for the Stackra ecosystem. Zero runtime implementation.",
   "license": "MIT",
   "author": {
