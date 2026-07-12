@@ -9,5 +9,5 @@ export default defineBaseConfig(
   {
     // Lazy-loaded / optional reporter backends
     external: ['pino', 'consola'],
-  },
+  }
 );

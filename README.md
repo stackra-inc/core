@@ -4,12 +4,12 @@ pnpm monorepo containing the Stackra foundation packages.
 
 ## Packages
 
-| Package                  | Path            | Description                                                              |
-| ------------------------ | --------------- | ------------------------------------------------------------------------ |
-| `@stackra/container`     | `container/`    | NestJS-compatible DI container (core, React bindings, NestJS bridge)     |
-| `@stackra/contracts`     | `contracts/`    | Shared DI tokens, interfaces, and enums                                  |
-| `@stackra/nestjs-types`  | `nestjs-types/` | Zero-runtime re-host of NestJS 11 types, enums, and constants            |
-| `@stackra/testing`       | `testing/`      | Shared Vitest preset and setup lifecycle (SWC transform for decorators)  |
+| Package                 | Path            | Description                                                             |
+| ----------------------- | --------------- | ----------------------------------------------------------------------- |
+| `@stackra/container`    | `container/`    | NestJS-compatible DI container (core, React bindings, NestJS bridge)    |
+| `@stackra/contracts`    | `contracts/`    | Shared DI tokens, interfaces, and enums                                 |
+| `@stackra/nestjs-types` | `nestjs-types/` | Zero-runtime re-host of NestJS 11 types, enums, and constants           |
+| `@stackra/testing`      | `testing/`      | Shared Vitest preset and setup lifecycle (SWC transform for decorators) |
 
 ## Requirements
 
@@ -43,13 +43,13 @@ All third-party versions live in `pnpm-workspace.yaml` under `catalog:` (default
 ```jsonc
 {
   "dependencies": {
-    "reflect-metadata": "catalog:"            // default catalog
+    "reflect-metadata": "catalog:", // default catalog
   },
   "devDependencies": {
-    "@nestjs/common": "catalog:nestjs",       // named catalog
-    "react":          "catalog:react",
-    "@types/react":   "catalog:types"
-  }
+    "@nestjs/common": "catalog:nestjs", // named catalog
+    "react": "catalog:react",
+    "@types/react": "catalog:types",
+  },
 }
 ```
 

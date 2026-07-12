@@ -57,4 +57,3 @@ export function optional<T extends object>(value: T | null | undefined): T {
     },
   });
 }
-

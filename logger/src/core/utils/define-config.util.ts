@@ -31,7 +31,6 @@
  * See `.kiro/steering/config-architecture.md` for the full guide.
  */
 
-
 import type { ILoggerModuleConfig } from '@stackra/contracts';
 import { DEFAULT_CONFIG } from './default-config.constant';
 import { applyEnvironmentOverrides, applyEnvVarOverrides } from './env-overrides.util';

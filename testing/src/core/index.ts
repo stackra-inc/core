@@ -9,9 +9,5 @@
 // Assertable primitives
 // ============================================================================
 export { Assertable } from './assertable';
-export {
-  createAssertableProxy,
-  ASSERTABLE_SYMBOL,
-  type AssertableProxy,
-} from './assertable-proxy';
+export { createAssertableProxy, ASSERTABLE_SYMBOL, type AssertableProxy } from './assertable-proxy';
 export type { ICallRecord, IStubEntry } from './interfaces';

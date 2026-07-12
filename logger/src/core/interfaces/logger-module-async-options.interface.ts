@@ -8,5 +8,4 @@
 import type { IAsyncModuleOptions, ILoggerModuleConfig } from '@stackra/contracts';
 
 /** Async options for `LoggerModule.forRootAsync()`. */
-export interface ILoggerModuleAsyncOptions
-  extends IAsyncModuleOptions<ILoggerModuleConfig> {}
+export interface ILoggerModuleAsyncOptions extends IAsyncModuleOptions<ILoggerModuleConfig> {}

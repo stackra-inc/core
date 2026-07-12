@@ -8,14 +8,22 @@
     "email": "dev@stackra.com",
     "url": "https://stackra.com"
   },
-  "keywords": ["stackra", "logger", "cross-platform", "nestjs", "react"],
+  "keywords": [
+    "stackra",
+    "logger",
+    "cross-platform",
+    "nestjs",
+    "react"
+  ],
   "homepage": "https://github.com/stackra-inc/core/tree/main/logger#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stackra-inc/core.git",
     "directory": "logger"
   },
-  "bugs": { "url": "https://github.com/stackra-inc/core/issues" },
+  "bugs": {
+    "url": "https://github.com/stackra-inc/core/issues"
+  },
   "publishConfig": {
     "access": "public",
     "main": "./dist/index.js",
@@ -40,7 +48,9 @@
     }
   },
   "packageManager": "pnpm@10.0.0",
-  "engines": { "node": ">=22.0.0" },
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "sideEffects": false,
   "main": "./src/core/index.ts",
   "module": "./src/core/index.ts",
@@ -50,7 +60,11 @@
     "./react": "./src/react/index.ts",
     "./testing": "./src/testing/index.ts"
   },
-  "files": ["dist", "LICENSE", "README.md"],
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -76,11 +90,21 @@
     "rxjs": "*"
   },
   "peerDependenciesMeta": {
-    "@nestjs/common": { "optional": true },
-    "@nestjs/core": { "optional": true },
-    "pino": { "optional": true },
-    "react": { "optional": true },
-    "rxjs": { "optional": true }
+    "@nestjs/common": {
+      "optional": true
+    },
+    "@nestjs/core": {
+      "optional": true
+    },
+    "pino": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "rxjs": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@nestjs/common": "catalog:nestjs",

@@ -173,4 +173,3 @@ export class ConditionableClass implements IConditionable {
     return this;
   }
 }
-

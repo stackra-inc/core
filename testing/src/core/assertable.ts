@@ -61,10 +61,10 @@ export class Assertable {
    * @param method - Method name to stub
    * @param implementation - Function invoked with the original arguments
    */
-  public stubImplementation<
-    TArgs extends readonly unknown[] = unknown[],
-    TReturn = unknown,
-  >(method: string, implementation: (...args: TArgs) => TReturn): this {
+  public stubImplementation<TArgs extends readonly unknown[] = unknown[], TReturn = unknown>(
+    method: string,
+    implementation: (...args: TArgs) => TReturn
+  ): this {
     this._stubs.set(method, { implementation: implementation as any });
     return this;
   }

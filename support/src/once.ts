@@ -47,4 +47,3 @@ export function once<T>(fn: () => T): () => T {
     return result;
   };
 }
-

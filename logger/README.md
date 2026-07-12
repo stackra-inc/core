@@ -52,10 +52,7 @@ class OrderService {
 ### NestJS Backend
 
 ```typescript
-import {
-  NestLoggerModule,
-  NestLoggerServiceAdapter,
-} from '@stackra/logger/nestjs';
+import { NestLoggerModule, NestLoggerServiceAdapter } from '@stackra/logger/nestjs';
 
 @Module({
   imports: [
@@ -82,11 +79,7 @@ app.useLogger(app.get(NestLoggerServiceAdapter));
 ### React Components
 
 ```tsx
-import {
-  useLogger,
-  useLoggerChannel,
-  LoggerErrorBoundary,
-} from '@stackra/logger/react';
+import { useLogger, useLoggerChannel, LoggerErrorBoundary } from '@stackra/logger/react';
 
 function Dashboard() {
   const logger = useLogger('Dashboard');
@@ -171,11 +164,7 @@ Register in your channel config: `reporters: ['datadog']`.
 Enrichers transform entries before they reach reporters:
 
 ```typescript
-import {
-  LoggerModule,
-  RedactionEnricher,
-  SamplingEnricher,
-} from '@stackra/logger';
+import { LoggerModule, RedactionEnricher, SamplingEnricher } from '@stackra/logger';
 
 LoggerModule.forRoot({
   default: 'app',
