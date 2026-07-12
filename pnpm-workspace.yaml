@@ -9,8 +9,12 @@ packages:
   - 'cache'
   - 'container'
   - 'contracts'
+  - 'coordinator'
   - 'events'
   - 'logger'
+  - 'queue'
+  - 'realtime'
+  - 'scheduler'
   - 'support'
   - 'testing'
 

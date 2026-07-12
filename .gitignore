@@ -46,3 +46,6 @@ lerna-debug.log*
 
 # ── Reference source (not published, not tracked) ────────────────────────
 .ref/
+
+# ── Local sandboxes / templates (not part of the monorepo) ───────────────
+vite-example/

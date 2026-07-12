@@ -1,0 +1,16 @@
+/**
+ * @file coordinator.tokens.ts
+ * @module @stackra/contracts/tokens
+ * @description DI tokens for the cross-tab coordinator system.
+ *
+ *   These tokens live in contracts (not `@stackra/coordinator`) so
+ *   consumers can inject the coordinator services without pulling in
+ *   the runtime package — pattern matches CACHE_MANAGER, EVENT_EMITTER,
+ *   LOGGER_MANAGER.
+ */
+
+/** Token for the coordinator module configuration. */
+export const COORDINATOR_CONFIG = Symbol.for('COORDINATOR_CONFIG');
+
+/** Token for the TabCoordinator instance (leader election, tab census). */
+export const TAB_COORDINATOR = Symbol.for('TAB_COORDINATOR');
