@@ -1,7 +1,7 @@
 {
-  "name": "@stackra/contracts",
-  "version": "0.1.3",
-  "description": "Shared interfaces, types, enums, and DI tokens for the Stackra ecosystem. Zero runtime implementation.",
+  "name": "@stackra/pipeline",
+  "version": "0.1.0",
+  "description": "Laravel-style middleware pipeline with fluent API, DI integration, and Hub presets.",
   "license": "MIT",
   "author": {
     "name": "Stackra L.L.C",
@@ -10,16 +10,16 @@
   },
   "keywords": [
     "stackra",
-    "contracts",
-    "interfaces",
-    "tokens",
-    "dependency-injection"
+    "pipeline",
+    "middleware",
+    "hub",
+    "laravel"
   ],
-  "homepage": "https://github.com/stackra-inc/core/tree/main/contracts#readme",
+  "homepage": "https://github.com/stackra-inc/core/tree/main/pipeline#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stackra-inc/core.git",
-    "directory": "contracts"
+    "directory": "pipeline"
   },
   "bugs": {
     "url": "https://github.com/stackra-inc/core/issues"
@@ -56,9 +56,17 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage --passWithNoTests"
   },
+  "peerDependencies": {
+    "@stackra/container": "workspace:^",
+    "@stackra/contracts": "workspace:^",
+    "reflect-metadata": "*"
+  },
   "devDependencies": {
+    "@stackra/container": "workspace:*",
+    "@stackra/contracts": "workspace:*",
     "@stackra/testing": "workspace:*",
     "@types/node": "catalog:",
+    "reflect-metadata": "catalog:",
     "rimraf": "catalog:",
     "tsup": "catalog:",
     "typescript": "catalog:",

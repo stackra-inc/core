@@ -12,6 +12,7 @@ export { COORDINATOR_CONFIG, TAB_COORDINATOR } from './coordinator.tokens';
 export { DISCOVERY_SERVICE } from './discovery-service.token';
 export { EVENT_EMITTER, EVENT_EMITTER_CONFIG } from './events.tokens';
 export { LOGGER_MANAGER, LOGGER_CONFIG } from './logger.tokens';
+export { MIDDLEWARE_REGISTRY, MIDDLEWARE_RESOLVER, MIDDLEWARE_CONFIG } from './middleware.tokens';
 export {
   QUEUE_MANAGER,
   QUEUE_CONFIG,
