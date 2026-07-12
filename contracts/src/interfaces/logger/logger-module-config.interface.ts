@@ -4,7 +4,7 @@
  * @description Logger module configuration shape.
  */
 
-import type { LogLevel } from '../../types/logger/log-level.enum';
+import type { LogLevel } from '../../enums/log-level.enum';
 
 /** Configuration for a single log channel. */
 export interface ILogChannelConfig {

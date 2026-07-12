@@ -8,8 +8,8 @@
 packages:
   - 'container'
   - 'contracts'
+  - 'events'
   - 'logger'
-  - 'nestjs-types'
   - 'support'
   - 'testing'
 

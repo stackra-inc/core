@@ -1,6 +1,6 @@
 # @stackra/contracts
 
-Shared interfaces, types, enums, and DI tokens for the Stackra ecosystem. **Zero runtime implementation** — this package ships only type definitions and `Symbol.for(...)` tokens.
+Shared vocabulary for every `@stackra/*` package. **Zero runtime implementation** — only symbols, types, interfaces, and enums.
 
 ## Install
 
@@ -8,49 +8,89 @@ Shared interfaces, types, enums, and DI tokens for the Stackra ecosystem. **Zero
 pnpm add @stackra/contracts
 ```
 
-## What's inside
+## Layout
 
-### DI tokens
+The package is organized by symbol kind, not by domain:
 
-Three cross-package `Symbol.for(...)` tokens for wiring the DI container:
-
-```ts
-import { APPLICATION, APP_CONFIG, DISCOVERY_SERVICE } from '@stackra/contracts';
+```
+contracts/src/
+├── tokens/       ← `Symbol.for(...)` DI tokens
+├── interfaces/   ← every `interface` declaration
+├── types/        ← every standalone `type` alias
+├── enums/        ← every `enum` and its priority maps
+└── events/       ← event constant maps + event-name unions
 ```
 
-### Interfaces
+## Public API
+
+### Tokens
 
 ```ts
-import type {
-  IApplication, // Bootstrapped app context contract
-  IApplicationOptions, // Full IApplicationOptions for Application.create()
-  IContainer, // Minimal container inspection contract
-  IDiscoveryService, // Cross-package discovery contract
-  IDiscoveryProvider, // A discovered provider entry
+import {
+  APPLICATION,
+  APP_CONFIG,
+  DISCOVERY_SERVICE,
+  EVENT_EMITTER,
+  EVENT_EMITTER_CONFIG,
+  LOGGER_MANAGER,
+  LOGGER_CONFIG,
 } from '@stackra/contracts';
 ```
 
-### Re-exports from `@stackra/nestjs-types`
+### DI foundation
 
-Everything NestJS-shaped that consumers might need — imported from one place so they don't need to depend on `@nestjs/common` for types:
+Everything the DI container needs to describe modules and providers. Deliberately shaped like NestJS's interfaces so the container stays 1:1 compatible with third-party Nest code, without depending on `@nestjs/common` for types.
 
 ```ts
 import type {
   Type,
+  Abstract,
   InjectionToken,
-  Provider,
+  ForwardReference,
+  OptionalFactoryDependency,
   DynamicModule,
   ModuleMetadata,
+  Provider,
+  ClassProvider,
+  ValueProvider,
+  FactoryProvider,
+  ExistingProvider,
+  IAsyncModuleOptions,
   OnModuleInit,
   OnModuleDestroy,
   OnApplicationBootstrap,
   OnApplicationShutdown,
   BeforeApplicationShutdown,
-  ForwardReference,
-  OptionalFactoryDependency,
+  ScopeOptions,
 } from '@stackra/contracts';
 
 import { Scope, ShutdownSignal } from '@stackra/contracts';
+```
+
+### Domain contracts
+
+```ts
+import type {
+  IApplication,
+  IDiscoveryService,
+  IDiscoveryProvider,
+  IEventEmitter,
+  ILogger,
+  ILoggerManager,
+  ILogEntry,
+  ILogReporter,
+  ILogEnricher,
+  ILogFormatter,
+  ILogChannelConfig,
+  ILoggerModuleConfig,
+} from '@stackra/contracts';
+```
+
+### Logger types + enum
+
+```ts
+import { LogLevel, LOG_LEVEL_PRIORITY, LOGGER_EVENTS } from '@stackra/contracts';
+import type { LogContext } from '@stackra/contracts';
 ```
 
 ## License

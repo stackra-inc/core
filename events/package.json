@@ -1,0 +1,116 @@
+{
+  "name": "@stackra/events",
+  "version": "0.1.0",
+  "description": "Unified cross-platform event bus — core, React, and testing entry points with typed emitters and discovery-based @OnEvent handlers.",
+  "license": "MIT",
+  "author": {
+    "name": "Stackra L.L.C",
+    "email": "dev@stackra.com",
+    "url": "https://stackra.com"
+  },
+  "keywords": [
+    "stackra",
+    "events",
+    "event-bus",
+    "cross-platform",
+    "react"
+  ],
+  "homepage": "https://github.com/stackra-inc/core/tree/main/events#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stackra-inc/core.git",
+    "directory": "events"
+  },
+  "bugs": {
+    "url": "https://github.com/stackra-inc/core/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js"
+      },
+      "./react": {
+        "types": "./dist/react.d.ts",
+        "import": "./dist/react.mjs",
+        "require": "./dist/react.js"
+      },
+      "./testing": {
+        "types": "./dist/testing.d.ts",
+        "import": "./dist/testing.mjs",
+        "require": "./dist/testing.js"
+      }
+    }
+  },
+  "packageManager": "pnpm@10.0.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "sideEffects": false,
+  "main": "./src/core/index.ts",
+  "module": "./src/core/index.ts",
+  "types": "./src/core/index.ts",
+  "exports": {
+    ".": "./src/core/index.ts",
+    "./react": "./src/react/index.ts",
+    "./testing": "./src/testing/index.ts"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage --passWithNoTests"
+  },
+  "dependencies": {
+    "@vivtel/metadata": "catalog:"
+  },
+  "peerDependencies": {
+    "@stackra/container": "workspace:^",
+    "@stackra/contracts": "workspace:^",
+    "@stackra/logger": "workspace:^",
+    "@stackra/support": "workspace:^",
+    "react": "*",
+    "reflect-metadata": "*",
+    "rxjs": "*"
+  },
+  "peerDependenciesMeta": {
+    "@stackra/logger": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "rxjs": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@stackra/container": "workspace:*",
+    "@stackra/contracts": "workspace:*",
+    "@stackra/logger": "workspace:*",
+    "@stackra/support": "workspace:*",
+    "@stackra/testing": "workspace:*",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:types",
+    "react": "catalog:react",
+    "reflect-metadata": "catalog:",
+    "rimraf": "catalog:",
+    "rxjs": "catalog:",
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

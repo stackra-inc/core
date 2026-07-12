@@ -1,8 +1,7 @@
 /**
  * Metadata Keys & Constants
  *
- * Re-exports NestJS metadata constants from `@stackra/nestjs-types` and
- * defines the two container-specific constants needed by the discovery engine.
+ * Container-specific constants used by the discovery engine.
  *
  * @module constants/tokens
  */

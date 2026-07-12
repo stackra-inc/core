@@ -4,7 +4,7 @@
  * @description Context-bound logger instance contract.
  */
 
-import type { LogContext } from '../../types/logger/log-context.type';
+import type { LogContext } from '../../types/log-context.type';
 
 /** Context-bound logger instance. */
 export interface ILogger {

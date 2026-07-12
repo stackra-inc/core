@@ -20,7 +20,7 @@ export { Optional } from './decorators/optional.decorator';
 export { Injectable } from './decorators/injectable.decorator';
 
 // ============================================================================
-// NestJS-Compatible Types & Enums (from @stackra/nestjs-types)
+// DI foundation types & enums (re-exported from @stackra/contracts)
 // ============================================================================
 export type {
   Type,

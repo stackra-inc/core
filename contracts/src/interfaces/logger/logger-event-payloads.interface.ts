@@ -4,8 +4,8 @@
  * @description Typed payloads for every constant in `LOGGER_EVENTS`.
  */
 
-import type { LogLevel } from '../../types/logger/log-level.enum';
-import type { LogContext } from '../../types/logger/log-context.type';
+import type { LogLevel } from '../../enums/log-level.enum';
+import type { LogContext } from '../../types/log-context.type';
 
 /**
  * Payload for `LOGGER_EVENTS.MESSAGE_LOGGED` — an enriched log

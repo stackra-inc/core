@@ -63,9 +63,6 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage --passWithNoTests"
   },
-  "dependencies": {
-    "@stackra/nestjs-types": "workspace:*"
-  },
   "devDependencies": {
     "@stackra/testing": "workspace:*",
     "@types/node": "catalog:",

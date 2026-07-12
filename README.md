@@ -4,12 +4,14 @@ pnpm monorepo containing the Stackra foundation packages.
 
 ## Packages
 
-| Package                 | Path            | Description                                                             |
-| ----------------------- | --------------- | ----------------------------------------------------------------------- |
-| `@stackra/container`    | `container/`    | NestJS-compatible DI container (core, React bindings, NestJS bridge)    |
-| `@stackra/contracts`    | `contracts/`    | Shared DI tokens, interfaces, and enums                                 |
-| `@stackra/nestjs-types` | `nestjs-types/` | Zero-runtime re-host of NestJS 11 types, enums, and constants           |
-| `@stackra/testing`      | `testing/`      | Shared Vitest preset and setup lifecycle (SWC transform for decorators) |
+| Package              | Path         | Description                                                                          |
+| -------------------- | ------------ | ------------------------------------------------------------------------------------ |
+| `@stackra/container` | `container/` | NestJS-compatible DI container (core + React bindings + NestJS bridge)               |
+| `@stackra/contracts` | `contracts/` | Shared DI tokens, interfaces, types, and enums — zero runtime                        |
+| `@stackra/events`    | `events/`    | Cross-platform event bus with typed emitters and discovery-based `@OnEvent` handlers |
+| `@stackra/logger`    | `logger/`    | Cross-platform logger with pluggable reporters, enrichers, and formatters            |
+| `@stackra/support`   | `support/`   | Utility layer — Str, Arr, Num, Env, Pipeline, Fluent, Uri, BaseRegistry, Manager     |
+| `@stackra/testing`   | `testing/`   | Vitest preset (SWC transform) + setup lifecycle + assertable primitives              |
 
 ## Requirements
 
