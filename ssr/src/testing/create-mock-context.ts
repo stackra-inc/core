@@ -8,7 +8,8 @@ import type { HttpContext, PipeContext, UiContext } from '../middleware/interfac
 import type { MiddlewareDefinition } from '../middleware/types/middleware-definition.type';
 import type { MiddlewareNext } from '../middleware/types/middleware-next.type';
 import { runMiddleware } from './run-middleware';
-import { createMockContainer, type MockContainer } from './mock-container';
+import { createMockContainer } from './mock-container';
+import type { MockContainer } from './mock-container';
 
 /**
  * Overrides accepted by `createMockContext` — a partial version of the

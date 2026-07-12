@@ -29,7 +29,7 @@ end-to-end integration in `vite-example`; Phase 13 releases to npm.
 
 ## Tasks
 
-#### Phase 1 — Foundation
+### Phase 1 — Foundation
 
 - [x] **1.1 — Promote `@stackra/pipeline`**
 
@@ -56,7 +56,7 @@ end-to-end integration in `vite-example`; Phase 13 releases to npm.
 
   _Requirements: (documentation)_
 
-#### Phase 2 — Contracts
+### Phase 2 — Contracts
 
 - [x] **2.1 — Add middleware tokens to `@stackra/contracts`**
 
@@ -84,7 +84,7 @@ end-to-end integration in `vite-example`; Phase 13 releases to npm.
 
   _Requirements: (release hygiene)_
 
-#### Phase 3 — SSR Package Skeleton
+### Phase 3 — SSR Package Skeleton
 
 - [x] **3.1 — Scaffold `@stackra/ssr` package**
 
