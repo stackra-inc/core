@@ -1,0 +1,55 @@
+{
+  "name": "pixielity",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Pixielity monorepo — DI container, contracts, testing preset, and NestJS types.",
+  "license": "MIT",
+  "author": {
+    "name": "Stackra L.L.C",
+    "email": "dev@stackra.com",
+    "url": "https://stackra.com"
+  },
+  "homepage": "https://github.com/stackra-inc/core#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stackra-inc/core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stackra-inc/core/issues"
+  },
+  "packageManager": "pnpm@10.0.0",
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "scripts": {
+    "build": "pnpm -r --workspace-concurrency=1 build",
+    "dev": "pnpm -r --parallel run dev",
+    "clean": "pnpm -r --parallel run clean && rimraf node_modules .turbo",
+    "typecheck": "pnpm -r --parallel run typecheck",
+    "test": "pnpm build && pnpm -r run test",
+    "test:watch": "pnpm -r --parallel run test:watch",
+    "test:coverage": "pnpm build && pnpm -r run test:coverage",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\"",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "pnpm build && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.7.0",
+    "@changesets/cli": "^2.31.0",
+    "@types/node": "catalog:",
+    "@typescript-eslint/eslint-plugin": "^8.20.0",
+    "@typescript-eslint/parser": "^8.20.0",
+    "@vitest/coverage-v8": "catalog:",
+    "eslint": "^9.18.0",
+    "prettier": "^3.4.2",
+    "rimraf": "catalog:",
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "name": "@stackra/container",
+  "version": "2.1.0",
+  "description": "NestJS-compatible dependency injection container for browser, Node, and React — decorators, modules, lifecycle hooks, discovery, and NestJS bridge.",
+  "license": "MIT",
+  "author": {
+    "name": "Stackra L.L.C",
+    "email": "dev@stackra.com",
+    "url": "https://stackra.com"
+  },
+  "keywords": [
+    "stackra",
+    "dependency-injection",
+    "ioc",
+    "container",
+    "nestjs",
+    "react",
+    "decorators",
+    "typescript"
+  ],
+  "homepage": "https://github.com/stackra-inc/core/tree/main/container#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stackra-inc/core.git",
+    "directory": "container"
+  },
+  "bugs": {
+    "url": "https://github.com/stackra-inc/core/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "packageManager": "pnpm@10.0.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.mjs",
+      "require": "./dist/react.js"
+    },
+    "./nestjs": {
+      "types": "./dist/nestjs.d.ts",
+      "import": "./dist/nestjs.mjs",
+      "require": "./dist/nestjs.js"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage --passWithNoTests"
+  },
+  "dependencies": {
+    "@vivtel/metadata": "catalog:",
+    "reflect-metadata": "catalog:"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "*",
+    "@nestjs/core": "*",
+    "@stackra/contracts": "workspace:^",
+    "react": "*",
+    "reflect-metadata": "*",
+    "rxjs": "*"
+  },
+  "peerDependenciesMeta": {
+    "@nestjs/common": {
+      "optional": true
+    },
+    "@nestjs/core": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "rxjs": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@nestjs/common": "catalog:nestjs",
+    "@nestjs/core": "catalog:nestjs",
+    "@stackra/contracts": "workspace:*",
+    "@stackra/testing": "workspace:*",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:types",
+    "react": "catalog:react",
+    "reflect-metadata": "catalog:",
+    "rimraf": "catalog:",
+    "rxjs": "catalog:",
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

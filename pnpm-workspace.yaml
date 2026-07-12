@@ -1,0 +1,55 @@
+# pnpm workspace + catalogs
+# Docs: https://pnpm.io/pnpm-workspace_yaml
+#
+# Version pins live in one place. Packages consume them via
+#   "some-dep": "catalog:"          → default catalog
+#   "some-dep": "catalog:<name>"    → named catalog
+
+packages:
+  - 'container'
+  - 'contracts'
+  - 'nestjs-types'
+  - 'testing'
+
+# ---------------------------------------------------------------------------
+# Default catalog — referenced as "catalog:" in package.json files.
+# ---------------------------------------------------------------------------
+catalog:
+  '@swc/core': ^1.10.0
+  '@types/node': ^22.20.0
+  '@vitest/coverage-v8': ^4.0.0
+  '@vivtel/metadata': ^1.0.5
+  reflect-metadata: ^0.2.2
+  rimraf: ^6.0.1
+  rxjs: ^7.8.2
+  tsup: ^8.5.0
+  typescript: ^6.0.0
+  unplugin-swc: ^1.5.9
+  vitest: ^4.0.0
+
+# ---------------------------------------------------------------------------
+# Named catalogs — referenced as "catalog:<name>" in package.json files.
+# ---------------------------------------------------------------------------
+catalogs:
+  nestjs:
+    '@nestjs/common': ^11.0.0
+    '@nestjs/core': ^11.0.0
+    '@nestjs/microservices': ^11.0.0
+    '@nestjs/platform-express': ^11.0.0
+    '@nestjs/testing': ^11.0.0
+
+  react:
+    react: ^19.0.0
+    react-dom: ^19.0.0
+
+  types:
+    '@types/react': ^19.0.0
+    '@types/react-dom': ^19.0.0
+
+# ---------------------------------------------------------------------------
+# Native packages that pnpm should be allowed to run install scripts for.
+# Anything not in this list is blocked by pnpm 10's postinstall policy.
+# ---------------------------------------------------------------------------
+onlyBuiltDependencies:
+  - '@swc/core'
+  - esbuild

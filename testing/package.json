@@ -1,0 +1,82 @@
+{
+  "name": "@stackra/testing",
+  "version": "1.0.0",
+  "description": "Shared Vitest preset and setup lifecycle for the Stackra monorepo — SWC-based transform with full decorator metadata support.",
+  "license": "MIT",
+  "author": {
+    "name": "Stackra L.L.C",
+    "email": "dev@stackra.com",
+    "url": "https://stackra.com"
+  },
+  "keywords": [
+    "stackra",
+    "vitest",
+    "vitest-preset",
+    "testing",
+    "swc",
+    "decorators"
+  ],
+  "homepage": "https://github.com/stackra-inc/core/tree/main/testing#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stackra-inc/core.git",
+    "directory": "testing"
+  },
+  "bugs": {
+    "url": "https://github.com/stackra-inc/core/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "packageManager": "pnpm@10.0.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "sideEffects": [
+    "./dist/setup.js",
+    "./dist/setup.mjs"
+  ],
+  "exports": {
+    "./preset": {
+      "types": "./dist/preset.d.ts",
+      "import": "./dist/preset.mjs",
+      "require": "./dist/preset.js"
+    },
+    "./setup": {
+      "types": "./dist/setup.d.ts",
+      "import": "./dist/setup.mjs",
+      "require": "./dist/setup.js"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "test": "echo \"📦 No tests for this package\""
+  },
+  "peerDependencies": {
+    "vitest": "*"
+  },
+  "peerDependenciesMeta": {
+    "vitest": {
+      "optional": false
+    }
+  },
+  "dependencies": {
+    "@swc/core": "catalog:",
+    "unplugin-swc": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "rimraf": "catalog:",
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}
