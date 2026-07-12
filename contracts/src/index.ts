@@ -1,23 +1,22 @@
 /**
  * @file index.ts
  * @module @stackra/contracts
- * @description Public API for @stackra/contracts — the shared vocabulary
- *   of the Stackra client-side framework.
+ * @description Public API for @stackra/contracts.
+ *
+ *   Zero-runtime vocabulary shared across every @stackra/* package.
  *
  *   Contents:
- *   - Tokens: our own DI tokens (APPLICATION, APP_CONFIG, DISCOVERY_SERVICE,
- *     LOGGER_MANAGER, CACHE_MANAGER, etc.)
- *   - Interfaces: contracts for every client domain (cache, container,
- *     cookie, coordinator, events, feature-flags, health, http, i18n,
- *     link, logger, mobile-pass, navigation, network, notification,
- *     preferences, pubsub, push, queue, realtime, redis, scheduler, sdui,
- *     state, storage, theming)
- *   - Event constants + typed payloads for every domain event
- *   - Re-exports from @stackra/nestjs-types for provider/module shapes
- *
- *   Zero runtime — the tokens are Symbol.for(...) and everything else is
- *   type-only. Consumers import from `@stackra/contracts` and never need
- *   to depend on @nestjs/common for types.
+ *   - Tokens: APPLICATION, APP_CONFIG, DISCOVERY_SERVICE, LOGGER_MANAGER, LOGGER_CONFIG
+ *   - Container interfaces: IApplication
+ *   - Discovery interfaces: IDiscoveryService, IDiscoveryProvider
+ *   - Event interfaces: IEventEmitter
+ *   - Logger interfaces + types: ILogger, ILoggerManager, ILogEntry,
+ *     ILogReporter, ILogEnricher, ILogFormatter, ILogChannelConfig,
+ *     ILoggerModuleConfig, LogLevel, LogContext, LOG_LEVEL_PRIORITY,
+ *     LOGGER_EVENTS
+ *   - Re-exports from @stackra/nestjs-types (Type, Provider variants,
+ *     lifecycle hook interfaces, DynamicModule, etc.) so consumers
+ *     don't need to depend on @nestjs/common for types
  */
 
 // ============================================================================
@@ -36,29 +35,10 @@ export * from './events';
 export * from './interfaces';
 
 // ============================================================================
-// Enums (SDUI)
-// ============================================================================
-export type {
-  SduiMode,
-  HeroUIColor,
-  HeroUIVariant,
-  HeroUISize,
-  SduiNotificationChannel,
-} from './enums/sdui';
-export {
-  SDUI_MODES,
-  HEROUI_COLORS,
-  HEROUI_VARIANTS,
-  HEROUI_SIZES,
-  SDUI_NOTIFICATION_CHANNELS,
-} from './enums/sdui';
-
-// ============================================================================
 // Types
 // ============================================================================
 export { LogLevel, LOG_LEVEL_PRIORITY } from './types/logger/log-level.enum';
 export type { LogContext } from './types/logger/log-context.type';
-export type { ITranslatableKey, ITranslatableValues, TranslatableText } from './types/sdui';
 
 // ============================================================================
 // Re-exports from @stackra/nestjs-types
