@@ -1,59 +1,68 @@
 /**
  * @file index.ts
- * @module @stackra/events
- * @description Public API for the events package (core entry point).
- *   Lightweight zero-dependency event bus with wildcard matching,
- *   `@OnEvent` auto-discovery, and `@EventTransport` bridging.
+ * @module @stackra/cache/core
+ * @description Public API for the cache core module.
+ *   Re-exports all public symbols organized by category.
  */
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Module
 // ════════════════════════════════════════════════════════════════════════════════
-export { EventEmitterModule } from './events.module';
+export { CacheModule } from './cache.module';
+export type { ICacheModuleAsyncOptions } from './interfaces';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Services
 // ════════════════════════════════════════════════════════════════════════════════
-export { EventEmitter } from './services';
-export type { EventListener } from './interfaces/listener-entry.interface';
-export { EventTransportRegistry } from './services';
-export { EventSubscribersLoader } from './services';
+export { CacheManager } from './services';
+export { CacheService, CACHE_EVENTS } from './services';
+export { CacheStoreLoader } from './services';
 
 // ════════════════════════════════════════════════════════════════════════════════
-// Decorators
+// Stores
 // ════════════════════════════════════════════════════════════════════════════════
-export { OnEvent } from './decorators';
-export { EventTransport } from './decorators';
-export { InjectEventEmitter } from './decorators';
-export { EventSubscriber, EVENT_SUBSCRIBER_METADATA } from './decorators';
+export { MemoryStore } from './stores';
+export { NullStore } from './stores';
+export { StorageStore } from './stores';
+export type { IStorageStoreOptions } from './interfaces';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Errors
 // ════════════════════════════════════════════════════════════════════════════════
-export { EventEmitterError } from './errors';
-export { EventListenerError } from './errors';
-export { EventTransportError } from './errors';
+export { CacheError } from './errors';
+export { CacheDriverError } from './errors';
 
 // ════════════════════════════════════════════════════════════════════════════════
-// Constants
+// Tags
 // ════════════════════════════════════════════════════════════════════════════════
-export {
-  EVENT_EMITTER,
-  EVENT_EMITTER_CONFIG,
-  EVENT_TRANSPORT_REGISTRY_TOKEN,
-  EVENT_LISTENER_METADATA,
-  EVENT_TRANSPORT_METADATA,
-} from './constants';
+export { TagSet } from './tags';
+export { TaggedCache } from './tags';
 
 // ════════════════════════════════════════════════════════════════════════════════
-// Interfaces
+// Decorators
 // ════════════════════════════════════════════════════════════════════════════════
-export type { IEventEmitterConfig } from './interfaces';
-export type { IOnEventMetadata, IOnEventOptions } from './interfaces';
-export type { IEventTransportOptions, IEventTransport } from './interfaces';
-export type { IEventEmitterSync } from '@stackra/contracts';
+export { CacheStore } from './decorators';
+export { Cacheable, setCacheableContainer } from './decorators';
+export { CacheEvict, setCacheEvictContainer } from './decorators';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Utilities
 // ════════════════════════════════════════════════════════════════════════════════
 export { defineConfig } from './utils';
+
+// ════════════════════════════════════════════════════════════════════════════════
+// Constants
+// ════════════════════════════════════════════════════════════════════════════════
+export {
+  CACHE_MANAGER,
+  CACHE_CONFIG,
+  CACHE_STORE_METADATA_KEY,
+  DEFAULT_TTL,
+  DEFAULT_PREFIX,
+  DEFAULT_STORE,
+} from './constants';
+
+// ════════════════════════════════════════════════════════════════════════════════
+// Interfaces
+// ════════════════════════════════════════════════════════════════════════════════
+export type { ICacheModuleConfig, ICacheStoreConfig } from './interfaces';

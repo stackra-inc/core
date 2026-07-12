@@ -6,6 +6,7 @@
 #   "some-dep": "catalog:<name>"    → named catalog
 
 packages:
+  - 'cache'
   - 'container'
   - 'contracts'
   - 'events'
