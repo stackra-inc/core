@@ -67,10 +67,30 @@
   "module": "./src/core/index.ts",
   "types": "./src/core/index.ts",
   "exports": {
-    ".": "./src/core/index.ts",
-    "./matchers": "./src/matchers/index.ts",
-    "./preset": "./src/preset/index.ts",
-    "./setup": "./src/preset/setup.ts"
+    ".": {
+      "types": "./src/core/index.ts",
+      "import": "./src/core/index.ts",
+      "require": "./src/core/index.ts",
+      "default": "./src/core/index.ts"
+    },
+    "./matchers": {
+      "types": "./src/matchers/index.ts",
+      "import": "./src/matchers/index.ts",
+      "require": "./src/matchers/index.ts",
+      "default": "./src/matchers/index.ts"
+    },
+    "./preset": {
+      "types": "./src/preset/index.ts",
+      "import": "./src/preset/index.ts",
+      "require": "./src/preset/index.ts",
+      "default": "./src/preset/index.ts"
+    },
+    "./setup": {
+      "types": "./src/preset/setup.ts",
+      "import": "./src/preset/setup.ts",
+      "require": "./src/preset/setup.ts",
+      "default": "./src/preset/setup.ts"
+    }
   },
   "files": [
     "dist",

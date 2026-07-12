@@ -53,8 +53,18 @@
   "module": "./src/core/index.ts",
   "types": "./src/core/index.ts",
   "exports": {
-    ".": "./src/core/index.ts",
-    "./react": "./src/react/index.ts"
+    ".": {
+      "types": "./src/core/index.ts",
+      "import": "./src/core/index.ts",
+      "require": "./src/core/index.ts",
+      "default": "./src/core/index.ts"
+    },
+    "./react": {
+      "types": "./src/react/index.ts",
+      "import": "./src/react/index.ts",
+      "require": "./src/react/index.ts",
+      "default": "./src/react/index.ts"
+    }
   },
   "files": [
     "dist",
