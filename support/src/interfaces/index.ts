@@ -1,10 +1,9 @@
 /**
- * @fileoverview Barrel export for all interfaces in the support package.
- *
- * @module @stackra/ts-support
- * @category Interfaces
+ * @file index.ts
+ * @module @stackra/support/interfaces
+ * @description Barrel export for all internal interfaces in the support package.
  */
 
-export type { BaseRegistryOptions } from "./base-registry-options.interface";
-export type { ICollection } from "./collection.interface";
-export type { ValidationResult } from "./validation-result.interface";
+export type { IConditionable } from './conditionable.interface';
+export type { IMacroable, IMacroableStatic, MacroFunction } from './macroable.interface';
+export type { IRetryOptions } from './retry-options.interface';

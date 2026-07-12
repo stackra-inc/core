@@ -36,7 +36,15 @@
     "./dist/setup.js",
     "./dist/setup.mjs"
   ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
     "./preset": {
       "types": "./dist/preset.d.ts",
       "import": "./dist/preset.mjs",

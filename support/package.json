@@ -1,7 +1,7 @@
 {
   "name": "@stackra/support",
   "version": "0.1.0",
-  "description": "Shared foundation utilities — global registration, base registry, env repository, and collection primitives.",
+  "description": "Foundation utility layer — Str, Arr, Num, Env, Pipeline, Fluent, Uri, BaseRegistry, Manager, and 20+ helpers used across every @stackra/* package.",
   "license": "MIT",
   "author": {
     "name": "Stackra L.L.C",
@@ -12,8 +12,10 @@
     "stackra",
     "support",
     "utilities",
-    "global-registry",
-    "collections"
+    "helpers",
+    "collections",
+    "registry",
+    "manager"
   ],
   "homepage": "https://github.com/stackra-inc/core/tree/main/support#readme",
   "repository": {
@@ -31,16 +33,15 @@
   "engines": {
     "node": ">=22.0.0"
   },
-  "type": "module",
   "sideEffects": false,
   "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     }
   },
   "files": [
@@ -53,24 +54,56 @@
     "dev": "tsup --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "test": "echo \"📦 No tests for this package\""
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage --passWithNoTests"
   },
   "dependencies": {
     "collect.js": "^4.36.1"
   },
   "peerDependencies": {
-    "@nestjs/common": "*"
+    "@nestjs/common": "*",
+    "@nestjs/core": "*",
+    "@stackra/container": "*",
+    "@stackra/contracts": "*",
+    "@vivtel/metadata": "*",
+    "react": "*",
+    "reflect-metadata": "*",
+    "rxjs": "*"
   },
   "peerDependenciesMeta": {
     "@nestjs/common": {
       "optional": true
+    },
+    "@nestjs/core": {
+      "optional": true
+    },
+    "@stackra/container": {
+      "optional": true
+    },
+    "@stackra/contracts": {
+      "optional": true
+    },
+    "@vivtel/metadata": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "reflect-metadata": {
+      "optional": true
+    },
+    "rxjs": {
+      "optional": true
     }
   },
   "devDependencies": {
-    "@nestjs/common": "catalog:nestjs",
+    "@stackra/testing": "workspace:*",
     "@types/node": "catalog:",
+    "reflect-metadata": "catalog:",
     "rimraf": "catalog:",
     "tsup": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   }
 }

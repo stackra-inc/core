@@ -1,7 +1,92 @@
 /**
- * @stackra/nestjs-support — Shared foundation utilities.
+ * @file index.ts
+ * @module @stackra/support
+ * @description Public API for the support package.
+ *   Re-exports all public symbols organized by category.
+ *   This is the canonical utility library for the @stackra monorepo.
  */
 
-// Globals
-export { GlobalRegistry, RegistersGlobals } from "./globals";
-export type { RegisterOptions } from "./globals";
+// ════════════════════════════════════════════════════════════════════════════════
+// Managers
+// ════════════════════════════════════════════════════════════════════════════════
+export { Manager, type DriverCreator } from './managers';
+export { MultipleInstanceManager } from './managers';
+
+// ════════════════════════════════════════════════════════════════════════════════
+// String Utilities
+// ════════════════════════════════════════════════════════════════════════════════
+export { Str } from './str';
+
+// ════════════════════════════════════════════════════════════════════════════════
+// Array & Object Utilities
+// ════════════════════════════════════════════════════════════════════════════════
+export { Arr } from './arr';
+
+// ════════════════════════════════════════════════════════════════════════════════
+// Number Utilities
+// ════════════════════════════════════════════════════════════════════════════════
+export { Num } from './num';
+
+// ════════════════════════════════════════════════════════════════════════════════
+// Function Helpers
+// ════════════════════════════════════════════════════════════════════════════════
+export { once } from './once';
+export { tap } from './tap';
+export { optional } from './optional';
+export { retry } from './retry';
+export { sleep } from './sleep';
+
+// ════════════════════════════════════════════════════════════════════════════════
+// Pipeline
+// ════════════════════════════════════════════════════════════════════════════════
+export { Pipeline } from './pipeline';
+
+// ════════════════════════════════════════════════════════════════════════════════
+// Fluent Configuration
+// ════════════════════════════════════════════════════════════════════════════════
+export { Fluent } from './fluent';
+
+// ════════════════════════════════════════════════════════════════════════════════
+// HTML
+// ════════════════════════════════════════════════════════════════════════════════
+export { HtmlString } from './html-string';
+
+// ════════════════════════════════════════════════════════════════════════════════
+// Performance & Timing
+// ════════════════════════════════════════════════════════════════════════════════
+export { Benchmark } from './benchmark';
+export { timebox } from './timebox';
+
+// ════════════════════════════════════════════════════════════════════════════════
+// URL Building
+// ════════════════════════════════════════════════════════════════════════════════
+export { Uri } from './uri';
+
+// ════════════════════════════════════════════════════════════════════════════════
+// Environment
+// ════════════════════════════════════════════════════════════════════════════════
+export { Env } from './env';
+
+// ════════════════════════════════════════════════════════════════════════════════
+// Registry
+// ════════════════════════════════════════════════════════════════════════════════
+export { BaseRegistry } from './base-registry';
+export { RegistryDuplicateError, RegistryMissingError } from './errors';
+
+// ════════════════════════════════════════════════════════════════════════════════
+// Transformer & Resolver Chains
+// ════════════════════════════════════════════════════════════════════════════════
+export { TransformerChain, type ITransformer } from './transformer-chain';
+export { ResolverChain, type IResolver } from './resolver-chain';
+
+// ════════════════════════════════════════════════════════════════════════════════
+// Collection (powered by collect.js)
+// ════════════════════════════════════════════════════════════════════════════════
+export { collect } from './collection';
+
+// ════════════════════════════════════════════════════════════════════════════════
+// Mixins
+// ════════════════════════════════════════════════════════════════════════════════
+export { Conditionable, ConditionableClass } from './conditionable';
+export { Macroable, MacroableClass } from './macroable';
+export * from './interfaces';
