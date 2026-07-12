@@ -70,3 +70,9 @@ onlyBuiltDependencies:
   - '@swc/core'
   - esbuild
   - heroui-pro
+
+allowBuilds:
+  '@heroui-pro/react': true
+  '@swc/core': true
+  '@zowe/secrets-for-zowe-sdk': true
+  esbuild: true
