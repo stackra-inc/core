@@ -14,7 +14,7 @@ export interface IRedisSubscriberEventMap<TMessage = string> {
 }
 
 /** Redis subscriber contract. */
-export interface IRedisSubscriber<TMessage = string> {
+export interface IRedisSubscriber {
   subscribe(...channels: string[]): Promise<void> | void;
   psubscribe(...patterns: string[]): Promise<void> | void;
   unsubscribe(...channels: string[]): Promise<void> | void;

@@ -16,29 +16,39 @@
     "directory": "logger"
   },
   "bugs": { "url": "https://github.com/stackra-inc/core/issues" },
-  "publishConfig": { "access": "public" },
+  "publishConfig": {
+    "access": "public",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js"
+      },
+      "./react": {
+        "types": "./dist/react.d.ts",
+        "import": "./dist/react.mjs",
+        "require": "./dist/react.js"
+      },
+      "./testing": {
+        "types": "./dist/testing.d.ts",
+        "import": "./dist/testing.mjs",
+        "require": "./dist/testing.js"
+      }
+    }
+  },
   "packageManager": "pnpm@10.0.0",
   "engines": { "node": ">=22.0.0" },
   "sideEffects": false,
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "./src/core/index.ts",
+  "module": "./src/core/index.ts",
+  "types": "./src/core/index.ts",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    },
-    "./react": {
-      "types": "./dist/react.d.ts",
-      "import": "./dist/react.mjs",
-      "require": "./dist/react.js"
-    },
-    "./testing": {
-      "types": "./dist/testing.d.ts",
-      "import": "./dist/testing.mjs",
-      "require": "./dist/testing.js"
-    }
+    ".": "./src/core/index.ts",
+    "./react": "./src/react/index.ts",
+    "./testing": "./src/testing/index.ts"
   },
   "files": ["dist", "LICENSE", "README.md"],
   "scripts": {

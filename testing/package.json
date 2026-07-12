@@ -1,7 +1,7 @@
 {
   "name": "@stackra/testing",
   "version": "1.0.0",
-  "description": "Shared Vitest preset and setup lifecycle for the Stackra monorepo — SWC-based transform with full decorator metadata support.",
+  "description": "Shared Vitest preset, setup lifecycle, and assertable primitives for the Stackra monorepo — SWC-based transform with full decorator metadata support.",
   "license": "MIT",
   "author": {
     "name": "Stackra L.L.C",
@@ -14,7 +14,8 @@
     "vitest-preset",
     "testing",
     "swc",
-    "decorators"
+    "decorators",
+    "assertable"
   ],
   "homepage": "https://github.com/stackra-inc/core/tree/main/testing#readme",
   "repository": {
@@ -26,35 +27,44 @@
     "url": "https://github.com/stackra-inc/core/issues"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js"
+      },
+      "./preset": {
+        "types": "./dist/preset.d.ts",
+        "import": "./dist/preset.mjs",
+        "require": "./dist/preset.js"
+      },
+      "./setup": {
+        "types": "./dist/setup.d.ts",
+        "import": "./dist/setup.mjs",
+        "require": "./dist/setup.js"
+      }
+    }
   },
   "packageManager": "pnpm@10.0.0",
   "engines": {
     "node": ">=22.0.0"
   },
   "sideEffects": [
+    "./src/preset/setup.ts",
     "./dist/setup.js",
     "./dist/setup.mjs"
   ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "./src/core/index.ts",
+  "module": "./src/core/index.ts",
+  "types": "./src/core/index.ts",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    },
-    "./preset": {
-      "types": "./dist/preset.d.ts",
-      "import": "./dist/preset.mjs",
-      "require": "./dist/preset.js"
-    },
-    "./setup": {
-      "types": "./dist/setup.d.ts",
-      "import": "./dist/setup.mjs",
-      "require": "./dist/setup.js"
-    }
+    ".": "./src/core/index.ts",
+    "./preset": "./src/preset/index.ts",
+    "./setup": "./src/preset/setup.ts"
   },
   "files": [
     "dist",
@@ -66,7 +76,9 @@
     "dev": "tsup --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "test": "echo \"📦 No tests for this package\""
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage --passWithNoTests"
   },
   "peerDependencies": {
     "vitest": "*"

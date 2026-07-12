@@ -4,8 +4,6 @@
  * @description Notification dispatch definition and module options interfaces.
  */
 
-import type { INotificationPayload } from './notification-channel.interface';
-
 // ============================================================================
 // Notification Definition
 // ============================================================================
