@@ -13,6 +13,7 @@ export * from './modules';
 export * from './hooks';
 
 // Domain-specific
+export * from './cache';
 export * from './container';
 export * from './discovery';
 export * from './events';

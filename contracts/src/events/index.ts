@@ -4,4 +4,5 @@
  * @description Barrel export for every event-constant object shipped by contracts.
  */
 
+export { CACHE_EVENTS, type CacheEventName } from './cache.events';
 export { LOGGER_EVENTS, type LoggerEventName } from './logger.events';
