@@ -4,3 +4,10 @@ coverage
 .turbo
 *.log
 pnpm-lock.yaml
+
+# Editor state — managed by IDEs, not authored by hand.
+.vscode
+.idea
+
+# Local sandbox — not part of the monorepo.
+vite-example
