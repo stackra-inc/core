@@ -14,8 +14,8 @@ import type {
   IJobOptions,
   IQueuedJob,
   IQueueConnectionConfig,
-} from '../interfaces';
-import { generateJobId } from '../utils/job-helpers.util';
+} from '@/core/interfaces';
+import { generateJobId } from '@/core/utils/job-helpers.util';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Connection

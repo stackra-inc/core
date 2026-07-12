@@ -4,7 +4,7 @@
  * @description Interfaces for the useConfirmDialog hook.
  */
 
-import type { ConfirmDialogVariant } from '../../components/confirm-dialog/confirm-dialog.interface';
+import type { ConfirmDialogVariant } from '@/react/components/confirm-dialog/confirm-dialog.interface';
 import type { ReactNode } from 'react';
 
 // ============================================================================

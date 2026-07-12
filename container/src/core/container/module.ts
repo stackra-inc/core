@@ -40,9 +40,9 @@ import {
   isValueProvider,
   isFactoryProvider,
   isExistingProvider,
-} from '../utils';
+} from '@/core/utils';
 import { InstanceWrapper } from './instance-wrapper';
-import { SCOPE_OPTIONS_METADATA } from '../constants';
+import { SCOPE_OPTIONS_METADATA } from '@/core/constants';
 
 /**
  * Runtime representation of a module.

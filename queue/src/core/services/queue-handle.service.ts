@@ -5,7 +5,7 @@
  *   Provides a scoped API for dispatching and managing jobs on one queue.
  */
 
-import type { IQueueConnection, IJobOptions, IQueuedJob } from '../interfaces';
+import type { IQueueConnection, IJobOptions, IQueuedJob } from '@/core/interfaces';
 
 /**
  * A queue handle bound to a specific connection and queue name.

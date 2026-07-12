@@ -1,6 +1,6 @@
-import type { Abstract } from '../abstract.interface';
-import type { Type } from '../type.interface';
-import type { Provider } from '../../types/provider.type';
+import type { Abstract } from '@/interfaces/abstract.interface';
+import type { Type } from '@/interfaces/type.interface';
+import type { Provider } from '@/types/provider.type';
 import type { DynamicModule } from './dynamic-module.interface';
 import type { ForwardReference } from './forward-reference.interface';
 

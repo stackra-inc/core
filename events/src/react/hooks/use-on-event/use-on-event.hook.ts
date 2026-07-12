@@ -8,9 +8,9 @@
 
 import { useEffect, useRef } from 'react';
 import { useInject } from '@stackra/container/react';
-import { EVENT_EMITTER } from '../../../core/constants';
-import { EventEmitter } from '../../../core/services/event-emitter.service';
-import type { EventListener } from '../../../core/interfaces/listener-entry.interface';
+import { EVENT_EMITTER } from '@/core/constants';
+import { EventEmitter } from '@/core/services/event-emitter.service';
+import type { EventListener } from '@/core/interfaces/listener-entry.interface';
 
 /**
  * Subscribe to an event with automatic cleanup on unmount.

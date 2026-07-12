@@ -5,13 +5,13 @@
  *   the DI container.
  */
 
-import type { Type } from '../interfaces/type.interface';
+import type { Type } from '@/interfaces/type.interface';
 import type {
   ClassProvider,
   ValueProvider,
   FactoryProvider,
   ExistingProvider,
-} from '../interfaces/modules';
+} from '@/interfaces/modules';
 
 /**
  * @publicApi

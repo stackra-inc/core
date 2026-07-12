@@ -10,14 +10,14 @@
  *   or from a custom key builder function.
  */
 
-import { CacheManager } from '../services/cache-manager.service';
+import { CacheManager } from '@/core/services/cache-manager.service';
 import { CACHE_MANAGER } from '@stackra/contracts';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Types
 // ════════════════════════════════════════════════════════════════════════════════
 
-import type { ICacheableOptions } from '../interfaces/cacheable-options.interface';
+import type { ICacheableOptions } from '@/core/interfaces/cacheable-options.interface';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Container Reference
@@ -148,7 +148,7 @@ export function Cacheable(options: ICacheableOptions = {}): MethodDecorator {
 
       // If tags are specified, use TaggedCache
       if (options.tags && options.tags.length > 0) {
-        const { TaggedCache } = await import('../tags/tagged-cache');
+        const { TaggedCache } = await import('@/core/tags/tagged-cache');
         const tagged = new TaggedCache(store, options.tags);
         return tagged.remember(cacheKey, ttl, () => originalMethod.apply(this, args));
       }

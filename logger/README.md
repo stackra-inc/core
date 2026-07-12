@@ -1,268 +1,193 @@
 # @stackra/logger
 
-Unified, channel-based logging system with three subpath exports: core (`.`),
-React (`./react`).
+Client-side structured logger for the Stackra framework — Laravel-style channels, pluggable reporters, an enrichment pipeline (redaction, interpolation, context, sampling), and React bindings.
 
-## Installation
+## Install
 
 ```bash
-yarn add @stackra/logger
+pnpm add @stackra/logger @stackra/container @stackra/contracts reflect-metadata
 ```
 
-Peer dependencies:
-
-- `@stackra/contracts` — shared interfaces, tokens, types
-- `@stackra/ts-container` — DI container
-- `@stackra/ts-support` — Manager base class
-
-Optional peers (activate specific subpaths):
-
-- `react` — for `@stackra/logger/react` hooks
-- `pino` — for PinoReporter in NestJS
-
-## Quick Start
-
-### Frontend (Browser / React Native)
+## Quick start
 
 ```typescript
+import { Module } from '@stackra/container';
 import { LoggerModule } from '@stackra/logger';
 import { LogLevel } from '@stackra/contracts';
 
-// In your root module
-LoggerModule.forRoot({
-  default: 'app',
-  channels: {
-    app: { level: LogLevel.DEBUG, reporters: ['console'], formatter: 'pretty' },
-  },
-});
+@Module({
+  imports: [
+    LoggerModule.forRoot({
+      default: 'app',
+      channels: {
+        app: { driver: 'single', reporters: ['console'], level: LogLevel.DEBUG },
+        audit: { driver: 'single', reporters: ['json'], level: LogLevel.INFO },
+      },
+      redact: { paths: ['password', 'token', 'creditCard.*'] },
+    }),
+  ],
+})
+export class AppModule {}
+```
 
-// In a service
+Then anywhere:
+
+```typescript
+import { Injectable } from '@stackra/container';
 import { Logger } from '@stackra/logger';
 
-class OrderService {
-  private readonly logger = new Logger(OrderService.name);
+@Injectable()
+export class UserService {
+  private readonly logger = new Logger(UserService.name);
 
-  async create(dto: CreateOrderDto) {
-    this.logger.info('Creating order', { sku: dto.sku });
+  create(input: UserInput) {
+    this.logger.info('creating user', { email: input.email });
+    // …
   }
 }
 ```
 
-### React Components
+## Public API
 
-```tsx
-import { useLogger, useLoggerChannel, LoggerErrorBoundary } from '@stackra/logger/react';
+### `Logger`
 
-function Dashboard() {
-  const logger = useLogger('Dashboard');
+Scoped logger created with a class or module name:
 
-  useEffect(() => {
-    logger.info('Dashboard mounted');
-  }, []);
+```typescript
+const logger = new Logger('MyContext');
 
-  return <div>...</div>;
-}
+logger.debug('...', context?);
+logger.info('...', context?);
+logger.notice('...', context?);
+logger.warn('...', context?);
+logger.error('...', context?);
+logger.critical('...', context?);
+logger.alert('...', context?);
+logger.emergency('...', context?);
 
-// Audit-specific logging
-function AuditLog() {
-  const auditLogger = useLoggerChannel('AuditLog', 'audit');
-  auditLogger.info('User action', { action: 'view' });
-}
+logger.log(LogLevel.INFO, '...', context?);
 
-// Error boundary
-function App() {
-  return (
-    <LoggerErrorBoundary fallback={<ErrorPage />} context="App">
-      <Dashboard />
-    </LoggerErrorBoundary>
-  );
-}
+// Named channel selection
+logger.channel('audit').info('user deleted', { userId });
+
+// Enriched sub-logger
+const scoped = logger.withContext({ userId: 5 });
+scoped.info('...'); // includes userId automatically
 ```
 
-## Channel Configuration
+### Channels
 
-Channels define independent log streams with their own level, reporters, and
-formatter:
+A channel is a named log destination composed of one or more reporters:
 
 ```typescript
 LoggerModule.forRoot({
-  default: 'app', // Default channel for Logger instances
+  default: 'app',
   channels: {
-    app: {
-      level: LogLevel.DEBUG,
-      reporters: ['console'],
-      formatter: 'pretty',
-    },
-    audit: {
-      level: LogLevel.INFO,
-      reporters: ['json'],
-      formatter: 'json',
-    },
-    performance: {
-      level: LogLevel.INFO,
-      reporters: ['json'],
-    },
+    app: { driver: 'single', reporters: ['console'] },
+    audit: { driver: 'single', reporters: ['json'] },
+    errors: { driver: 'stack', channels: ['console', 'audit'] },
   },
 });
 ```
 
-## Custom Reporters
+Drivers: `single` (one reporter list), `stack` (fan out to other named channels), `daily`/`rotating` (via plugin).
 
-Implement `ILogReporter` and decorate with `@Reporter`:
+### Reporters
+
+Built-in reporters — auto-discovered via `@Reporter()`:
+
+| Name      | Purpose                                  |
+| --------- | ---------------------------------------- |
+| `console` | Pretty-printed console output with color |
+| `json`    | One JSON line per log record             |
+| `silent`  | Discards everything — useful for tests   |
+
+Custom reporter:
 
 ```typescript
-import { Reporter } from '@stackra/logger';
-import { Injectable } from '@stackra/ts-container';
-import type { ILogReporter, ILogEntry } from '@stackra/contracts';
+import { Injectable } from '@stackra/container';
+import { Reporter, type IReporter, type ILogRecord } from '@stackra/logger';
 
-@Reporter('datadog')
-export class DatadogReporter implements ILogReporter {
-  readonly name = 'datadog';
-
-  write(entry: ILogEntry): void {
-    // Send to Datadog
+@Reporter({ name: 'sentry' })
+@Injectable()
+class SentryReporter implements IReporter {
+  report(record: ILogRecord): void {
+    if (record.level >= LogLevel.ERROR)
+      Sentry.captureMessage(record.message, { extra: record.context });
   }
+}
+```
 
-  async flush(): Promise<void> {
-    // Drain pending writes
-  }
+Register it as a provider anywhere in your DI graph — the `ReporterLoader` scans providers at bootstrap and registers everything with `@Reporter` metadata.
+
+### Enrichment pipeline
+
+Each log record passes through enrichers in order before reaching reporters:
+
+1. **`InterpolationEnricher`** — resolves `{placeholder}` substitutions.
+2. **`ContextEnricher`** — folds `ContextRepository` state (per-request or per-user) into every record.
+3. **`RedactionEnricher`** — deep-scrubs any path listed in `config.redact.paths` (supports `foo.*` wildcards).
+
+Extend the pipeline by writing a class that implements `IEnricher` from `@stackra/contracts` and declaring it as a DI provider.
+
+### Environment overrides
+
+`mergeConfig` layers env vars on top of user options:
+
+| Variable              | Effect                                          |
+| --------------------- | ----------------------------------------------- |
+| `LOG_LEVEL=debug`     | Forces every channel to the given minimum level |
+| `APP_DEBUG=true`      | Same as `LOG_LEVEL=debug`                       |
+| `NODE_ENV=production` | Silences debug-only channels                    |
+
+### React bindings — `@stackra/logger/react`
+
+```tsx
+import { useLogger } from '@stackra/logger/react';
+
+function Panel() {
+  const logger = useLogger('Panel');
+  logger.info('rendered');
+  return <div />;
 }
 ```
 
-Register in your channel config: `reporters: ['datadog']`.
+Also ships `<LogLevelSwitcher />`, `<LogChannelInspector />`, and `<LogEventStream />` for in-app debug UI.
 
-## Enrichment Pipeline
-
-Enrichers transform entries before they reach reporters:
+### Testing helper — `@stackra/logger/testing`
 
 ```typescript
-import { LoggerModule, RedactionEnricher, SamplingEnricher } from '@stackra/logger';
+import { createMockLogger } from '@stackra/logger/testing';
 
-LoggerModule.forRoot({
-  default: 'app',
-  channels: { app: { level: LogLevel.DEBUG, reporters: ['console'] } },
-  // Built-in redaction
-  redact: { paths: ['password', 'token', '*.secret'], mask: '[REDACTED]' },
-  // Built-in sampling (keep 1 in 10 debug entries)
-  sampling: { debug: 10 },
-});
+const logger = createMockLogger();
+service.doThing(logger);
+logger.assertCalled('info').with('did the thing').once();
 ```
 
-Custom enrichers:
+## Configuration
+
+Copy the template:
+
+```bash
+mkdir -p src/config
+cp node_modules/@stackra/logger/config/logger.config.ts src/config/logger.config.ts
+```
+
+Then in `app.module.ts`:
 
 ```typescript
-import type { ILogEnricher } from '@stackra/logger';
-import type { ILogEntry } from '@stackra/contracts';
-
-class EnvironmentEnricher implements ILogEnricher {
-  enrich(entry: ILogEntry): ILogEntry {
-    return {
-      ...entry,
-      meta: { ...entry.meta, env: process.env.NODE_ENV },
-    };
-  }
-}
-
-// Register at runtime
-manager.addEnricher(new EnvironmentEnricher());
+import { loggerConfig } from '@/config/logger.config';
+LoggerModule.forRoot(loggerConfig);
 ```
 
-## Child Loggers
+## Subpaths
 
-Add nested context metadata without creating new Logger instances:
+| Import                    | Purpose                                             |
+| ------------------------- | --------------------------------------------------- |
+| `@stackra/logger`         | Core `Logger`, `LoggerModule`, `Reporter` decorator |
+| `@stackra/logger/react`   | React hooks + debug components                      |
+| `@stackra/logger/testing` | `createMockLogger()`                                |
 
-```typescript
-const logger = new Logger('OrderService');
-const reqLogger = logger.child({ requestId: 'abc123' });
-const orderLogger = reqLogger.child({ orderId: 'ord-456' });
+## License
 
-orderLogger.info('Processing payment');
-// Entry meta: { requestId: 'abc123', orderId: 'ord-456' }
-```
-
-## NestJS Integration
-
-### Request Logging
-
-When `requestLogging: true` (default), every HTTP request is automatically
-logged:
-
-```
-→ POST /api/orders { method, url, userAgent, requestId }
-← POST /api/orders 201 45ms { method, url, statusCode, durationMs, requestId }
-```
-
-### Context Propagation
-
-`AsyncLocalStorage` automatically injects `requestId` and `traceId` from request
-headers (`X-Request-Id`, `X-Trace-Id`) into every log entry within that request
-scope.
-
-### Buffered Reporter
-
-For high-throughput scenarios:
-
-```typescript
-import { BufferedReporterWrapper } from '@stackra/logger';
-
-const buffered = new BufferedReporterWrapper(jsonReporter, {
-  bufferSize: 50, // Flush every 50 entries
-  flushIntervalMs: 3000, // Or every 3 seconds
-});
-
-manager.registerReporter(buffered);
-```
-
-## API Reference
-
-### LoggerManager
-
-| Method                         | Description                          |
-| ------------------------------ | ------------------------------------ |
-| `create(context)`              | Create a Logger with default channel |
-| `channel(context, channel)`    | Create a Logger for specific channel |
-| `dispatch(entry, channel?)`    | Dispatch entry to channel reporters  |
-| `setLevel(channel, level)`     | Change channel level at runtime      |
-| `setGlobalContext(ctx)`        | Set global context for all entries   |
-| `getGlobalContext()`           | Get current global context           |
-| `addChannel(name, config)`     | Add a channel at runtime             |
-| `registerReporter(reporter)`   | Register a reporter instance         |
-| `registerFormatter(formatter)` | Register a formatter instance        |
-| `addEnricher(enricher)`        | Append enricher to pipeline          |
-| `prependEnricher(enricher)`    | Prepend enricher to pipeline         |
-| `flush()`                      | Flush all reporter buffers           |
-
-### Logger
-
-| Method                          | Description                          |
-| ------------------------------- | ------------------------------------ |
-| `debug(message, meta?)`         | Log at DEBUG level                   |
-| `info(message, meta?)`          | Log at INFO level                    |
-| `warn(message, meta?)`          | Log at WARN level                    |
-| `error(message, error?, meta?)` | Log at ERROR level                   |
-| `fatal(message, error?, meta?)` | Log at FATAL level                   |
-| `child(meta)`                   | Create child logger with merged meta |
-
-### Built-in Reporters
-
-| Reporter                  | Description                             |
-| ------------------------- | --------------------------------------- |
-| `ConsoleReporter`         | Formatted console output via consola    |
-| `JsonReporter`            | Single-line JSON to stdout              |
-| `SilentReporter`          | No-op (testing)                         |
-| `PinoReporter`            | Pino-backed structured logging (NestJS) |
-| `BufferedReporterWrapper` | Batches writes for performance          |
-
-### Built-in Formatters
-
-| Formatter         | Description                           |
-| ----------------- | ------------------------------------- |
-| `PrettyFormatter` | Colored, human-readable (development) |
-| `JsonFormatter`   | Single-line JSON (production)         |
-
-### Built-in Enrichers
-
-| Enricher            | Description                       |
-| ------------------- | --------------------------------- |
-| `RedactionEnricher` | Mask sensitive fields in meta     |
-| `SamplingEnricher`  | Drop entries by configurable rate |
+MIT

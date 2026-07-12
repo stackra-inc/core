@@ -8,11 +8,11 @@
 import { Injectable, Inject, Optional } from '@stackra/container';
 import { Logger } from '@stackra/logger';
 import { Manager } from '@stackra/support';
-import { REALTIME_CONFIG, REALTIME_EVENTS } from '../constants';
-import { RealtimeConnectionError } from '../errors';
+import { REALTIME_CONFIG, REALTIME_EVENTS } from '@/core/constants';
+import { RealtimeConnectionError } from '@/core/errors';
 import { EVENT_EMITTER } from '@stackra/contracts';
 import type { IEventEmitter } from '@stackra/contracts';
-import type { IRealtimeConnection, IRealtimeModuleOptions } from '../interfaces';
+import type { IRealtimeConnection, IRealtimeModuleOptions } from '@/core/interfaces';
 
 /**
  * Realtime manager — resolves named WebSocket connections.

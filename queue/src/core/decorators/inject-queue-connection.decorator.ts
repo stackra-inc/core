@@ -5,7 +5,7 @@
  */
 
 import { Inject } from '@stackra/container';
-import { getQueueConnectionToken } from '../utils/token-builders.util';
+import { getQueueConnectionToken } from '@/core/utils/token-builders.util';
 
 /**
  * Inject a queue connection by name.

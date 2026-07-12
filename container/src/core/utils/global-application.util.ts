@@ -16,7 +16,7 @@
  * @module application/global-application
  */
 
-import type { ApplicationContext } from '../application/application-context.service';
+import type { ApplicationContext } from '@/core/application/application-context.service';
 
 /** Simple internal logger — foundation layer cannot depend on @stackra/logger (core layer). */
 const logger = {

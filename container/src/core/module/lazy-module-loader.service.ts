@@ -33,12 +33,12 @@
  * @module injector/lazy-module-loader
  */
 
-import { Injectable } from '../decorators/injectable.decorator';
-import { ModuleContainer } from '../container/container.registry';
-import { DependenciesScanner } from '../container/scanner.service';
-import { Injector } from '../container/injector.service';
+import { Injectable } from '@/core/decorators/injectable.decorator';
+import { ModuleContainer } from '@/core/container/container.registry';
+import { DependenciesScanner } from '@/core/container/scanner.service';
+import { Injector } from '@/core/container/injector.service';
 import { Type, DynamicModule } from '@stackra/contracts';
-import { Module } from '../container/module';
+import { Module } from '@/core/container/module';
 
 /**
  * Lazily loads modules at runtime after the application has bootstrapped.

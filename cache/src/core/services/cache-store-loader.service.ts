@@ -19,7 +19,7 @@ import { Injectable, Inject, Optional } from '@stackra/container';
 import { OnModuleInit } from '@stackra/container';
 import { getMetadata } from '@vivtel/metadata';
 
-import { CACHE_STORE_METADATA_KEY } from '../constants';
+import { CACHE_STORE_METADATA_KEY } from '@/core/constants';
 import { CacheManager } from './cache-manager.service';
 
 // ════════════════════════════════════════════════════════════════════════════════
@@ -32,7 +32,7 @@ import { CacheManager } from './cache-manager.service';
 
 /** DI token for the discovery service (resolved from ts-container or NestJS). */
 import { DISCOVERY_SERVICE, CACHE_MANAGER } from '@stackra/contracts';
-import type { ICacheStoreOptions } from '../interfaces/cache-store-options.interface';
+import type { ICacheStoreOptions } from '@/core/interfaces/cache-store-options.interface';
 import type { IDiscoveryService, ICacheStore } from '@stackra/contracts';
 
 // ════════════════════════════════════════════════════════════════════════════════

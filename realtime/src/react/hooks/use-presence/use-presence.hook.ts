@@ -7,9 +7,9 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useInject } from '@stackra/container/react';
-import { REALTIME_MANAGER } from '../../../core/constants';
-import { RealtimeManager } from '../../../core/services/realtime-manager.service';
-import type { IRealtimePresenceChannel } from '../../../core/interfaces/realtime-connection.interface';
+import { REALTIME_MANAGER } from '@/core/constants';
+import { RealtimeManager } from '@/core/services/realtime-manager.service';
+import type { IRealtimePresenceChannel } from '@/core/interfaces/realtime-connection.interface';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Types

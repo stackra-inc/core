@@ -16,7 +16,7 @@
 
 import { defineMetadata } from '@vivtel/metadata';
 
-import { GLOBAL_MODULE_METADATA } from '../constants';
+import { GLOBAL_MODULE_METADATA } from '@/core/constants';
 
 /**
  * Marks a module as global-scoped.

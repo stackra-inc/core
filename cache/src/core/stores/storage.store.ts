@@ -10,15 +10,15 @@
  *   allowing individual access without loading the entire cache into memory.
  */
 
-import { CacheStore } from '../decorators';
+import { CacheStore } from '@/core/decorators';
 import type { ICacheStore } from '@stackra/contracts';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Types
 // ════════════════════════════════════════════════════════════════════════════════
 
-import type { IStorageEntry } from '../interfaces/storage-entry.interface';
-import type { IStorageStoreOptions } from '../interfaces/storage-store-options.interface';
+import type { IStorageEntry } from '@/core/interfaces/storage-entry.interface';
+import type { IStorageStoreOptions } from '@/core/interfaces/storage-store-options.interface';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // In-Memory Polyfill

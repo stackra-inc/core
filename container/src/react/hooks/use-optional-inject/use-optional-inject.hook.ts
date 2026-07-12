@@ -10,7 +10,7 @@
 import { useMemo } from 'react';
 
 import type { InjectionToken } from '@stackra/contracts';
-import { useContainer } from '../use-container';
+import { useContainer } from '@/react/hooks/use-container';
 
 /**
  * Optionally resolve a provider from the DI container.

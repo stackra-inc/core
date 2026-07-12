@@ -11,14 +11,14 @@ import { APP_CONFIG } from '@stackra/contracts';
 
 import { ApplicationBuilder } from './application-builder.service';
 import { ApplicationContext } from './application-context.service';
-import { ModuleContainer } from '../container/container.registry';
-import { InstanceLoader } from '../container/instance-loader.service';
-import { ModuleRef } from '../container/module-ref';
-import { DependenciesScanner } from '../container/scanner.service';
-import { DEFAULT_GLOBAL_NAME } from '../constants/tokens.constant';
-import { ContainerLogger } from '../devtools/container-logger';
-import type { IApplicationFactoryOptions } from '../interfaces/application-factory-options.interface';
-import { setGlobalApplicationContext } from '../utils/global-application.util';
+import { ModuleContainer } from '@/core/container/container.registry';
+import { InstanceLoader } from '@/core/container/instance-loader.service';
+import { ModuleRef } from '@/core/container/module-ref';
+import { DependenciesScanner } from '@/core/container/scanner.service';
+import { DEFAULT_GLOBAL_NAME } from '@/core/constants/tokens.constant';
+import { ContainerLogger } from '@/core/devtools/container-logger';
+import type { IApplicationFactoryOptions } from '@/core/interfaces/application-factory-options.interface';
+import { setGlobalApplicationContext } from '@/core/utils/global-application.util';
 
 /**
  * Factory for creating `ApplicationContext` instances.
@@ -210,7 +210,7 @@ export class ApplicationFactory {
    *
    * // Dynamic import factory
    * const app = await ApplicationFactory.builder(
-   *   () => import('../../lib/app.module').then(m => m.AppModule)
+   *   () => import('@/lib/app.module').then(m => m.AppModule)
    * ).boot();
    * ```
    */

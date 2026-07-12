@@ -37,7 +37,7 @@ import {
   PROPERTY_DEPS_METADATA,
   SELF_DECLARED_DEPS_METADATA,
   OPTIONAL_PROPERTY_DEPS_METADATA,
-} from '../constants';
+} from '@/core/constants';
 import { Module } from './module';
 import { Type, InjectionToken } from '@stackra/contracts';
 import { InstanceWrapper } from './instance-wrapper';

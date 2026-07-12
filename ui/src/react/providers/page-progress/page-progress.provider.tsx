@@ -12,7 +12,7 @@
 import { ProgressBar } from '@heroui/react';
 import React, { useState, useCallback, useRef, useMemo, useEffect } from 'react';
 
-import { PageProgressContext } from '../../contexts/page-progress';
+import { PageProgressContext } from '@/react/contexts/page-progress';
 
 import type {
   PageProgressProviderProps,

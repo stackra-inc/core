@@ -8,8 +8,8 @@
 
 import { defineMetadata } from '@vivtel/metadata';
 
-import { EVENT_TRANSPORT_METADATA } from '../constants';
-import type { IEventTransportOptions } from '../interfaces';
+import { EVENT_TRANSPORT_METADATA } from '@/core/constants';
+import type { IEventTransportOptions } from '@/core/interfaces';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Decorator

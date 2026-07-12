@@ -15,7 +15,7 @@
 
 import type { ILoggerModuleConfig } from '@stackra/contracts';
 
-import { DEFAULT_LOGGER_CONFIG } from '../constants/default-logger-config.constant';
+import { DEFAULT_LOGGER_CONFIG } from '@/core/constants/default-logger-config.constant';
 import { applyEnvironmentOverrides, applyEnvVarOverrides } from './env-overrides.util';
 
 /**

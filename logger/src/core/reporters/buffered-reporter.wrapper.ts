@@ -7,7 +7,7 @@
 
 import type { ILogReporter, ILogEntry } from '@stackra/contracts';
 
-import type { IBufferedReporterOptions } from '../interfaces/buffered-reporter-options.interface';
+import type { IBufferedReporterOptions } from '@/core/interfaces/buffered-reporter-options.interface';
 
 export type { IBufferedReporterOptions };
 

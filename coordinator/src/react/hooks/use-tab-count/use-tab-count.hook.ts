@@ -6,8 +6,8 @@
 
 import { useState, useEffect } from 'react';
 import { useInject } from '@stackra/container/react';
-import { TAB_COORDINATOR } from '../../../core/constants';
-import { TabCoordinator } from '../../../core/services/tab-coordinator.service';
+import { TAB_COORDINATOR } from '@/core/constants';
+import { TabCoordinator } from '@/core/services/tab-coordinator.service';
 
 /**
  * Returns the number of currently active tabs.

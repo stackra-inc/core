@@ -11,12 +11,12 @@
  */
 
 import { Injectable, Inject, Optional } from '@stackra/container';
-import { COORDINATOR_CONFIG } from '../constants';
-import { COORDINATOR_EVENTS } from '../constants';
-import type { ICoordinatorModuleOptions } from '../interfaces';
-import type { ITabInfo } from '../interfaces';
-import type { TabRole, CoordinatorMessage, RoleListener } from '../types';
-import { CoordinatorMessageKind } from '../enums';
+import { COORDINATOR_CONFIG } from '@/core/constants';
+import { COORDINATOR_EVENTS } from '@/core/constants';
+import type { ICoordinatorModuleOptions } from '@/core/interfaces';
+import type { ITabInfo } from '@/core/interfaces';
+import type { TabRole, CoordinatorMessage, RoleListener } from '@/core/types';
+import { CoordinatorMessageKind } from '@/core/enums';
 import { EVENT_EMITTER } from '@stackra/contracts';
 import type { IEventEmitterSync } from '@stackra/contracts';
 

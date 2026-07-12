@@ -7,4 +7,4 @@ export { OnEvent } from './on-event.decorator';
 export { EventTransport } from './event-transport.decorator';
 export { InjectEventEmitter } from './inject-event-emitter.decorator';
 export { EventSubscriber, EVENT_SUBSCRIBER_METADATA } from './event-subscriber.decorator';
-export type { IEventSubscriberMap } from '../interfaces/event-subscriber-map.type';
+export type { IEventSubscriberMap } from '@/core/interfaces/event-subscriber-map.type';

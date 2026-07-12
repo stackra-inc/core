@@ -6,8 +6,8 @@
  */
 
 import { defineMetadata } from '@vivtel/metadata';
-import { SCHEDULED_METADATA_KEY } from '../constants';
-import type { IScheduledOptions } from '../interfaces/scheduled-options.interface';
+import { SCHEDULED_METADATA_KEY } from '@/core/constants';
+import type { IScheduledOptions } from '@/core/interfaces/scheduled-options.interface';
 
 /**
  * Mark a class for automatic registration with the scheduler.

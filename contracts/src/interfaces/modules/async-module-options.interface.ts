@@ -1,6 +1,6 @@
-import type { InjectionToken } from '../../types/injection-token.type';
+import type { InjectionToken } from '@/types/injection-token.type';
 import type { ModuleMetadata } from './module-metadata.interface';
-import type { OptionalFactoryDependency } from '../../types/optional-factory-dependency.type';
+import type { OptionalFactoryDependency } from '@/types/optional-factory-dependency.type';
 
 /**
  * Canonical async-options shape for NestJS dynamic modules that register

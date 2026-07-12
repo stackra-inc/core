@@ -6,8 +6,8 @@
  */
 
 import { defineMetadata } from '@vivtel/metadata';
-import { PROCESSOR_METADATA_KEY } from '../constants';
-import type { IProcessorOptions } from '../interfaces/processor-options.interface';
+import { PROCESSOR_METADATA_KEY } from '@/core/constants';
+import type { IProcessorOptions } from '@/core/interfaces/processor-options.interface';
 
 /**
  * Mark a class as a queue job processor.

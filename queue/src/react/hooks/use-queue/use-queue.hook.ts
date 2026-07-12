@@ -5,8 +5,8 @@
  */
 
 import { useInject } from '@stackra/container/react';
-import { QUEUE_MANAGER } from '../../../core/constants';
-import { QueueManager } from '../../../core/services/queue-manager.service';
+import { QUEUE_MANAGER } from '@/core/constants';
+import { QueueManager } from '@/core/services/queue-manager.service';
 
 /**
  * Access the QueueManager from a React component.

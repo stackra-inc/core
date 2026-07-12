@@ -7,9 +7,9 @@
  */
 
 import { type ILogReporter, type ILogEntry } from '@stackra/contracts';
-import { Reporter } from '../../core/decorators/reporter.decorator';
+import { Reporter } from '@/core/decorators/reporter.decorator';
 
-import type { IHttpReporterConfig } from '../interfaces/http-reporter-config.interface';
+import type { IHttpReporterConfig } from '@/react/interfaces/http-reporter-config.interface';
 
 export type { IHttpReporterConfig };
 

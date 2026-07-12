@@ -8,7 +8,7 @@
  *   "undefined is not a function" runtime error.
  */
 
-import { CacheError } from '../errors/cache.error';
+import { CacheError } from '@/core/errors/cache.error';
 import type { ICacheStore } from '@stackra/contracts';
 
 // ════════════════════════════════════════════════════════════════════════════════

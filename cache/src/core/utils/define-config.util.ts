@@ -32,7 +32,7 @@
  * See `.kiro/steering/config-architecture.md` for the full guide.
  */
 
-import type { ICacheModuleConfig } from '../interfaces';
+import type { ICacheModuleConfig } from '@/core/interfaces';
 
 /**
  * Type-safe configuration builder for the cache module.

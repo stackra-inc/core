@@ -10,8 +10,8 @@
 import { Stepper } from '@heroui-pro/react';
 import React, { useState, useMemo, useCallback } from 'react';
 
-import { ProgressTabsContext } from '../../contexts/progress-tabs';
-import { useProgressTabs } from '../../hooks/use-progress-tabs/use-progress-tabs.hook';
+import { ProgressTabsContext } from '@/react/contexts/progress-tabs';
+import { useProgressTabs } from '@/react/hooks/use-progress-tabs/use-progress-tabs.hook';
 
 import type {
   ProgressTabsProps,

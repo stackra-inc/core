@@ -8,7 +8,7 @@
 
 import { type ILogReporter, type ILogEntry } from '@stackra/contracts';
 
-import { Reporter } from '../decorators/reporter.decorator';
+import { Reporter } from '@/core/decorators/reporter.decorator';
 
 /**
  * JSON reporter — outputs one JSON object per line to stdout.

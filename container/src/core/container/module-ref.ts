@@ -28,9 +28,9 @@
 
 import { InjectionToken, Type } from '@stackra/contracts';
 
-import type { ApplicationContext } from '../application/application-context.service';
+import type { ApplicationContext } from '@/core/application/application-context.service';
 import { Module } from './module';
-import type { IModuleRefGetOptions } from '../interfaces/module-ref-get-options.interface';
+import type { IModuleRefGetOptions } from '@/core/interfaces/module-ref-get-options.interface';
 
 export type { IModuleRefGetOptions };
 

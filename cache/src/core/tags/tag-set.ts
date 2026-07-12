@@ -11,7 +11,7 @@
  *   prefix so old keys simply can't be found anymore.
  */
 import type { ICacheStore } from '@stackra/contracts';
-import { requireStoreMethod } from '../utils/require-store-method.util';
+import { requireStoreMethod } from '@/core/utils/require-store-method.util';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Implementation

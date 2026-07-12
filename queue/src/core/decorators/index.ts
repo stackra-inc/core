@@ -8,7 +8,7 @@
  */
 
 export { Processor } from './processor.decorator';
-export type { IProcessorOptions } from '../interfaces/processor-options.interface';
+export type { IProcessorOptions } from '@/core/interfaces/processor-options.interface';
 export { OnJobEvent } from './on-job-event.decorator';
 export { InjectQueue } from './inject-queue.decorator';
 export { InjectQueueConnection } from './inject-queue-connection.decorator';

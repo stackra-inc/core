@@ -1,4 +1,4 @@
-import { Type } from '../type.interface';
+import { Type } from '@/interfaces/type.interface';
 import type { ModuleMetadata } from './module-metadata.interface';
 
 /**

@@ -8,8 +8,8 @@
  * @module hooks/use-discovery
  */
 
-import { useInject } from '../use-inject';
-import { DiscoveryService } from '../../../core/discovery/discovery.service';
+import { useInject } from '@/react/hooks/use-inject';
+import { DiscoveryService } from '@/core/discovery/discovery.service';
 
 /**
  * Get the active `DiscoveryService` instance.

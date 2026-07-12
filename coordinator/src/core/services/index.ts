@@ -11,4 +11,4 @@
 export { TabCoordinator } from './tab-coordinator.service';
 export { LockManager } from './lock-manager.service';
 export { CoordinatorTransport } from './coordinator-transport.service';
-export type { ILockOptions } from '../interfaces';
+export type { ILockOptions } from '@/core/interfaces';

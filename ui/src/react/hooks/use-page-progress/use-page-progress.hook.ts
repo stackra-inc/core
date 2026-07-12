@@ -7,9 +7,9 @@
 
 import { useContext } from 'react';
 
-import { PageProgressContext } from '../../contexts/page-progress';
+import { PageProgressContext } from '@/react/contexts/page-progress';
 
-import type { IPageProgressContextValue } from '../../providers/page-progress/page-progress.interface';
+import type { IPageProgressContextValue } from '@/react/providers/page-progress/page-progress.interface';
 
 /**
  * Access the page progress bar controls.

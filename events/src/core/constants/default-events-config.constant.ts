@@ -6,7 +6,7 @@
  *   override.
  */
 
-import type { IEventEmitterConfig } from '../interfaces';
+import type { IEventEmitterConfig } from '@/core/interfaces';
 
 /**
  * Default event emitter configuration. Applied when callers omit

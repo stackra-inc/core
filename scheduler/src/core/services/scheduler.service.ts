@@ -8,8 +8,8 @@
 
 import { Injectable, Inject, Optional } from '@stackra/container';
 import { Logger } from '@stackra/logger';
-import { TASK_RUNNER } from '../constants';
-import type { ITaskRunner, IScheduledTask, ITaskOptions } from '../interfaces';
+import { TASK_RUNNER } from '@/core/constants';
+import type { ITaskRunner, IScheduledTask, ITaskOptions } from '@/core/interfaces';
 import { EVENT_EMITTER, SCHEDULER_EVENTS } from '@stackra/contracts';
 import type { IEventEmitter } from '@stackra/contracts';
 

@@ -19,8 +19,8 @@
 
 import { DISCOVERY_SERVICE } from '@stackra/contracts';
 
-import { Global } from '../decorators/global.decorator';
-import { Module } from '../decorators/module.decorator';
+import { Global } from '@/core/decorators/global.decorator';
+import { Module } from '@/core/decorators/module.decorator';
 import { DiscoveryService } from './discovery.service';
 import { ContainerDiscoveryService } from './container-discovery.service';
 

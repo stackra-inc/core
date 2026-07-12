@@ -20,7 +20,7 @@
 import { Injectable } from '@stackra/container';
 import { BaseRegistry } from '@stackra/support';
 
-import type { IEventTransport } from '../interfaces';
+import type { IEventTransport } from '@/core/interfaces';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Registry

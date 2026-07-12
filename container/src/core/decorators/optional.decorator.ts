@@ -15,7 +15,7 @@
 
 import { updateMetadata } from '@vivtel/metadata';
 
-import { OPTIONAL_DEPS_METADATA, OPTIONAL_PROPERTY_DEPS_METADATA } from '../constants';
+import { OPTIONAL_DEPS_METADATA, OPTIONAL_PROPERTY_DEPS_METADATA } from '@/core/constants';
 
 /**
  * Marks a constructor parameter or property dependency as optional.

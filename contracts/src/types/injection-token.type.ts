@@ -5,8 +5,8 @@
  *   provider in the DI container.
  */
 
-import type { Abstract } from '../interfaces/abstract.interface';
-import type { Type } from '../interfaces/type.interface';
+import type { Abstract } from '@/interfaces/abstract.interface';
+import type { Type } from '@/interfaces/type.interface';
 
 /**
  * Anything the DI container accepts as a provider identity.

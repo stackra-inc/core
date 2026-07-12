@@ -10,10 +10,10 @@
  */
 
 import { Injectable, Inject, Optional } from '@stackra/container';
-import { COORDINATOR_CONFIG } from '../constants';
-import type { ICoordinatorModuleOptions } from '../interfaces';
+import { COORDINATOR_CONFIG } from '@/core/constants';
+import type { ICoordinatorModuleOptions } from '@/core/interfaces';
 import type { IEventEmitterSync } from '@stackra/contracts';
-import type { IRelayMessage } from '../interfaces/relay-message.interface';
+import type { IRelayMessage } from '@/core/interfaces/relay-message.interface';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Types

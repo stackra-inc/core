@@ -8,8 +8,8 @@
 
 import { useContext } from 'react';
 
-import type { ApplicationContext } from '../../../core/application/application-context.service';
-import { ContainerContext } from '../../contexts/container.context';
+import type { ApplicationContext } from '@/core/application/application-context.service';
+import { ContainerContext } from '@/react/contexts/container.context';
 
 /**
  * Get the application context from React context.

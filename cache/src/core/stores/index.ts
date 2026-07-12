@@ -7,4 +7,4 @@
 export { MemoryStore } from './memory.store';
 export { NullStore } from './null.store';
 export { StorageStore } from './storage.store';
-export type { IStorageStoreOptions } from '../interfaces/storage-store-options.interface';
+export type { IStorageStoreOptions } from '@/core/interfaces/storage-store-options.interface';

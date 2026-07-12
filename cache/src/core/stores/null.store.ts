@@ -6,7 +6,7 @@
  *   set does nothing, has always returns false, etc.
  */
 
-import { CacheStore } from '../decorators';
+import { CacheStore } from '@/core/decorators';
 import type { ICacheStore } from '@stackra/contracts';
 
 /**

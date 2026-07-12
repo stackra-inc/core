@@ -7,11 +7,11 @@
  */
 
 import { Injectable } from '@stackra/container';
-import type { ITaskRunner } from '../interfaces';
-import type { IScheduledTask } from '../interfaces';
-import type { ITaskOptions } from '../interfaces';
-import { getNextCronDelay } from '../utils/cron-parser.util';
-import type { ITaskEntry } from '../interfaces/task-entry.interface';
+import type { ITaskRunner } from '@/core/interfaces';
+import type { IScheduledTask } from '@/core/interfaces';
+import type { ITaskOptions } from '@/core/interfaces';
+import { getNextCronDelay } from '@/core/utils/cron-parser.util';
+import type { ITaskEntry } from '@/core/interfaces/task-entry.interface';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Types

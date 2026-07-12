@@ -6,9 +6,9 @@
  *   Suitable for single-process applications, testing, and development.
  */
 
-import { CacheStore } from '../decorators';
+import { CacheStore } from '@/core/decorators';
 import type { ICacheStore } from '@stackra/contracts';
-import type { ICacheEntry } from '../interfaces/cache-entry.interface';
+import type { ICacheEntry } from '@/core/interfaces/cache-entry.interface';
 
 /**
  * In-memory cache store with passive TTL expiry.

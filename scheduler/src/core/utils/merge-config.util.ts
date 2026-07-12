@@ -7,8 +7,8 @@
  *   so defaults stay consistent.
  */
 
-import type { ISchedulerModuleOptions } from '../interfaces';
-import { DEFAULT_SCHEDULER_CONFIG } from '../constants/default-scheduler-config.constant';
+import type { ISchedulerModuleOptions } from '@/core/interfaces';
+import { DEFAULT_SCHEDULER_CONFIG } from '@/core/constants/default-scheduler-config.constant';
 
 /**
  * Merge user options into the default scheduler config.

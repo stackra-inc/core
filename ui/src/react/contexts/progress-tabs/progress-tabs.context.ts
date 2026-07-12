@@ -6,7 +6,7 @@
 
 import { createContext } from 'react';
 
-import type { IProgressTabsContextValue } from '../../components/progress-tabs/progress-tabs.interface';
+import type { IProgressTabsContextValue } from '@/react/components/progress-tabs/progress-tabs.interface';
 
 /**
  * ProgressTabs context — shares active key, step registry,

@@ -7,7 +7,7 @@
  */
 
 import { Injectable } from '@stackra/container';
-import type { IQueueConnection, IQueuedJob, IWorkerOptions, JobHandler } from '../interfaces';
+import type { IQueueConnection, IQueuedJob, IWorkerOptions, JobHandler } from '@/core/interfaces';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Types

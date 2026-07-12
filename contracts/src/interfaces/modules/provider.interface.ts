@@ -6,10 +6,10 @@
  *   it's a discriminated union, not an interface.
  */
 
-import type { Scope } from '../../enums/scope.enum';
-import type { InjectionToken } from '../../types/injection-token.type';
-import type { OptionalFactoryDependency } from '../../types/optional-factory-dependency.type';
-import type { Type } from '../type.interface';
+import type { Scope } from '@/enums/scope.enum';
+import type { InjectionToken } from '@/types/injection-token.type';
+import type { OptionalFactoryDependency } from '@/types/optional-factory-dependency.type';
+import type { Type } from '@/interfaces/type.interface';
 
 /**
  * Interface defining a *Class* type provider.

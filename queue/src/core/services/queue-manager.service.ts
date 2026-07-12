@@ -7,11 +7,11 @@
 
 import { Injectable, Inject } from '@stackra/container';
 import { Manager } from '@stackra/support';
-import { QUEUE_CONFIG } from '../constants';
-import { QueueDriverError } from '../errors';
-import type { IQueueConnection, IQueueModuleOptions, IJobOptions } from '../interfaces';
-import { MemoryConnector } from '../connectors/memory.connector';
-import { SyncConnector } from '../connectors/sync.connector';
+import { QUEUE_CONFIG } from '@/core/constants';
+import { QueueDriverError } from '@/core/errors';
+import type { IQueueConnection, IQueueModuleOptions, IJobOptions } from '@/core/interfaces';
+import { MemoryConnector } from '@/core/connectors/memory.connector';
+import { SyncConnector } from '@/core/connectors/sync.connector';
 
 /**
  * Queue manager — resolves named queue connections.

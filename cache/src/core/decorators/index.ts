@@ -6,5 +6,5 @@
 export { CacheStore } from './cache-store.decorator';
 export { Cacheable, setCacheableContainer } from './cacheable.decorator';
 export { CacheEvict, setCacheEvictContainer } from './cache-evict.decorator';
-export type { ICacheableOptions } from '../interfaces/cacheable-options.interface';
-export type { ICacheEvictOptions } from '../interfaces/cache-evict-options.interface';
+export type { ICacheableOptions } from '@/core/interfaces/cacheable-options.interface';
+export type { ICacheEvictOptions } from '@/core/interfaces/cache-evict-options.interface';

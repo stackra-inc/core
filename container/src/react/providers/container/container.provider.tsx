@@ -34,9 +34,9 @@
  */
 
 import { createElement, type ReactNode } from 'react';
-import type { ApplicationContext } from '../../../core/application/application-context.service';
-import { ContainerContext } from '../../contexts/container.context';
-import { getGlobalApplicationContext } from '../../../core/utils/global-application.util';
+import type { ApplicationContext } from '@/core/application/application-context.service';
+import { ContainerContext } from '@/react/contexts/container.context';
+import { getGlobalApplicationContext } from '@/core/utils/global-application.util';
 
 export interface ContainerProviderProps {
   context?: ApplicationContext;

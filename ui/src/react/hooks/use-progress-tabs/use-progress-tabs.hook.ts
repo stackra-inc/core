@@ -6,9 +6,9 @@
 
 import { useContext } from 'react';
 
-import { ProgressTabsContext } from '../../contexts/progress-tabs';
+import { ProgressTabsContext } from '@/react/contexts/progress-tabs';
 
-import type { IProgressTabsContextValue } from '../../components/progress-tabs/progress-tabs.interface';
+import type { IProgressTabsContextValue } from '@/react/components/progress-tabs/progress-tabs.interface';
 
 /**
  * Access the ProgressTabs compound component context.

@@ -8,7 +8,7 @@
  */
 
 import { createContext } from 'react';
-import type { ApplicationContext } from '../../core/application/application-context.service';
+import type { ApplicationContext } from '@/core/application/application-context.service';
 
 /**
  * React context that holds the application context.

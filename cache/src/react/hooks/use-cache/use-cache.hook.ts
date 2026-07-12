@@ -7,7 +7,7 @@
 
 import { useInject } from '@stackra/container/react';
 
-import { CacheService } from '../../../core/services/cache.service';
+import { CacheService } from '@/core/services/cache.service';
 
 /**
  * Access the CacheService from the DI container in a React component.

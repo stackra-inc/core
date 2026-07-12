@@ -36,7 +36,7 @@
  * ```
  */
 
-import { Str } from '../str';
+import { Str } from '@/str';
 
 /** Factory function that creates a named instance. */
 export type InstanceCreator<TInstance> = (config: Record<string, unknown>) => TInstance;

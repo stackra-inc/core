@@ -11,9 +11,9 @@
 import { getMetadata } from '@vivtel/metadata';
 import type { IDiscoveryProvider, IDiscoveryService } from '@stackra/contracts';
 
-import { Injectable } from '../decorators/injectable.decorator';
+import { Injectable } from '@/core/decorators/injectable.decorator';
 import { DiscoveryService } from './discovery.service';
-import { InstanceWrapper } from '../container/instance-wrapper';
+import { InstanceWrapper } from '@/core/container/instance-wrapper';
 
 /**
  * ts-container implementation of the cross-package IDiscoveryService contract.

@@ -6,8 +6,8 @@
  *   `forRoot()` and any future async path route through this helper.
  */
 
-import type { IEventEmitterConfig } from '../interfaces';
-import { DEFAULT_EVENTS_CONFIG } from '../constants/default-events-config.constant';
+import type { IEventEmitterConfig } from '@/core/interfaces';
+import { DEFAULT_EVENTS_CONFIG } from '@/core/constants/default-events-config.constant';
 
 /**
  * Merge user options into the default events config.

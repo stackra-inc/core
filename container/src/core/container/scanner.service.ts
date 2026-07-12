@@ -36,11 +36,11 @@
  * @module injector/scanner
  */
 
-import { MODULE_METADATA } from '../constants';
+import { MODULE_METADATA } from '@/core/constants';
 import { getMetadata } from '@vivtel/metadata';
 import { ModuleContainer } from './container.registry';
 import { DynamicModule, IProvider } from '@stackra/contracts';
-import type { ModuleMetatype } from '../interfaces/module-metatype.type';
+import type { ModuleMetatype } from '@/core/interfaces/module-metatype.type';
 
 /**
  * Scans the module tree and populates the container.

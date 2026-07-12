@@ -8,7 +8,7 @@
 
 import { type ILogReporter, type ILogEntry } from '@stackra/contracts';
 
-import { Reporter } from '../decorators/reporter.decorator';
+import { Reporter } from '@/core/decorators/reporter.decorator';
 
 /**
  * Silent reporter — discards all entries.

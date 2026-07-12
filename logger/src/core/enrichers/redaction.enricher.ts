@@ -7,7 +7,7 @@
 
 import type { ILogEntry, LogContext, ILogEnricher } from '@stackra/contracts';
 
-import type { IRedactionConfig } from '../interfaces/redaction-config.interface';
+import type { IRedactionConfig } from '@/core/interfaces/redaction-config.interface';
 
 export type { IRedactionConfig };
 

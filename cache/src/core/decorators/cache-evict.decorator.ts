@@ -9,15 +9,15 @@
  *   stale cached data that was previously stored by `@Cacheable()`.
  */
 
-import { CacheManager } from '../services/cache-manager.service';
+import { CacheManager } from '@/core/services/cache-manager.service';
 import { CACHE_MANAGER } from '@stackra/contracts';
-import { requireStoreMethod } from '../utils/require-store-method.util';
+import { requireStoreMethod } from '@/core/utils/require-store-method.util';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Types
 // ════════════════════════════════════════════════════════════════════════════════
 
-import type { ICacheEvictOptions } from '../interfaces/cache-evict-options.interface';
+import type { ICacheEvictOptions } from '@/core/interfaces/cache-evict-options.interface';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Container Reference (shared with @Cacheable)
@@ -160,7 +160,7 @@ export async function performEviction(
 
     // Tag-based eviction
     if (options.tags) {
-      const { TaggedCache } = await import('../tags/tagged-cache');
+      const { TaggedCache } = await import('@/core/tags/tagged-cache');
       const tagNames = typeof options.tags === 'function' ? options.tags(...args) : options.tags;
       const tagged = new TaggedCache(store, tagNames);
       await tagged.flush();

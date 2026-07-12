@@ -6,9 +6,9 @@
 
 import { useState, useCallback } from 'react';
 import { useInject } from '@stackra/container/react';
-import { SCHEDULER_SERVICE } from '../../../core/constants';
-import { SchedulerService } from '../../../core/services/scheduler.service';
-import type { IScheduledTask } from '../../../core/interfaces';
+import { SCHEDULER_SERVICE } from '@/core/constants';
+import { SchedulerService } from '@/core/services/scheduler.service';
+import type { IScheduledTask } from '@/core/interfaces';
 
 /**
  * Return type of the `useScheduler` hook.

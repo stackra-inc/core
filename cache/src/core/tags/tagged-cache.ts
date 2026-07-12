@@ -12,7 +12,7 @@
 
 import { TagSet } from './tag-set';
 import type { ICacheStore } from '@stackra/contracts';
-import { requireStoreMethod } from '../utils/require-store-method.util';
+import { requireStoreMethod } from '@/core/utils/require-store-method.util';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Implementation

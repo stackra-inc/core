@@ -9,7 +9,7 @@
  *   Does NOT support named days/months (use numbers: 0=Sun, 1=Mon, etc.).
  */
 
-import type { ICronFields } from '../interfaces';
+import type { ICronFields } from '@/core/interfaces';
 
 /**
  * @deprecated Use {@link ICronFields} from `@/core/interfaces` instead.

@@ -10,9 +10,9 @@
 import { Injectable, Inject, Optional } from '@stackra/container';
 import { Logger } from '@stackra/logger';
 
-import { EVENT_EMITTER_CONFIG } from '../constants';
-import type { IEventEmitterConfig } from '../interfaces';
-import type { IListenerEntry, EventListener } from '../interfaces/listener-entry.interface';
+import { EVENT_EMITTER_CONFIG } from '@/core/constants';
+import type { IEventEmitterConfig } from '@/core/interfaces';
+import type { IListenerEntry, EventListener } from '@/core/interfaces/listener-entry.interface';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Types

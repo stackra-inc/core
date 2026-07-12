@@ -5,8 +5,8 @@
  */
 
 import { useInject } from '@stackra/container/react';
-import { EVENT_EMITTER } from '../../../core/constants';
-import { EventEmitter } from '../../../core/services/event-emitter.service';
+import { EVENT_EMITTER } from '@/core/constants';
+import { EventEmitter } from '@/core/services/event-emitter.service';
 
 /**
  * Access the EventEmitter instance from the DI container.

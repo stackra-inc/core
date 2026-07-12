@@ -6,7 +6,7 @@
 
 import { createContext } from 'react';
 
-import type { IPageProgressContextValue } from '../../providers/page-progress/page-progress.interface';
+import type { IPageProgressContextValue } from '@/react/providers/page-progress/page-progress.interface';
 
 /**
  * PageProgress context — provides start/done/isAnimating controls

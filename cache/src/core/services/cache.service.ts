@@ -15,10 +15,10 @@ import { Injectable, Inject, Optional } from '@stackra/container';
 import { Logger } from '@stackra/logger';
 
 import { CacheManager } from './cache-manager.service';
-import { TaggedCache } from '../tags/tagged-cache';
+import { TaggedCache } from '@/core/tags/tagged-cache';
 import { CACHE_EVENTS, CACHE_MANAGER, EVENT_EMITTER } from '@stackra/contracts';
 import type { ICacheStore, IEventEmitter } from '@stackra/contracts';
-import { requireStoreMethod } from '../utils/require-store-method.util';
+import { requireStoreMethod } from '@/core/utils/require-store-method.util';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Service

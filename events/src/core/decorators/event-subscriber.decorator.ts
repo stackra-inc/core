@@ -19,7 +19,7 @@ export const EVENT_SUBSCRIBER_METADATA = 'stackra:events:subscriber';
 // Types
 // ════════════════════════════════════════════════════════════════════════════════
 
-import type { IEventSubscriberMap } from '../interfaces/event-subscriber-map.type';
+import type { IEventSubscriberMap } from '@/core/interfaces/event-subscriber-map.type';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Decorator

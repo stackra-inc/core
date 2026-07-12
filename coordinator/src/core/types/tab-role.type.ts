@@ -4,7 +4,7 @@
  * @description Type alias for the role of a tab in the coordinator election.
  */
 
-import { TabRoleEnum } from '../enums';
+import { TabRoleEnum } from '@/core/enums';
 
 /**
  * The role of a tab — either 'leader' or 'follower'.

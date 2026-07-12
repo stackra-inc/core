@@ -20,7 +20,7 @@ import {
   type OnModuleInit,
 } from '@stackra/contracts';
 
-import { REPORTER_METADATA_KEY } from '../decorators/reporter-metadata.constant';
+import { REPORTER_METADATA_KEY } from '@/core/decorators/reporter-metadata.constant';
 
 /**
  * Reporter loader — auto-discovers and registers all @Reporter-decorated providers.

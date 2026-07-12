@@ -7,7 +7,7 @@
 
 import { Inject } from '@stackra/container';
 
-import { EVENT_EMITTER } from '../constants';
+import { EVENT_EMITTER } from '@/core/constants';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Decorator

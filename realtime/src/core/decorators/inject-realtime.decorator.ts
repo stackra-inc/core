@@ -5,7 +5,7 @@
  */
 
 import { Inject } from '@stackra/container';
-import { REALTIME_MANAGER } from '../constants';
+import { REALTIME_MANAGER } from '@/core/constants';
 
 /**
  * Inject the RealtimeManager service.

@@ -9,7 +9,7 @@
 import { type ILogReporter, type ILogEntry, LogLevel } from '@stackra/contracts';
 import { createConsola } from 'consola';
 
-import { Reporter } from '../decorators/reporter.decorator';
+import { Reporter } from '@/core/decorators/reporter.decorator';
 
 /**
  * Console reporter — writes formatted log entries via consola.

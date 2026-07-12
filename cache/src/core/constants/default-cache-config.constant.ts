@@ -6,7 +6,7 @@
  *   override.
  */
 
-import type { ICacheModuleConfig } from '../interfaces';
+import type { ICacheModuleConfig } from '@/core/interfaces';
 import { DEFAULT_STORE, DEFAULT_TTL } from './defaults.constant';
 
 /**

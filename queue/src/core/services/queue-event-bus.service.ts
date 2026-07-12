@@ -6,7 +6,7 @@
  */
 
 import { Injectable, Inject, Optional } from '@stackra/container';
-import { QUEUE_EVENTS } from '../constants';
+import { QUEUE_EVENTS } from '@/core/constants';
 import { EVENT_EMITTER } from '@stackra/contracts';
 import type { IEventEmitter } from '@stackra/contracts';
 

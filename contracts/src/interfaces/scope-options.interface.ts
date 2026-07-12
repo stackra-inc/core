@@ -5,7 +5,7 @@
  *   lifecycle scope.
  */
 
-import type { Scope } from '../enums/scope.enum';
+import type { Scope } from '@/enums/scope.enum';
 
 /**
  * @publicApi

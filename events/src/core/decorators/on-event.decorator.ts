@@ -9,8 +9,8 @@
 
 import { updateMetadata } from '@vivtel/metadata';
 
-import { EVENT_LISTENER_METADATA } from '../constants';
-import type { IOnEventMetadata, IOnEventOptions } from '../interfaces';
+import { EVENT_LISTENER_METADATA } from '@/core/constants';
+import type { IOnEventMetadata, IOnEventOptions } from '@/core/interfaces';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Decorator

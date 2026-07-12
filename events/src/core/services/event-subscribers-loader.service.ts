@@ -13,18 +13,18 @@
 import { Injectable, Inject, Optional, OnModuleInit, OnModuleDestroy } from '@stackra/container';
 import { getMetadata } from '@vivtel/metadata';
 
-import type { IDiscoveryService } from '../interfaces/discovery-service.interface';
-import { EVENT_EMITTER, EVENT_TRANSPORT_METADATA, EVENT_LISTENER_METADATA } from '../constants';
+import type { IDiscoveryService } from '@/core/interfaces/discovery-service.interface';
+import { EVENT_EMITTER, EVENT_TRANSPORT_METADATA, EVENT_LISTENER_METADATA } from '@/core/constants';
 import { EventEmitter } from './event-emitter.service';
 import { EventTransportRegistry } from './event-transport-registry.service';
-import { EventTransportError } from '../errors';
+import { EventTransportError } from '@/core/errors';
 import { DISCOVERY_SERVICE } from '@stackra/contracts';
 import type {
   IOnEventMetadata,
   IOnEventOptions,
   IEventTransportOptions,
   IEventTransport,
-} from '../interfaces';
+} from '@/core/interfaces';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Discovery Service Interface

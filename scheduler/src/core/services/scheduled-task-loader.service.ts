@@ -11,9 +11,9 @@ import { Injectable, Inject, Optional } from '@stackra/container';
 import { OnModuleInit } from '@stackra/contracts';
 import { getMetadata } from '@vivtel/metadata';
 
-import { SCHEDULER_SERVICE, SCHEDULED_METADATA_KEY } from '../constants';
+import { SCHEDULER_SERVICE, SCHEDULED_METADATA_KEY } from '@/core/constants';
 import { SchedulerService } from './scheduler.service';
-import type { IScheduledOptions } from '../interfaces/scheduled-options.interface';
+import type { IScheduledOptions } from '@/core/interfaces/scheduled-options.interface';
 import type { IDiscoveryService } from '@stackra/contracts';
 import { DISCOVERY_SERVICE } from '@stackra/contracts';
 

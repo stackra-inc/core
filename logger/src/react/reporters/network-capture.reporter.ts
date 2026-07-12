@@ -7,8 +7,8 @@
  */
 
 import { type ILogReporter, type ILogEntry, LogLevel } from '@stackra/contracts';
-import { Reporter } from '../../core/decorators/reporter.decorator';
-import { LoggerManager } from '../../core/services/logger-manager.service';
+import { Reporter } from '@/core/decorators/reporter.decorator';
+import { LoggerManager } from '@/core/services/logger-manager.service';
 
 /**
  * Network capture reporter — intercepts failed fetch requests and logs them.

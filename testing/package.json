@@ -27,32 +27,7 @@
     "url": "https://github.com/stackra-inc/core/issues"
   },
   "publishConfig": {
-    "access": "public",
-    "main": "./dist/index.js",
-    "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts",
-    "exports": {
-      ".": {
-        "types": "./dist/index.d.ts",
-        "import": "./dist/index.mjs",
-        "require": "./dist/index.js"
-      },
-      "./matchers": {
-        "types": "./dist/matchers.d.ts",
-        "import": "./dist/matchers.mjs",
-        "require": "./dist/matchers.js"
-      },
-      "./preset": {
-        "types": "./dist/preset.d.ts",
-        "import": "./dist/preset.mjs",
-        "require": "./dist/preset.js"
-      },
-      "./setup": {
-        "types": "./dist/setup.d.ts",
-        "import": "./dist/setup.mjs",
-        "require": "./dist/setup.js"
-      }
-    }
+    "access": "public"
   },
   "packageManager": "pnpm@11.12.0",
   "engines": {
@@ -63,33 +38,29 @@
     "./dist/setup.js",
     "./dist/setup.mjs"
   ],
-  "main": "./src/core/index.ts",
-  "module": "./src/core/index.ts",
-  "types": "./src/core/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./src/core/index.ts",
-      "import": "./src/core/index.ts",
-      "require": "./src/core/index.ts",
-      "default": "./src/core/index.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     },
     "./matchers": {
-      "types": "./src/matchers/index.ts",
-      "import": "./src/matchers/index.ts",
-      "require": "./src/matchers/index.ts",
-      "default": "./src/matchers/index.ts"
+      "types": "./dist/matchers.d.ts",
+      "import": "./dist/matchers.mjs",
+      "require": "./dist/matchers.js"
     },
     "./preset": {
-      "types": "./src/preset/index.ts",
-      "import": "./src/preset/index.ts",
-      "require": "./src/preset/index.ts",
-      "default": "./src/preset/index.ts"
+      "types": "./dist/preset.d.ts",
+      "import": "./dist/preset.mjs",
+      "require": "./dist/preset.js"
     },
     "./setup": {
-      "types": "./src/preset/setup.ts",
-      "import": "./src/preset/setup.ts",
-      "require": "./src/preset/setup.ts",
-      "default": "./src/preset/setup.ts"
+      "types": "./dist/setup.d.ts",
+      "import": "./dist/setup.mjs",
+      "require": "./dist/setup.js"
     }
   },
   "files": [

@@ -10,7 +10,7 @@
 import { useMemo } from 'react';
 
 import type { InjectionToken } from '@stackra/contracts';
-import { inject } from '../../../core/utils/inject.util';
+import { inject } from '@/core/utils/inject.util';
 
 /**
  * Resolve a provider from the DI container.

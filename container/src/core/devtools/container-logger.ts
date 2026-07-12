@@ -55,10 +55,10 @@
 // ── ANSI Color Helpers ────────────────────────────────────────────────────────
 
 import { colorize } from './colorize.util';
-import type { IContainerLoggerOptions } from '../interfaces/container-logger-options.interface';
-import type { IResolutionEntry } from '../interfaces/resolution-entry.interface';
-import type { ILifecycleEntry } from '../interfaces/lifecycle-entry.interface';
-import type { IBootstrapLog } from '../interfaces/bootstrap-log.interface';
+import type { IContainerLoggerOptions } from '@/core/interfaces/container-logger-options.interface';
+import type { IResolutionEntry } from '@/core/interfaces/resolution-entry.interface';
+import type { ILifecycleEntry } from '@/core/interfaces/lifecycle-entry.interface';
+import type { IBootstrapLog } from '@/core/interfaces/bootstrap-log.interface';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 

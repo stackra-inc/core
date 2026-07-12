@@ -10,9 +10,9 @@ import { Injectable, Inject, Optional } from '@stackra/container';
 import { OnModuleInit } from '@stackra/contracts';
 import { getMetadata } from '@vivtel/metadata';
 
-import { QUEUE_MANAGER, PROCESSOR_METADATA_KEY } from '../constants';
+import { QUEUE_MANAGER, PROCESSOR_METADATA_KEY } from '@/core/constants';
 import { QueueManager } from './queue-manager.service';
-import type { IProcessorOptions } from '../interfaces/processor-options.interface';
+import type { IProcessorOptions } from '@/core/interfaces/processor-options.interface';
 import type { IDiscoveryService } from '@stackra/contracts';
 import { DISCOVERY_SERVICE } from '@stackra/contracts';
 

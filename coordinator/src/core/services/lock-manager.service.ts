@@ -8,9 +8,9 @@
  */
 
 import { Injectable, Inject, Optional } from '@stackra/container';
-import { COORDINATOR_CONFIG } from '../constants';
-import { CoordinatorError } from '../errors';
-import type { ICoordinatorModuleOptions, ILockOptions } from '../interfaces';
+import { COORDINATOR_CONFIG } from '@/core/constants';
+import { CoordinatorError } from '@/core/errors';
+import type { ICoordinatorModuleOptions, ILockOptions } from '@/core/interfaces';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Types

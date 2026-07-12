@@ -9,7 +9,7 @@
 export { DiscoveryService } from './discovery.service';
 export { ContainerDiscoveryService } from './container-discovery.service';
 export { DiscoveryModule } from './discovery.module';
-export { DiscoverableMetaHostCollection } from '../container/discoverable-meta-host-collection.registry';
-export type { IDiscoverableDecorator } from '../interfaces/discoverable-decorator.type';
+export { DiscoverableMetaHostCollection } from '@/core/container/discoverable-meta-host-collection.registry';
+export type { IDiscoverableDecorator } from '@/core/interfaces/discoverable-decorator.type';
 export * from './constants';
 export * from './utils';

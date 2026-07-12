@@ -30,7 +30,7 @@
  * ```
  */
 
-import { Str } from '../str';
+import { Str } from '@/str';
 
 /** Factory function that creates a driver instance. */
 export type DriverCreator<TDriver> = (config?: unknown) => TDriver;

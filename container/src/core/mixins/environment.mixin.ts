@@ -41,7 +41,7 @@ export function env<T = string>(key: string, fallback?: T): T | undefined {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Constructor<T = object> = new (...args: any[]) => T;
 
-import type { IEnvironmentAware } from '../interfaces/environment-aware.interface';
+import type { IEnvironmentAware } from '@/core/interfaces/environment-aware.interface';
 
 export type { IEnvironmentAware };
 

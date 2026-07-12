@@ -32,7 +32,7 @@ import {
   PARAMTYPES_METADATA,
   PROPERTY_DEPS_METADATA,
   SELF_DECLARED_DEPS_METADATA,
-} from '../constants';
+} from '@/core/constants';
 import { InjectionToken } from '@stackra/contracts';
 import { ForwardReference } from '@stackra/contracts';
 

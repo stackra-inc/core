@@ -8,7 +8,7 @@
 
 import type { Type } from '@stackra/contracts';
 
-import type { IApplicationBuilderOptions } from '../interfaces';
+import type { IApplicationBuilderOptions } from '@/core/interfaces';
 import type { ApplicationContext } from './application-context.service';
 import { ApplicationFactory } from './application.factory';
 

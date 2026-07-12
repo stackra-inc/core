@@ -5,7 +5,7 @@
  */
 
 import { Inject } from '@stackra/container';
-import { TAB_COORDINATOR } from '../constants';
+import { TAB_COORDINATOR } from '@/core/constants';
 
 /**
  * Inject the TabCoordinator service.

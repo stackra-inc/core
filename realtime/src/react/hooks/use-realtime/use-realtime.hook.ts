@@ -5,8 +5,8 @@
  */
 
 import { useInject } from '@stackra/container/react';
-import { REALTIME_MANAGER } from '../../../core/constants';
-import { RealtimeManager } from '../../../core/services/realtime-manager.service';
+import { REALTIME_MANAGER } from '@/core/constants';
+import { RealtimeManager } from '@/core/services/realtime-manager.service';
 
 /**
  * Access the RealtimeManager for advanced operations.

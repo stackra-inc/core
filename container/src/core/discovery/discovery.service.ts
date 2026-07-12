@@ -26,14 +26,14 @@
 
 import { defineMetadata, getMetadata } from '@vivtel/metadata';
 
-import { Injectable } from '../decorators/injectable.decorator';
-import { ModuleContainer } from '../container/container.registry';
-import { generateMetadataKey } from '../utils/generate-metadata-key.util';
-import { Module } from '../container/module';
-import { InstanceWrapper } from '../container/instance-wrapper';
-import { DiscoverableMetaHostCollection } from '../container/discoverable-meta-host-collection.registry';
-import type { DiscoveryOptions } from '../interfaces/discovery-options.type';
-import type { IDiscoverableDecorator } from '../interfaces/discoverable-decorator.type';
+import { Injectable } from '@/core/decorators/injectable.decorator';
+import { ModuleContainer } from '@/core/container/container.registry';
+import { generateMetadataKey } from '@/core/utils/generate-metadata-key.util';
+import { Module } from '@/core/container/module';
+import { InstanceWrapper } from '@/core/container/instance-wrapper';
+import { DiscoverableMetaHostCollection } from '@/core/container/discoverable-meta-host-collection.registry';
+import type { DiscoveryOptions } from '@/core/interfaces/discovery-options.type';
+import type { IDiscoverableDecorator } from '@/core/interfaces/discoverable-decorator.type';
 
 /**
  * Public service for discovering providers tagged with custom decorators.

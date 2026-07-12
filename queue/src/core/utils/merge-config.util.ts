@@ -7,8 +7,8 @@
  *   consistent.
  */
 
-import type { IQueueModuleOptions } from '../interfaces';
-import { DEFAULT_QUEUE_CONFIG } from '../constants/default-queue-config.constant';
+import type { IQueueModuleOptions } from '@/core/interfaces';
+import { DEFAULT_QUEUE_CONFIG } from '@/core/constants/default-queue-config.constant';
 
 /**
  * Merge user options into the default queue config.

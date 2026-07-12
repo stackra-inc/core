@@ -30,7 +30,7 @@
 import { getMetadata } from '@vivtel/metadata';
 
 import { Module } from './module';
-import { GLOBAL_MODULE_METADATA } from '../constants';
+import { GLOBAL_MODULE_METADATA } from '@/core/constants';
 import { DiscoverableMetaHostCollection } from './discoverable-meta-host-collection.registry';
 import { Type, IProvider, DynamicModule, InjectionToken } from '@stackra/contracts';
 

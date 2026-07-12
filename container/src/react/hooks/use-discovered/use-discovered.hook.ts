@@ -11,9 +11,9 @@
 
 import { useMemo } from 'react';
 
-import { useDiscovery } from '../use-discovery';
-import { InstanceWrapper } from '../../../core/container/instance-wrapper';
-import type { IDiscoverableDecorator } from '../../../core/interfaces/discoverable-decorator.type';
+import { useDiscovery } from '@/react/hooks/use-discovery';
+import { InstanceWrapper } from '@/core/container/instance-wrapper';
+import type { IDiscoverableDecorator } from '@/core/interfaces/discoverable-decorator.type';
 
 /** Options for the useDiscovered hook. */
 export interface UseDiscoveredOptions {

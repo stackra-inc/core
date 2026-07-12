@@ -5,8 +5,8 @@
  */
 
 import { defineMetadata } from '@vivtel/metadata';
-import { ON_JOB_EVENT_METADATA_KEY } from '../constants';
-import type { JobEventType } from '../interfaces/job-event-type.interface';
+import { ON_JOB_EVENT_METADATA_KEY } from '@/core/constants';
+import type { JobEventType } from '@/core/interfaces/job-event-type.interface';
 
 /**
  * Subscribe a method to queue worker lifecycle events.

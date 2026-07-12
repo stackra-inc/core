@@ -6,7 +6,7 @@
  */
 
 import type { ILogEnricher, ILogEntry } from '@stackra/contracts';
-import { ContextRepository } from '../services/context-repository.service';
+import { ContextRepository } from '@/core/services/context-repository.service';
 
 /**
  * Context enricher — injects ContextRepository data into log entries.

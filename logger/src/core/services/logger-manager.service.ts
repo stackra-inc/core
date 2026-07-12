@@ -25,8 +25,8 @@ import {
   LOG_LEVEL_PRIORITY,
 } from '@stackra/contracts';
 
-import type { ILogChannel } from '../interfaces/log-channel.interface';
-import type { IChannelTap } from '../interfaces/channel-tap.interface';
+import type { ILogChannel } from '@/core/interfaces/log-channel.interface';
+import type { IChannelTap } from '@/core/interfaces/channel-tap.interface';
 import { EmergencyLogger } from './emergency-logger.service';
 
 // Lazy import to break circular dependency (Logger imports LoggerManager)

@@ -38,7 +38,7 @@
 
 import { getMetadata } from '@vivtel/metadata';
 
-import { Injectable } from '../decorators/injectable.decorator';
+import { Injectable } from '@/core/decorators/injectable.decorator';
 
 /**
  * Injectable metadata reader.

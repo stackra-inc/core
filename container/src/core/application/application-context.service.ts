@@ -34,12 +34,12 @@
 
 import { Type, DynamicModule, InjectionToken } from '@stackra/contracts';
 
-import { ModuleContainer } from '../container/container.registry';
-import { Module } from '../container/module';
-import { InstanceLoader } from '../container/instance-loader.service';
-import { ContainerLogger } from '../devtools/container-logger';
-import { env } from '../mixins/environment.mixin';
-import { tokenName } from '../utils/token-name.util';
+import { ModuleContainer } from '@/core/container/container.registry';
+import { Module } from '@/core/container/module';
+import { InstanceLoader } from '@/core/container/instance-loader.service';
+import { ContainerLogger } from '@/core/devtools/container-logger';
+import { env } from '@/core/mixins/environment.mixin';
+import { tokenName } from '@/core/utils/token-name.util';
 
 /**
  * The bootstrapped application context.

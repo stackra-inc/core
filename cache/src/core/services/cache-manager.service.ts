@@ -9,9 +9,9 @@
 import { Injectable, Inject } from '@stackra/container';
 import { Manager } from '@stackra/support';
 
-import type { ICacheModuleConfig } from '../interfaces';
-import { MemoryStore } from '../stores/memory.store';
-import { NullStore } from '../stores/null.store';
+import type { ICacheModuleConfig } from '@/core/interfaces';
+import { MemoryStore } from '@/core/stores/memory.store';
+import { NullStore } from '@/core/stores/null.store';
 import { CACHE_CONFIG, ICacheStore } from '@stackra/contracts';
 
 /**

@@ -36,9 +36,9 @@ import type {
   BeforeApplicationShutdown,
 } from '@stackra/contracts';
 import { ModuleContainer } from './container.registry';
-import { ContainerLogger } from '../devtools/container-logger';
-import { hasOnModuleInit } from '../utils/has-on-module-init.util';
-import { hasOnModuleDestroy } from '../utils/has-on-module-destroy.util';
+import { ContainerLogger } from '@/core/devtools/container-logger';
+import { hasOnModuleInit } from '@/core/utils/has-on-module-init.util';
+import { hasOnModuleDestroy } from '@/core/utils/has-on-module-destroy.util';
 
 /**
  * Type guard for OnApplicationBootstrap interface.

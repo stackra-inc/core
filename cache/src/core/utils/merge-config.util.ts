@@ -7,8 +7,8 @@
  *   consistent.
  */
 
-import type { ICacheModuleConfig } from '../interfaces';
-import { DEFAULT_CACHE_CONFIG } from '../constants/default-cache-config.constant';
+import type { ICacheModuleConfig } from '@/core/interfaces';
+import { DEFAULT_CACHE_CONFIG } from '@/core/constants/default-cache-config.constant';
 
 /**
  * Merge user options into the default cache config.

@@ -5,7 +5,7 @@
  */
 
 import { Inject } from '@stackra/container';
-import { getQueueToken } from '../utils/token-builders.util';
+import { getQueueToken } from '@/core/utils/token-builders.util';
 
 /**
  * Inject a QueueHandle for a specific queue.

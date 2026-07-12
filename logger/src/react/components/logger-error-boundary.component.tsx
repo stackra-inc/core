@@ -8,7 +8,7 @@
 
 import { Component, type ErrorInfo, type ReactNode } from 'react';
 
-import { LoggerManager } from '../../core/services/logger-manager.service';
+import { LoggerManager } from '@/core/services/logger-manager.service';
 import type { ILoggerErrorBoundaryProps } from './logger-error-boundary-props.interface';
 
 /**

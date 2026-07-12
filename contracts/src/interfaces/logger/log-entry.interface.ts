@@ -4,8 +4,8 @@
  * @description A single log entry flowing through the logger system.
  */
 
-import type { LogLevel } from '../../enums/log-level.enum';
-import type { LogContext } from '../../types/log-context.type';
+import type { LogLevel } from '@/enums/log-level.enum';
+import type { LogContext } from '@/types/log-context.type';
 
 /** A single log entry flowing through the logger system. */
 export interface ILogEntry {

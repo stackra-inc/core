@@ -10,8 +10,8 @@
  * @module utils/generate-metadata-key
  */
 
-import { DISCOVERABLE_DECORATOR_KEY_PREFIX } from '../constants';
-import type { ICryptoLike } from '../interfaces/crypto-like.type';
+import { DISCOVERABLE_DECORATOR_KEY_PREFIX } from '@/core/constants';
+import type { ICryptoLike } from '@/core/interfaces/crypto-like.type';
 
 /**
  * Generate a globally-unique metadata key for a discoverable decorator.

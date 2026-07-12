@@ -13,7 +13,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useInject } from '@stackra/container/react';
 
-import { CacheManager } from '../../../core/services/cache-manager.service';
+import { CacheManager } from '@/core/services/cache-manager.service';
 import { CACHE_MANAGER } from '@stackra/contracts';
 
 // ════════════════════════════════════════════════════════════════════════════════

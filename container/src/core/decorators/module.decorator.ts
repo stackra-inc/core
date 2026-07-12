@@ -12,7 +12,7 @@
 
 import { defineMetadata } from '@vivtel/metadata';
 
-import { MODULE_METADATA } from '../constants';
+import { MODULE_METADATA } from '@/core/constants';
 import type { ModuleMetadata } from '@stackra/contracts';
 
 /**

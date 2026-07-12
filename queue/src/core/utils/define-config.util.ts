@@ -33,7 +33,7 @@
  * See `.kiro/steering/config-architecture.md` for the full guide.
  */
 
-import type { IQueueModuleOptions } from '../interfaces';
+import type { IQueueModuleOptions } from '@/core/interfaces';
 
 /**
  * Type-safe configuration builder for the queue module.

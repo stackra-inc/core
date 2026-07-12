@@ -7,7 +7,7 @@
  *   helper so defaults stay consistent.
  */
 
-import { DEFAULT_DISCOVERY_CONFIG } from '../constants/default-discovery-config.constant';
+import { DEFAULT_DISCOVERY_CONFIG } from '@/core/discovery/constants/default-discovery-config.constant';
 
 /**
  * Merge user options into the default config.

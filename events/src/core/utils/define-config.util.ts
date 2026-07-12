@@ -33,7 +33,7 @@
  * See `.kiro/steering/config-architecture.md` for the full guide.
  */
 
-import type { IEventEmitterConfig } from '../interfaces';
+import type { IEventEmitterConfig } from '@/core/interfaces';
 
 /**
  * Type-safe configuration builder for the events module.

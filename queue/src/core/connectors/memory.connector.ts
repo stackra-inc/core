@@ -13,7 +13,7 @@ import type {
   IJobOptions,
   IQueuedJob,
   IQueueConnectionConfig,
-} from '../interfaces';
+} from '@/core/interfaces';
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Connection Implementation
