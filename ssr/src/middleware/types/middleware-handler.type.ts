@@ -19,7 +19,7 @@ import type { MiddlewareNext } from './middleware-next.type';
 export type MiddlewareHandler<
   TContext extends object = object,
   TResult = unknown,
-  TParams extends readonly unknown[] = readonly [],
+  TParams extends readonly unknown[] = readonly unknown[],
 > = (
   ctx: TContext,
   next: MiddlewareNext<TResult>,

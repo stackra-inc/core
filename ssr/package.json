@@ -1,6 +1,6 @@
 {
   "name": "@stackra/ssr",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "SSR + routing + middleware for the Stackra framework — React Router v7 library mode, streaming for SEO, crawler-only SSR.",
   "license": "MIT",
   "author": {

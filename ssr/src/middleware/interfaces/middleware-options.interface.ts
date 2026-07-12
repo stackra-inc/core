@@ -17,7 +17,7 @@ import type { MiddlewareHandler } from '../types/middleware-handler.type';
 export interface MiddlewareClassRef<
   TContext extends object = object,
   TResult = unknown,
-  TParams extends readonly unknown[] = readonly [],
+  TParams extends readonly unknown[] = readonly unknown[],
 > {
   new (...args: never[]): { handle: MiddlewareHandler<TContext, TResult, TParams> };
 }
@@ -37,7 +37,7 @@ export interface MiddlewareOptions<
   TCtx extends object = object,
   TResult = unknown,
   TState extends object = object,
-  TParams extends readonly unknown[] = readonly [],
+  TParams extends readonly unknown[] = readonly unknown[],
 > {
   /**
    * Human-readable identifier. Must be unique per registry. Required for

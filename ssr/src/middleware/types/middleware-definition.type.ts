@@ -27,7 +27,7 @@ export type MiddlewareDefinition<
   TContext extends object = object,
   TResult = unknown,
   TState extends object = object,
-  TParams extends readonly unknown[] = readonly [],
+  TParams extends readonly unknown[] = readonly unknown[],
 > =
   | MiddlewareHandler<TContext, TResult, TParams>
   | MiddlewareOptions<TContext, TResult, TState, TParams>
