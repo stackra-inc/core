@@ -2,13 +2,15 @@
  * @file index.ts
  * @module @stackra/testing/preset
  * @description Shared Vitest configuration preset for the monorepo.
- *   Consumed as JIT source — not compiled.
  *
- *   The preset uses `unplugin-swc` for TypeScript transforms because
- *   the default Vitest esbuild pipeline does not emit
- *   `design:paramtypes` metadata reliably in every environment. Every
- *   package here depends on decorator metadata for DI resolution, so
- *   SWC with `emitDecoratorMetadata: true` is mandatory.
+ *   TypeScript is transformed via `unplugin-swc` because Vitest 4's
+ *   default transformer (OXC) does not emit `design:paramtypes` for
+ *   forward-referenced classes — it outputs `[undefined]` and the DI
+ *   container silently fails to inject constructor deps. SWC with
+ *   `emitDecoratorMetadata: true` handles this correctly.
+ *
+ *   The top-level `oxc: false` disables Vitest 4's default TS
+ *   transformer so SWC is the sole transform in the pipeline.
  */
 
 import { defineConfig } from 'vitest/config';
@@ -33,6 +35,12 @@ export default defineConfig({
       },
     }),
   ],
+  // Vitest 4 uses OXC as the default TS transformer. It does NOT emit
+  // reliable `design:paramtypes` for classes referenced before their
+  // declaration (a common pattern in DI tests). Disable it entirely so
+  // SWC — which handles this correctly — is the sole transform.
+  oxc: false,
+  esbuild: false,
   test: {
     globals: true,
     environment: 'node',

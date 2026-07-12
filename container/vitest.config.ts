@@ -23,6 +23,9 @@ import preset from '@stackra/testing/preset';
 export default mergeConfig(
   preset,
   defineConfig({
+    // Explicitly re-declare to survive mergeConfig
+    oxc: false,
+    esbuild: false,
     test: {
       environment: 'node',
       setupFiles: ['./__tests__/vitest.setup.ts'],

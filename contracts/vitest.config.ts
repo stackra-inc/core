@@ -11,6 +11,10 @@ import preset from '@stackra/testing/preset';
 export default mergeConfig(
   preset,
   defineConfig({
+    // Explicitly re-declare to survive mergeConfig — vitest 4's default OXC
+    // transformer breaks decorator metadata emission.
+    oxc: false,
+    esbuild: false,
     test: {
       environment: 'node',
       setupFiles: ['./__tests__/vitest.setup.ts'],

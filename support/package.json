@@ -1,0 +1,76 @@
+{
+  "name": "@stackra/support",
+  "version": "0.1.0",
+  "description": "Shared foundation utilities — global registration, base registry, env repository, and collection primitives.",
+  "license": "MIT",
+  "author": {
+    "name": "Stackra L.L.C",
+    "email": "dev@stackra.com",
+    "url": "https://stackra.com"
+  },
+  "keywords": [
+    "stackra",
+    "support",
+    "utilities",
+    "global-registry",
+    "collections"
+  ],
+  "homepage": "https://github.com/stackra-inc/core/tree/main/support#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stackra-inc/core.git",
+    "directory": "support"
+  },
+  "bugs": {
+    "url": "https://github.com/stackra-inc/core/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "packageManager": "pnpm@10.0.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "test": "echo \"📦 No tests for this package\""
+  },
+  "dependencies": {
+    "collect.js": "^4.36.1"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "*"
+  },
+  "peerDependenciesMeta": {
+    "@nestjs/common": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@nestjs/common": "catalog:nestjs",
+    "@types/node": "catalog:",
+    "rimraf": "catalog:",
+    "tsup": "catalog:",
+    "typescript": "catalog:"
+  }
+}

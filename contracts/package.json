@@ -60,7 +60,16 @@
   "dependencies": {
     "@stackra/nestjs-types": "workspace:*"
   },
+  "peerDependencies": {
+    "@faker-js/faker": "*"
+  },
+  "peerDependenciesMeta": {
+    "@faker-js/faker": {
+      "optional": true
+    }
+  },
   "devDependencies": {
+    "@faker-js/faker": "catalog:",
     "@stackra/testing": "workspace:*",
     "@types/node": "catalog:",
     "rimraf": "catalog:",

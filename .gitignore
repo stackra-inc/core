@@ -43,3 +43,6 @@ lerna-debug.log*
 # ── Misc ─────────────────────────────────────────────────────────────────
 .cache/
 .eslintcache
+
+# ── Reference source (not published, not tracked) ────────────────────────
+.ref/
