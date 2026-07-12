@@ -14,13 +14,15 @@ import type { MiddlewareHandler } from '../types/middleware-handler.type';
  * A resolvable class constructor — used by `options.resolve` for
  * DI-integrated middleware.
  */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface MiddlewareClassRef<
   TContext extends object = object,
   TResult = unknown,
-  TParams extends readonly unknown[] = readonly unknown[],
+  TParams extends readonly unknown[] = readonly any[],
 > {
   new (...args: never[]): { handle: MiddlewareHandler<TContext, TResult, TParams> };
 }
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
 /**
  * Full options payload accepted by `defineMiddleware({...})`.
@@ -33,11 +35,12 @@ export interface MiddlewareClassRef<
  * @typeParam TState  - Any state additions this middleware promises to add
  * @typeParam TParams - Extra params accepted by tuple invocations
  */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface MiddlewareOptions<
   TCtx extends object = object,
   TResult = unknown,
   TState extends object = object,
-  TParams extends readonly unknown[] = readonly unknown[],
+  TParams extends readonly unknown[] = readonly any[],
 > {
   /**
    * Human-readable identifier. Must be unique per registry. Required for
@@ -107,3 +110,4 @@ export interface MiddlewareOptions<
    */
   readonly meta?: Readonly<Record<string, unknown>>;
 }
+/* eslint-enable @typescript-eslint/no-explicit-any */

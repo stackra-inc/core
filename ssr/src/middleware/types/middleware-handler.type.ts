@@ -16,12 +16,14 @@ import type { MiddlewareNext } from './middleware-next.type';
  * @typeParam TResult  - Value the chain eventually returns
  * @typeParam TParams  - Extra tuple parameters
  */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type MiddlewareHandler<
   TContext extends object = object,
   TResult = unknown,
-  TParams extends readonly unknown[] = readonly unknown[],
+  TParams extends readonly unknown[] = readonly any[],
 > = (
   ctx: TContext,
   next: MiddlewareNext<TResult>,
   ...params: TParams
 ) => Promise<TResult> | TResult;
+/* eslint-enable @typescript-eslint/no-explicit-any */

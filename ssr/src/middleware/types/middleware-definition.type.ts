@@ -23,12 +23,14 @@ import type { MiddlewareHandler } from './middleware-handler.type';
  * All three forms are accepted anywhere a middleware is expected —
  * registry, module options, group members, route attachments.
  */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type MiddlewareDefinition<
   TContext extends object = object,
   TResult = unknown,
   TState extends object = object,
-  TParams extends readonly unknown[] = readonly unknown[],
+  TParams extends readonly unknown[] = readonly any[],
 > =
   | MiddlewareHandler<TContext, TResult, TParams>
   | MiddlewareOptions<TContext, TResult, TState, TParams>
   | MiddlewareClassRef<TContext, TResult, TParams>;
+/* eslint-enable @typescript-eslint/no-explicit-any */
