@@ -19,6 +19,12 @@ packages:
   - 'testing'
   - 'ui'
 
+# pnpm 11's `minimumReleaseAge` policy rejects packages published within
+# the last 24h as a supply-chain safeguard. We already commit + review
+# pnpm-lock.yaml, so disable the age check — otherwise every fresh
+# upstream release breaks CI until 24h have elapsed.
+minimumReleaseAge: 0
+
 # ---------------------------------------------------------------------------
 # Default catalog — referenced as "catalog:" in package.json files.
 # ---------------------------------------------------------------------------
