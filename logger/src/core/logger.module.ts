@@ -23,7 +23,7 @@ import { SilentReporter } from './reporters/silent.reporter';
 import { RedactionEnricher } from './enrichers/redaction.enricher';
 import { InterpolationEnricher } from './enrichers/interpolation.enricher';
 import { ContextEnricher } from './enrichers/context.enricher';
-import { defineConfig } from './utils/define-config.util';
+import { mergeConfig } from './utils/merge-config.util';
 
 /**
  * Logger DI module.
@@ -61,7 +61,7 @@ export class LoggerModule {
    * @returns Dynamic module definition
    */
   public static forRoot(config: Partial<ILoggerModuleConfig> = {}): DynamicModule {
-    const mergedConfig = defineConfig(config);
+    const mergedConfig = mergeConfig(config);
 
     return {
       module: LoggerModule,
@@ -150,7 +150,7 @@ export class LoggerModule {
           provide: LOGGER_CONFIG,
           useFactory: async (...args: unknown[]) => {
             const raw = await options.useFactory(...args);
-            return defineConfig(raw);
+            return mergeConfig(raw);
           },
           inject: options.inject ?? [],
         },

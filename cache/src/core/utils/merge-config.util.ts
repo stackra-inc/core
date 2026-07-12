@@ -16,7 +16,7 @@ import { DEFAULT_CACHE_CONFIG } from '../constants/default-cache-config.constant
  * @param options - User-supplied partial configuration.
  * @returns Fully resolved configuration with defaults applied.
  */
-export function mergeCacheConfig(options?: Partial<ICacheModuleConfig>): ICacheModuleConfig {
+export function mergeConfig(options?: Partial<ICacheModuleConfig>): ICacheModuleConfig {
   return {
     ...DEFAULT_CACHE_CONFIG,
     ...options,

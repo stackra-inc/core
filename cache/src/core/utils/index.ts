@@ -6,4 +6,4 @@
 
 export { defineConfig } from './define-config.util';
 export { requireStoreMethod } from './require-store-method.util';
-export { mergeCacheConfig } from './merge-config.util';
+export { mergeConfig } from './merge-config.util';

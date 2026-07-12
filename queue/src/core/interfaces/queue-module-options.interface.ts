@@ -23,7 +23,7 @@ export interface IQueueConnectionConfig {
    *
    * Built-in: 'memory', 'sync', 'null', 'local-storage', 'indexeddb',
    *           'broadcast-channel', 'qstash'
-   * External: 'bullmq' (via nestjs subpath)
+   * External: 'bullmq' (via optional adapter)
    */
   driver: string;
 

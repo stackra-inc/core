@@ -10,6 +10,7 @@ import type { IAsyncModuleOptions } from '@stackra/contracts';
 import { REALTIME_MANAGER, REALTIME_CONFIG } from './constants';
 import { RealtimeManager } from './services/realtime-manager.service';
 import type { IRealtimeModuleOptions } from './interfaces';
+import { mergeConfig } from './utils/merge-config.util';
 
 /**
  * Realtime DI module.
@@ -37,11 +38,13 @@ export class RealtimeModule {
    * @returns Dynamic module definition
    */
   public static forRoot(config: IRealtimeModuleOptions): DynamicModule {
+    const merged = mergeConfig(config);
+
     return {
       module: RealtimeModule,
       global: true,
       providers: [
-        { provide: REALTIME_CONFIG, useValue: config },
+        { provide: REALTIME_CONFIG, useValue: merged },
         RealtimeManager,
         { provide: REALTIME_MANAGER, useExisting: RealtimeManager },
       ],
@@ -62,7 +65,7 @@ export class RealtimeModule {
       providers: [
         {
           provide: REALTIME_CONFIG,
-          useFactory: options.useFactory,
+          useFactory: async (...args: unknown[]) => mergeConfig(await options.useFactory(...args)),
           inject: options.inject ?? [],
         },
         RealtimeManager,

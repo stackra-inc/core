@@ -8,7 +8,7 @@
 
 import { Module, type DynamicModule } from '@stackra/container';
 
-import { mergeCacheConfig } from './utils/merge-config.util';
+import { mergeConfig } from './utils/merge-config.util';
 import type { ICacheModuleConfig } from './interfaces';
 import type { ICacheModuleAsyncOptions } from './interfaces/cache-module-async-options.interface';
 import { CacheManager } from './services/cache-manager.service';
@@ -49,7 +49,7 @@ export class CacheModule {
    * @returns Dynamic module definition
    */
   public static forRoot(config?: Partial<ICacheModuleConfig>): DynamicModule {
-    const mergedConfig = mergeCacheConfig(config);
+    const mergedConfig = mergeConfig(config);
 
     return {
       module: CacheModule,

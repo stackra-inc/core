@@ -4,4 +4,4 @@
  * @description Barrel export for coordinator utilities.
  */
 export { defineConfig } from './define-config.util';
-export { mergeCoordinatorConfig } from './merge-config.util';
+export { mergeConfig } from './merge-config.util';

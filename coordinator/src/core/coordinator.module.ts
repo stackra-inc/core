@@ -11,6 +11,7 @@ import { TabCoordinator } from './services/tab-coordinator.service';
 import { LockManager } from './services/lock-manager.service';
 import { CoordinatorTransport } from './services/coordinator-transport.service';
 import type { ICoordinatorModuleOptions } from './interfaces';
+import { mergeConfig } from './utils/merge-config.util';
 
 /**
  * Coordinator DI module — cross-tab leader election and distributed locks.
@@ -38,7 +39,7 @@ export class CoordinatorModule {
    * @returns Dynamic module definition
    */
   public static forRoot(options?: ICoordinatorModuleOptions): DynamicModule {
-    const config = options ?? {};
+    const config = mergeConfig(options);
 
     return {
       module: CoordinatorModule,
@@ -77,7 +78,7 @@ export class CoordinatorModule {
       providers: [
         {
           provide: COORDINATOR_CONFIG,
-          useFactory: options.useFactory,
+          useFactory: async (...args: unknown[]) => mergeConfig(await options.useFactory(...args)),
           inject: options.inject ?? [],
         },
         TabCoordinator,

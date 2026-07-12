@@ -1,6 +1,6 @@
 # @stackra/cache
 
-Unified cache — core + react + nestjs via subpath exports.
+Unified cache — client-side, framework-agnostic core + optional React subpath.
 
 ## Installation
 

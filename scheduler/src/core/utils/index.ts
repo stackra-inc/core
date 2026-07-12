@@ -5,4 +5,4 @@
  */
 export { defineConfig } from './define-config.util';
 export { parseCron, getNextCronTime, getNextCronDelay } from './cron-parser.util';
-export { mergeSchedulerConfig } from './merge-config.util';
+export { mergeConfig } from './merge-config.util';

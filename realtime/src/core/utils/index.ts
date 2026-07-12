@@ -4,4 +4,4 @@
  * @description Barrel export for realtime utilities.
  */
 export { defineConfig } from './define-config.util';
-export { mergeRealtimeConfig } from './merge-config.util';
+export { mergeConfig } from './merge-config.util';

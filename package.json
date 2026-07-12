@@ -32,6 +32,8 @@
     "test:coverage": "pnpm build && pnpm -r run test:coverage",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\"",
+    "rewrite-imports": "node scripts/rewrite-imports.mjs",
+    "rewrite-imports:dry": "node scripts/rewrite-imports.mjs --dry --verbose",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "changeset": "changeset",

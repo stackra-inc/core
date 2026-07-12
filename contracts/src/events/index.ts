@@ -5,6 +5,7 @@
  */
 
 export { CACHE_EVENTS, type CacheEventName } from './cache.events';
+export { COLLABORATION_EVENTS, type CollaborationEventName } from './collaboration.events';
 export { COORDINATOR_EVENTS, type CoordinatorEventName } from './coordinator.events';
 export { LOGGER_EVENTS, type LoggerEventName } from './logger.events';
 export { QUEUE_EVENTS, type QueueEventName } from './queue.events';

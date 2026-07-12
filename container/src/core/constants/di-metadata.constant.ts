@@ -1,7 +1,10 @@
 /**
- * @file nestjs-metadata.constant.ts
+ * @file di-metadata.constant.ts
  * @module @stackra/container/core/constants
- * @description Defines the MODULE_METADATA constant.
+ * @description Reflection metadata keys read and written by the DI
+ *   decorators (`@Module`, `@Injectable`, `@Inject`, `@Optional`).
+ *   These strings form the contract between decorators (writers) and
+ *   the injector / scanner (readers).
  */
 export const MODULE_METADATA = {
   IMPORTS: 'imports',

@@ -9,6 +9,7 @@ import type { IAsyncModuleOptions } from '@stackra/contracts';
 import { QUEUE_MANAGER, QUEUE_CONFIG } from './constants';
 import { QueueManager } from './services/queue-manager.service';
 import type { IQueueModuleOptions } from './interfaces';
+import { mergeConfig } from './utils/merge-config.util';
 
 /**
  * Queue DI module.
@@ -36,11 +37,13 @@ export class QueueModule {
    * @returns Dynamic module definition
    */
   public static forRoot(config: IQueueModuleOptions): DynamicModule {
+    const merged = mergeConfig(config);
+
     return {
       module: QueueModule,
       global: true,
       providers: [
-        { provide: QUEUE_CONFIG, useValue: config },
+        { provide: QUEUE_CONFIG, useValue: merged },
         QueueManager,
         { provide: QUEUE_MANAGER, useExisting: QueueManager },
       ],
@@ -61,7 +64,7 @@ export class QueueModule {
       providers: [
         {
           provide: QUEUE_CONFIG,
-          useFactory: options.useFactory,
+          useFactory: async (...args: unknown[]) => mergeConfig(await options.useFactory(...args)),
           inject: options.inject ?? [],
         },
         QueueManager,

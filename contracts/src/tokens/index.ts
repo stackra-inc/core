@@ -7,6 +7,7 @@
 export { APPLICATION } from './application.token';
 export { APP_CONFIG } from './app-config.token';
 export { CACHE_MANAGER, CACHE_CONFIG, CACHE_STORE_METADATA_KEY } from './cache.tokens';
+export { COLLABORATION_ROOM_MANAGER, COLLABORATION_CONFIG } from './collaboration.tokens';
 export { COORDINATOR_CONFIG, TAB_COORDINATOR } from './coordinator.tokens';
 export { DISCOVERY_SERVICE } from './discovery-service.token';
 export { EVENT_EMITTER, EVENT_EMITTER_CONFIG } from './events.tokens';

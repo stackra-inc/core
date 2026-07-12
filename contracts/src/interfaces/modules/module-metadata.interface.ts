@@ -7,7 +7,7 @@ import type { ForwardReference } from './forward-reference.interface';
 /**
  * Interface defining the property object that describes the module.
  *
- * @see [Modules](https://docs.nestjs.com/modules)
+ * @see Module metadata contract read by `@Module()`
  *
  * @publicApi
  */

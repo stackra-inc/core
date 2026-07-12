@@ -2,7 +2,7 @@
  * @file default-events-config.constant.ts
  * @module @stackra/events/constants
  * @description Default configuration for `EventEmitterModule.forRoot()`.
- *   Used by `mergeEventsConfig()` as the base layer that user options
+ *   Used by `mergeConfig()` as the base layer that user options
  *   override.
  */
 

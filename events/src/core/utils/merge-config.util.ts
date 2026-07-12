@@ -15,7 +15,7 @@ import { DEFAULT_EVENTS_CONFIG } from '../constants/default-events-config.consta
  * @param options - User-supplied partial configuration.
  * @returns Fully resolved configuration with defaults applied.
  */
-export function mergeEventsConfig(options?: IEventEmitterConfig): IEventEmitterConfig {
+export function mergeConfig(options?: IEventEmitterConfig): IEventEmitterConfig {
   return {
     ...DEFAULT_EVENTS_CONFIG,
     ...options,

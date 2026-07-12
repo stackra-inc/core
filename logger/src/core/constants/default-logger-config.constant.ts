@@ -1,17 +1,27 @@
 /**
  * @file default-logger-config.constant.ts
- * @module @stackra/logger/constants
- * @description Default configuration applied to every `LoggerModule.forRoot()`
- *   registration. Currently empty — add real defaults here when the
- *   module starts taking user options with sensible fallbacks.
- *
- *   Use `mergeLoggerConfig()` from `../utils` to apply the merge.
+ * @module @stackra/logger/core/constants
+ * @description Default configuration for `LoggerModule.forRoot()`.
+ *   Used by `mergeConfig()` as the base layer that user options
+ *   override before environment overrides are applied.
  */
 
+import type { ILoggerModuleConfig } from '@stackra/contracts';
+
 /**
- * Default configuration applied to every `LoggerModule` registration.
+ * Default logger module configuration.
  *
- * Empty for now — package author adds real defaults later. Until then,
- * `mergeLoggerConfig()` is an identity passthrough.
+ * Ships with one channel (`console`) at `debug` level, so a call to
+ * `LoggerModule.forRoot()` with no arguments produces a working
+ * console logger.
  */
-export const DEFAULT_LOGGER_CONFIG: Readonly<Record<string, never>> = Object.freeze({});
+export const DEFAULT_LOGGER_CONFIG: ILoggerModuleConfig = {
+  default: 'console',
+  channels: {
+    console: {
+      driver: 'single',
+      reporters: ['console'],
+      level: 'debug',
+    },
+  },
+};

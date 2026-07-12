@@ -1,61 +1,59 @@
 /**
  * @file define-config.util.ts
- * @module @stackra/logger/utils
- * @description Type-safe config factory for logger module options.
- */
-/**
- * **Per-module `defineConfig` vs central `registerAs` — which to use?**
+ * @module @stackra/logger/core/utils
+ * @description Type-safe configuration builder for the logger module.
+ *   Provides IDE autocompletion and validation for configs declared
+ *   in separate files.
  *
- * This helper is a typed identity for **module-level configuration**
- * passed to this package's `forRoot()`. The module merges defaults
- * via its `mergeXConfig()` utility and binds the result under its
- * own contract DI token (e.g. `CACHE_CONFIG`, `LOGGER_CONFIG`, …)
- * which consumers inject directly:
+ *   **Per-module `defineConfig` vs central `registerAs` — which to use?**
  *
- * ```ts
- * @Injectable()
- * class MyService {
- *   constructor(@Inject(CACHE_CONFIG) private cfg: ICacheModuleConfig) {}
- * }
- * ```
+ *   This helper is a typed identity for **module-level configuration**
+ *   passed to this package's `forRoot()`. The module merges defaults
+ *   via {@link mergeConfig} and binds the result under `LOGGER_CONFIG`
+ *   which consumers inject directly:
  *
- * For **application-level injectable configuration** — database
- * credentials, mail settings, third-party API keys, business-level
- * settings — use `registerAs(namespace, factory)` from
- * `@stackra/config` instead. `registerAs` returns a factory
- * tagged with a `.KEY` symbol you inject with `@Inject(cfg.KEY)`,
- * and `ConfigModule.forRoot({ load: [...] })` binds it in the
- * central config tree.
+ *   ```ts
+ *   @Injectable()
+ *   class MyService {
+ *     constructor(@Inject(LOGGER_CONFIG) private cfg: ILoggerModuleConfig) {}
+ *   }
+ *   ```
  *
- * @see {@link registerAs} from `@stackra/config` for the canonical factory creator.
- * See `.kiro/steering/config-architecture.md` for the full guide.
+ *   For **application-level injectable configuration** — database
+ *   credentials, API keys, business settings — use
+ *   `registerAs(namespace, factory)` from `@stackra/config` instead.
  */
 
 import type { ILoggerModuleConfig } from '@stackra/contracts';
-import { DEFAULT_CONFIG } from './default-config.constant';
-import { applyEnvironmentOverrides, applyEnvVarOverrides } from './env-overrides.util';
 
 /**
- * Create a type-safe logger configuration.
+ * Type-safe configuration builder for the logger module.
  *
- * Merges the provided partial config with sensible defaults, then applies
- * environment overrides (APP_DEBUG, LOG_LEVEL).
+ * Returns the config object unchanged — its purpose is to provide
+ * TypeScript type-checking and IDE autocompletion for logger configs
+ * defined in separate `config/*.config.ts` files.
  *
- * @param config - Partial logger configuration
- * @returns Fully resolved ILoggerModuleConfig
+ * The module's `forRoot()` calls {@link mergeConfig} internally to
+ * apply defaults and env-var overrides, so this helper stays a pure
+ * identity function.
+ *
+ * @param config - Logger module configuration object.
+ * @returns The same object, fully typed.
+ *
+ * @example
+ * ```typescript
+ * // config/logger.config.ts
+ * import { defineConfig } from '@stackra/logger';
+ * import { LogLevel } from '@stackra/contracts';
+ *
+ * export default defineConfig({
+ *   default: 'app',
+ *   channels: {
+ *     app: { driver: 'single', reporters: ['console'], level: LogLevel.DEBUG },
+ *   },
+ * });
+ * ```
  */
-export function defineConfig(config: Partial<ILoggerModuleConfig> = {}): ILoggerModuleConfig {
-  let merged: ILoggerModuleConfig = {
-    ...DEFAULT_CONFIG,
-    ...config,
-    channels: {
-      ...DEFAULT_CONFIG.channels,
-      ...config.channels,
-    },
-  };
-
-  merged = applyEnvironmentOverrides(merged);
-  merged = applyEnvVarOverrides(merged);
-
-  return merged;
+export function defineConfig(config: ILoggerModuleConfig): ILoggerModuleConfig {
+  return config;
 }

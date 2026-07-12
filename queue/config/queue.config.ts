@@ -63,7 +63,7 @@ export const queueConfig = defineConfig({
   | used by your application.
   |
   | Drivers: "memory", "sync", "null", "local-storage", "indexeddb",
-  |          "broadcast-channel", "qstash", "bullmq" (via nestjs subpath)
+  |          "broadcast-channel", "qstash", "bullmq" (via optional adapter)
   |
   */
   connections: {

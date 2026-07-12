@@ -10,7 +10,7 @@ import type { Scope } from '../enums/scope.enum';
 /**
  * @publicApi
  *
- * @see [Injection Scopes](https://docs.nestjs.com/fundamentals/injection-scopes)
+ * @see Injection scope contract used by `@Injectable({ scope })`
  */
 export interface ScopeOptions {
   /**

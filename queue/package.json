@@ -80,6 +80,7 @@
     }
   },
   "files": [
+    "config",
     "dist",
     "LICENSE",
     "README.md"

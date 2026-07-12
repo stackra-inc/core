@@ -1,6 +1,6 @@
 # @stackra/realtime
 
-Unified realtime — core + react + nestjs via subpath exports.
+Unified realtime — client-side, framework-agnostic core + optional React subpath.
 
 ## Installation
 

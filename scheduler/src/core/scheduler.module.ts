@@ -14,11 +14,12 @@
  */
 
 import { Module, type DynamicModule } from '@stackra/container';
-import { TASK_RUNNER, SCHEDULER_SERVICE } from './constants';
+import { SCHEDULER_CONFIG, SCHEDULER_SERVICE, TASK_RUNNER } from '@stackra/contracts';
 import { SchedulerService } from './services/scheduler.service';
 import { DefaultTaskRunner } from './services/default-task-runner.service';
 import { ScheduledTaskLoader } from './services/scheduled-task-loader.service';
 import type { ISchedulerModuleOptions } from './interfaces/scheduler-module-options.interface';
+import { mergeConfig } from './utils/merge-config.util';
 
 // Module Options
 
@@ -51,20 +52,23 @@ export class SchedulerModule {
    * @returns Dynamic module definition
    */
   public static forRoot(options: ISchedulerModuleOptions = {}): DynamicModule {
-    const runnerProvider = options.runner
-      ? { provide: TASK_RUNNER, useValue: options.runner }
+    const config = mergeConfig(options);
+
+    const runnerProvider = config.runner
+      ? { provide: TASK_RUNNER, useValue: config.runner }
       : { provide: TASK_RUNNER, useClass: DefaultTaskRunner };
 
     return {
       module: SchedulerModule,
       global: true,
       providers: [
+        { provide: SCHEDULER_CONFIG, useValue: config },
         runnerProvider as any,
         SchedulerService,
         { provide: SCHEDULER_SERVICE, useExisting: SchedulerService },
         ScheduledTaskLoader,
       ],
-      exports: [TASK_RUNNER, SCHEDULER_SERVICE, SchedulerService],
+      exports: [SCHEDULER_CONFIG, TASK_RUNNER, SCHEDULER_SERVICE, SchedulerService],
     };
   }
 }

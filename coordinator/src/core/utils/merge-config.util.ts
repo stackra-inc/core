@@ -1,26 +1,26 @@
 /**
  * @file merge-config.util.ts
- * @module @stackra/coordinator/utils
+ * @module @stackra/coordinator/core/utils
  * @description Single source of truth for merging user-supplied
- *   coordinator options with `DEFAULT_COORDINATOR_CONFIG`. Both
- *   `forRoot()` and any future async path should route through this
- *   helper so defaults stay consistent.
+ *   coordinator options with {@link DEFAULT_COORDINATOR_CONFIG}. Both
+ *   `forRoot()` and `forRootAsync()` route through this helper so
+ *   defaults stay consistent.
  */
 
+import type { ICoordinatorModuleOptions } from '../interfaces';
 import { DEFAULT_COORDINATOR_CONFIG } from '../constants/default-coordinator-config.constant';
 
 /**
- * Merge user options into the default config.
+ * Merge user options into the default coordinator config.
  *
- * @typeParam T - Module options shape.
- * @param options - User-supplied configuration (partial).
- * @returns Resolved configuration with defaults applied.
+ * @param options - User-supplied partial configuration.
+ * @returns Resolved coordinator configuration with defaults applied.
  */
-export function mergeCoordinatorConfig<T extends Record<string, unknown> = Record<string, unknown>>(
-  options: T = {} as T
-): T {
+export function mergeConfig(
+  options: Partial<ICoordinatorModuleOptions> = {}
+): ICoordinatorModuleOptions {
   return {
-    ...(DEFAULT_COORDINATOR_CONFIG as unknown as T),
+    ...DEFAULT_COORDINATOR_CONFIG,
     ...options,
-  };
+  } as ICoordinatorModuleOptions;
 }

@@ -1,6 +1,6 @@
 # @stackra/queue
 
-Unified queue — core + react + nestjs via subpath exports.
+Unified queue — client-side, framework-agnostic core + optional React subpath.
 
 ## Installation
 

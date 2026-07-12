@@ -1,6 +1,6 @@
 # @stackra/scheduler
 
-Unified scheduler — core + react + nestjs via subpath exports.
+Unified scheduler — client-side, framework-agnostic core + optional React subpath.
 
 ## Installation
 

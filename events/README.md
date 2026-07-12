@@ -1,6 +1,6 @@
 # @stackra/events
 
-Unified events — core + react + nestjs via subpath exports.
+Unified events — client-side, framework-agnostic core + optional React subpath.
 
 ## Installation
 

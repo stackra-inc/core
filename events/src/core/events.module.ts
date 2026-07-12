@@ -14,7 +14,7 @@ import { EventEmitter } from './services/event-emitter.service';
 import { EventTransportRegistry } from './services/event-transport-registry.service';
 import { EventSubscribersLoader } from './services/event-subscribers-loader.service';
 import type { IEventEmitterConfig } from './interfaces';
-import { mergeEventsConfig } from './utils/merge-config.util';
+import { mergeConfig } from './utils/merge-config.util';
 
 // Module
 
@@ -48,7 +48,7 @@ export class EventEmitterModule {
    * @returns Dynamic module definition
    */
   public static forRoot(config?: IEventEmitterConfig): DynamicModule {
-    const mergedConfig = mergeEventsConfig(config);
+    const mergedConfig = mergeConfig(config);
 
     return {
       module: EventEmitterModule,

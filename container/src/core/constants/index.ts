@@ -30,4 +30,4 @@ export {
   PROPERTY_DEPS_METADATA,
   OPTIONAL_DEPS_METADATA,
   OPTIONAL_PROPERTY_DEPS_METADATA,
-} from './nestjs-metadata.constant';
+} from './di-metadata.constant';

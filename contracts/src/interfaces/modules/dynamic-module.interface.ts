@@ -4,7 +4,7 @@ import type { ModuleMetadata } from './module-metadata.interface';
 /**
  * Interface defining a Dynamic Module.
  *
- * @see [Dynamic Modules](https://docs.nestjs.com/modules#dynamic-modules)
+ * @see Dynamic module contract used by `Module.forRoot()` / `Module.forRootAsync()`
  *
  * @publicApi
  */

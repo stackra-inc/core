@@ -1,6 +1,6 @@
 # @stackra/coordinator
 
-Unified coordinator — core + react + nestjs via subpath exports.
+Unified coordinator — client-side, framework-agnostic core + optional React subpath.
 
 ## Installation
 

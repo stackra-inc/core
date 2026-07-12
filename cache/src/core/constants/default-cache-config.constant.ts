@@ -2,7 +2,7 @@
  * @file default-cache-config.constant.ts
  * @module @stackra/cache/constants
  * @description Default configuration for `CacheModule.forRoot()`.
- *   Used by `mergeCacheConfig()` as the base layer that user options
+ *   Used by `mergeConfig()` as the base layer that user options
  *   override.
  */
 
