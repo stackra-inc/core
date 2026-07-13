@@ -200,8 +200,23 @@ import { createMockScheduler } from '@stackra/scheduler/testing';
 
 const scheduler = createMockScheduler();
 service.setup(scheduler);
-scheduler.assertScheduled('cleanup').with({ interval: 300_000 }).once();
+
+// Assert the task was registered
+scheduler.$.assertCalled('register').once();
+
+// Inspect the concrete state
+const [task] = scheduler.getRegistered();
+expect(task.name).toBe('cleanup');
+expect(task.interval).toBe(300_000);
+
+// Drive execution from a test — no real timers involved
+await scheduler.runNow('cleanup');
 ```
+
+The mock runner never starts real timers; you drive execution via
+`.runNow(name)`. `.pause()` / `.resume()` state flips are reflected in
+`.getRegistered()` so consumer code that observes those flags works
+against the mock unchanged.
 
 ## Configuration
 

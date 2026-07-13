@@ -213,9 +213,19 @@ events.on(CACHE_EVENTS.TOUCHED, ({ key, store, ttl, success }) => {});
 import { createMockCache } from '@stackra/cache/testing';
 
 const cache = createMockCache();
-await userService.getUser(5);
-cache.assertCalled('remember').with('user:5').once();
+const store = cache.store();
+await userService.getUser(5); // internally does store.remember('user:5', ttl, fetcher)
+
+// Fluent assertion DSL
+cache.$.assertCalled('store').once();
+store.$.assertCalled('set').with('user:5', { id: 5, name: 'Ada' }).once();
+
+// Or use the predicate API with your test framework
+expect(store.$.wasCalledWith('get', 'user:5')).toBe(true);
 ```
+
+Mocks fully implement `ICacheManager` and `ICacheStore` — data written with
+`set()` can be read back with `get()` so consumer code exercises real cache-aside logic.
 
 ## Configuration
 

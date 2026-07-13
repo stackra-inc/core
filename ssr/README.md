@@ -1,250 +1,314 @@
 # @stackra/ssr
 
-Server-side rendering, routing, and middleware for the Stackra framework. Client-first (React Router v7 library mode), SSR for SEO only (crawler detection + streaming), zero file-based routing.
+Server-side rendering, routing, middleware, and SEO for the Stackra framework. Client-first (React Router v7 library mode), **SSR for SEO only** (crawler detection + streaming), zero file-based routing, decorator-driven registration.
 
-Ships as a set of subpath entries — import exactly what you need:
+## Subpaths
 
-| Subpath        | Content                                                                |
-| -------------- | ---------------------------------------------------------------------- |
-| `.`            | Root barrel — re-exports the middleware surface for convenience        |
-| `./middleware` | `defineMiddleware`, signals, `MiddlewareModule`, registry, resolver    |
-| `./server`     | (Coming) SSR renderer, streaming, HTTP adapters                        |
-| `./react`      | (Coming) React bindings — hooks, `<Meta>`, `<Link>`, `<StackraRouter>` |
-| `./vite`       | (Coming) Vite plugin + virtual modules                                 |
-| `./testing`    | `createMockContext`, `runMiddleware`, `createMockContainer`            |
+| Import                    | Contents                                                            |
+| ------------------------- | ------------------------------------------------------------------- |
+| `@stackra/ssr`            | Everything — the composite `SsrModule` + all subsystems re-exported |
+| `@stackra/ssr/middleware` | `defineMiddleware`, `@Middleware`, signals, registry, resolver      |
+| `@stackra/ssr/server`     | `ServerModule`, `SsrRenderer`, `@Route`, `@ApiRoute`, HTTP adapters |
+| `@stackra/ssr/seo`        | `SeoService`, JSON-LD builders, `SeoModule`                         |
+| `@stackra/ssr/react`      | `<StackraRouter>`, `<Link>`, `<Meta>`, `defineRoutes`, hooks        |
+| `@stackra/ssr/vite`       | `stackraSsr` Vite plugin + virtual modules                          |
+| `@stackra/ssr/testing`    | `createMockContext`, `runMiddleware`, `createMockContainer`         |
 
 ## Install
 
 ```bash
-pnpm add @stackra/ssr @stackra/container @stackra/contracts @stackra/pipeline reflect-metadata
+pnpm add @stackra/ssr @stackra/container @stackra/contracts @stackra/pipeline \
+  react react-dom react-router-dom reflect-metadata
 ```
 
-Optional peers: `@stackra/events`, `@stackra/logger`, `react`, `react-dom`, `react-router-dom`.
+Optional peers: `@stackra/events` (lifecycle events), `@stackra/logger` (warnings), `vite` (dev plugin).
 
-## Middleware — `defineMiddleware`
+## Mental model
 
-The `defineMiddleware` primitive is a typed identity function with three overloads. It preserves generics without widening and enables the type-level state chaining that flows through the entire chain.
+- **Client-first.** Humans get a client-only SPA. React Router v7 in library mode drives navigation.
+- **SSR for SEO only.** Crawler requests (detected by User-Agent) get a fully server-rendered, streamed HTML response. Everyone else gets the SPA shell.
+- **No file-based routing.** Routes are declared as data (`defineRoutes`) or discovered from `@Route()` classes.
+- **Decorator-driven registration.** `@Route` / `@ApiRoute` / `@Middleware` classes are auto-discovered. Inline definitions go through `SsrModule.forFeature(...)`.
+- **`forRoot` vs `forFeature`.** `forRoot` = app-global config (SEO, client entry, global middleware). `forFeature` = register routes / middleware. Registries hold no config.
 
-### Function form
+## Quick start
 
-Simplest form — a bare handler.
+### 1. Declare middleware
 
 ```typescript
-import { defineMiddleware } from '@stackra/ssr/middleware';
+// src/middleware/require-auth.ts
+import {
+  Middleware,
+  redirect,
+  type HttpContext,
+  type MiddlewareNext,
+} from '@stackra/ssr/middleware';
+import { Inject, Injectable } from '@stackra/container';
+import { AUTH_SERVICE } from '@/tokens';
 
-const logRequests = defineMiddleware<HttpContext>(async (ctx, next) => {
-  console.log(`[${ctx.request.method}] ${ctx.url.pathname}`);
-  return next();
-});
+@Middleware({ name: 'auth', priority: 100, stage: 'http' })
+@Injectable()
+export class RequireAuth {
+  constructor(@Inject(AUTH_SERVICE) private auth: AuthService) {}
+
+  async handle(ctx: HttpContext, next: MiddlewareNext) {
+    if (!this.auth.check(ctx.request)) redirect('/login', 302);
+    return next();
+  }
+}
 ```
 
-### Options form
-
-Full metadata payload plus an inline handler.
+Or inline, without a class:
 
 ```typescript
-const requireAuth = defineMiddleware({
-  name: 'auth.require',
-  description: 'Reject unauthenticated requests',
+import { defineMiddleware, redirect } from '@stackra/ssr/middleware';
+
+export const requireAuth = defineMiddleware({
+  name: 'auth',
   priority: 100,
-  runOn: 'both',
   stage: 'http',
   handle: async (ctx, next) => {
-    if (!ctx.request.headers.get('authorization')) {
-      redirect('/login', 302);
-    }
+    if (!ctx.request.headers.get('authorization')) redirect('/login');
     return next();
   },
 });
 ```
 
-### Class form
-
-Container-resolved class with a `handle` method. Metadata is attached via a second argument.
+### 2. Declare routes
 
 ```typescript
-import { Injectable } from '@stackra/container';
+// src/routes.ts
+import { defineRoutes, article } from '@stackra/ssr/react';
+import { HomePage, DashboardPage, PostPage } from './pages';
 
-@Injectable()
-class RateLimitMiddleware {
-  async handle(ctx: HttpContext, next: MiddlewareNext<Response>, limit: number, window: string) {
-    // ...
-    return next();
-  }
-}
-
-export const rateLimit = defineMiddleware(RateLimitMiddleware, {
-  name: 'rate-limit',
-  priority: 50,
-  stage: 'http',
-});
-```
-
-## Signals — control-flow helpers
-
-Throw a signal from anywhere in a middleware to short-circuit the chain. Signals are caught at the outer pipeline boundary and mapped to the appropriate stage-specific outcome.
-
-```typescript
-import { redirect, notFound, abort } from '@stackra/ssr/middleware';
-
-const authGate = defineMiddleware(async (ctx, next) => {
-  const user = await ctx.container.get(AuthService).currentUser();
-  if (!user) redirect('/login', 302);
-  if (user.banned) notFound('User not found');
-  return next();
-});
-
-const featureFlag = defineMiddleware(async (ctx, next) => {
-  if (!flags.enabled('new-checkout')) abort(new Response('Feature disabled', { status: 503 }));
-  return next();
-});
-```
-
-| Helper          | Throws           | Status                |
-| --------------- | ---------------- | --------------------- |
-| `redirect(url)` | `RedirectSignal` | 302 default (300–308) |
-| `notFound()`    | `NotFoundSignal` | 404                   |
-| `abort(result)` | `AbortSignal`    | terminates chain      |
-
-## Module — `MiddlewareModule.forRoot`
-
-Import once at the root, provide middleware and groups.
-
-```typescript
-import { Module } from '@stackra/container';
-import { MiddlewareModule, defineMiddlewareGroup } from '@stackra/ssr/middleware';
-
-const webGroup = defineMiddlewareGroup({
-  name: '@web',
-  middleware: [sessionLoader, csrfProtection, flashMessages],
-});
-
-@Module({
-  imports: [
-    MiddlewareModule.forRoot({
-      middleware: [logRequests, requireAuth, rateLimit],
-      groups: [webGroup],
-    }),
-  ],
-})
-export class AppModule {}
-```
-
-Feature modules extend the registry via `.forFeature(...)`:
-
-```typescript
-@Module({
-  imports: [MiddlewareModule.forFeature({ middleware: [csrfProtection] })],
-})
-class AuthFeatureModule {}
-```
-
-## Per-route usage
-
-Attach middleware to a specific route. Groups and named references are resolved through the registry.
-
-```typescript
-const routes = defineRoutes([
+export const routes = defineRoutes([
+  {
+    path: '/',
+    Component: HomePage,
+    handle: { seo: { title: 'Home', description: 'Welcome' } },
+  },
   {
     path: '/dashboard',
-    middleware: ['@web', requireAuth, [rateLimit, 100, '1m']],
-    component: DashboardPage,
+    middleware: ['auth'], // reference by name
+    Component: DashboardPage,
+    handle: { seo: { title: 'Dashboard', robots: { index: false } } },
+  },
+  {
+    path: '/blog/:slug',
+    Component: PostPage,
+    handle: {
+      seo: {
+        title: 'Post',
+        jsonLd: article({
+          headline: 'My Post',
+          datePublished: '2026-01-01',
+          authorName: 'Jane Doe',
+        }),
+      },
+    },
   },
 ]);
 ```
 
-## State chaining
-
-Middleware can promise to write specific state keys via `stateAdditions`. Downstream middleware sees a fully-typed intersection of every upstream promise.
+Or as `@Route()` classes (auto-discovered — no `forFeature` needed):
 
 ```typescript
-interface UserAttached {
-  user: User;
-}
+import { Route } from '@stackra/ssr/server';
+import { Injectable } from '@stackra/container';
 
-const attachUser = defineMiddleware<HttpContext, void, UserAttached>({
-  name: 'attach-user',
-  stateAdditions: ['user'],
-  handle: async (ctx, next) => {
-    const user = await ctx.container.get(AuthService).currentUser();
-    (ctx.state as UserAttached).user = user;
-    return next();
-  },
-});
-
-// Downstream middleware sees `ctx.state.user: User` typed correctly
-const dashboardHandler = defineMiddleware<HttpContext & { state: UserAttached }>(
-  async (ctx, next) => {
-    console.log(`Hello, ${ctx.state.user.name}`);
-    return next();
+@Route({ path: '/dashboard', middleware: ['auth'], meta: { title: 'Dashboard' } })
+@Injectable()
+export class DashboardRoute {
+  render() {
+    return <DashboardPage />;
   }
-);
+}
 ```
 
-## Testing — `createMockContext`
+### 3. Compose the app module
 
 ```typescript
-import { createMockContext } from '@stackra/ssr/testing';
-import { describe, it, expect } from 'vitest';
-
-describe('requireAuth', () => {
-  it('redirects unauthenticated requests', async () => {
-    const ctx = createMockContext('http', {
-      request: new Request('http://localhost/dashboard'),
-    });
-    await expect(ctx.runMiddleware(requireAuth)).rejects.toMatchObject({
-      kind: 'redirect',
-      url: '/login',
-      status: 302,
-    });
-  });
-
-  it('passes through authenticated requests', async () => {
-    const next = vi.fn().mockResolvedValue(new Response('OK'));
-    const ctx = createMockContext('http', {
-      request: new Request('http://localhost/dashboard', {
-        headers: { authorization: 'Bearer xxx' },
-      }),
-    });
-    const result = await ctx.runMiddleware(requireAuth, next);
-    expect(next).toHaveBeenCalledOnce();
-    expect(result).toBeInstanceOf(Response);
-  });
-});
-```
-
-## Pipeline interop
-
-Every `MiddlewareDefinition` can be adapted to a `PipeType` via `toPipe(mw, container)` and dropped straight into a `@stackra/pipeline` `Pipeline.through([...])`.
-
-```typescript
-import { Pipeline } from '@stackra/pipeline';
-import { toPipe } from '@stackra/ssr/middleware';
-
-const pipes = [requireAuth, rateLimit].map((mw) => toPipe(mw, container));
-
-const result = await new Pipeline(container)
-  .send(request)
-  .through(pipes)
-  .then((req) => handleRequest(req));
-```
-
-## Configuration
-
-```bash
-cp node_modules/@stackra/ssr/config/middleware.config.ts src/config/middleware.config.ts
-```
-
-Then import into `AppModule`:
-
-```typescript
-import { middlewareConfig } from '@/config/middleware.config';
+// src/app.module.ts
+import { Module } from '@stackra/container';
+import { SsrModule } from '@stackra/ssr';
+import { routes } from './routes';
+import { RequireAuth } from './middleware/require-auth';
 
 @Module({
-  imports: [MiddlewareModule.forRoot(middlewareConfig)],
+  imports: [
+    // App-wide config only.
+    SsrModule.forRoot({
+      seo: {
+        baseUrl: 'https://acme.com',
+        defaults: { titleTemplate: '%s | Acme', openGraph: { siteName: 'Acme' } },
+      },
+      clientEntry: '/src/main.tsx',
+      clientCss: '/src/styles/index.css',
+    }),
+    // Register routes.
+    SsrModule.forFeature({ routes }),
+  ],
+  providers: [RequireAuth], // @Middleware class — auto-discovered
 })
 export class AppModule {}
 ```
+
+### 4. Client entry
+
+```tsx
+// src/main.tsx
+import { createRoot } from 'react-dom/client';
+import { ApplicationFactory } from '@stackra/container';
+import { StackraRouter } from '@stackra/ssr/react';
+import { AppModule } from './app.module';
+
+const app = await ApplicationFactory.create(AppModule);
+
+createRoot(document.getElementById('app')!).render(
+  // routes come from ROUTE_REGISTRY when omitted
+  <StackraRouter app={app} />
+);
+```
+
+### 5. Server entry (SSR for crawlers)
+
+```typescript
+// src/entry.server.ts
+import { ApplicationFactory } from '@stackra/container';
+import { createNodeHandler } from '@stackra/ssr/server';
+import { AppModule } from './app.module';
+
+export default async function () {
+  const app = await ApplicationFactory.create(AppModule);
+  return { handler: createNodeHandler(app) };
+}
+```
+
+### 6. Vite plugin
+
+```typescript
+// vite.config.ts
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { stackraSsr } from '@stackra/ssr/vite';
+
+export default defineConfig({
+  plugins: [
+    react(),
+    stackraSsr({
+      ssrEntry: '/src/entry.server.ts',
+      routesFile: '/src/routes.ts',
+    }),
+  ],
+});
+```
+
+## `@stackra/ssr/middleware`
+
+`defineMiddleware` has three forms — function, options, class — all typed identities. See the [middleware section](#middleware-forms) below. Signals short-circuit the chain:
+
+```typescript
+import { redirect, notFound, abort } from '@stackra/ssr/middleware';
+
+redirect('/login', 302); // → 3xx Response / router.navigate
+notFound('User not found'); // → 404
+abort(new Response('...', { status: 503 })); // → returned verbatim
+```
+
+Groups bundle middleware under an `@`-prefixed name:
+
+```typescript
+import { defineMiddlewareGroup } from '@stackra/ssr/middleware';
+
+export const web = defineMiddlewareGroup({
+  name: '@web',
+  middleware: ['session', 'csrf', 'flash'],
+});
+```
+
+### Middleware forms
+
+| Form     | Shape                                           | Use when                       |
+| -------- | ----------------------------------------------- | ------------------------------ |
+| Function | `defineMiddleware(async (ctx, next) => …)`      | Stateless, no DI               |
+| Options  | `defineMiddleware({ name, priority, handle })`  | Needs metadata (name/priority) |
+| Class    | `@Middleware({...})` on a class with `handle()` | Needs DI — auto-discovered     |
+
+Resolution order: descending `priority`, ties by declaration order, `dependsOn` enforced as a partial order (cycles throw `MIDDLEWARE_CYCLE_DETECTED`).
+
+## `@stackra/ssr/seo`
+
+Routes attach an `seo` descriptor to `handle.seo`. `SeoService` merges the chain (inner overrides outer) on top of the site-wide `forRoot({ seo })` defaults, then `<Meta>` renders the tags — the exact same tag list is serialized to HTML on the server.
+
+```typescript
+import { organization, faqPage, breadcrumbList } from '@stackra/ssr/seo';
+
+handle: {
+  seo: {
+    title: 'Pricing',
+    description: 'Simple, transparent pricing',
+    canonical: '/pricing',
+    openGraph: { type: 'website', images: [{ url: '/og/pricing.png' }] },
+    twitter: { card: 'summary_large_image' },
+    robots: { index: true, follow: true, maxImagePreview: 'large' },
+    jsonLd: [
+      breadcrumbList([{ name: 'Home', url: '/' }, { name: 'Pricing', url: '/pricing' }]),
+      faqPage([{ question: 'Is there a free tier?', answer: 'Yes.' }]), // AEO
+    ],
+  },
+}
+```
+
+JSON-LD builders: `organization`, `website`, `webPage`, `breadcrumbList`, `article`, `product`, `faqPage`, `qaPage`, `speakable`. `faqPage`/`qaPage`/`speakable` target Answer Engine Optimization (featured snippets + voice).
+
+Render `<Meta>` inside your document `<head>` (in a layout route). It reads `useMatches()`, resolves through `SeoService`, and renders `<title>`, `<meta>`, `<link rel="canonical">`, alternates, and `<script type="application/ld+json">` (with `</script>`-breakout escaping).
+
+## `@stackra/ssr/react`
+
+- `defineRoutes(routes)` / `defineApiRoute(config)` — typed identities.
+- `<StackraRouter app={app} routes? />` — wraps `<ContainerProvider>` + `<RouterProvider>`; pulls routes from `ROUTE_REGISTRY` when the prop is omitted.
+- `<Link to prefetch="hover">` — hover/intent prefetching over RRD's `<Link>`.
+- `<Meta />` — SEO head renderer.
+- Hooks: `useRouteState()` (middleware-prepared state for the match), `useContainer()` / `useInject()` (from `@stackra/container/react`), plus curated RRD re-exports (`useNavigate`, `useLoaderData`, …).
+
+## `@stackra/ssr/server`
+
+- `SsrModule` (composite) / `ServerModule` (routing only).
+- `@Route(...)` / `@ApiRoute(...)` decorators.
+- `SsrRenderer` — inject `SSR_RENDERER` or call `renderRequest(request, app)`.
+- Adapters: `createFetchHandler(app)` (Bun/Deno/Workers), `createNodeHandler(app)` (Node).
+- `isCrawler(ua)` + `CRAWLER_PATTERN` — extend detection by passing `isCrawler` to `forRoot`.
+
+### Render flow
+
+```
+request
+  → global HTTP middleware (forRoot globalMiddleware/groups)
+  → API route match?  → dispatch handler → Response
+  → crawler UA?       → StaticHandler + renderToReadableStream → streamed HTML
+  → human UA?         → SPA shell (<div id="app"> + client entry)
+  ↳ redirect/notFound/abort signal → mapped to Response at the boundary
+```
+
+## `@stackra/ssr/testing`
+
+```typescript
+import { createMockContext } from '@stackra/ssr/testing';
+
+const ctx = createMockContext('http', {
+  request: new Request('http://localhost/dashboard'),
+});
+await expect(ctx.runMiddleware(requireAuth)).rejects.toMatchObject({
+  kind: 'redirect',
+  url: '/login',
+});
+```
+
+## Migration from 0.1.x
+
+- `./middleware` public API is unchanged.
+- New subpaths populated: `./server`, `./seo`, `./react`, `./vite`.
+- The middleware config file is gone — use `@Middleware` classes or `forFeature`.
 
 ## License
 

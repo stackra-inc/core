@@ -174,8 +174,21 @@ import { createMockRealtime } from '@stackra/realtime/testing';
 
 const rt = createMockRealtime();
 await notifier.subscribe(orderId);
-rt.assertCalled('connection').once();
+rt.$.assertCalled('connection').once();
+
+// Drive inbound frames from a test to exercise consumer handlers
+const conn = await rt.connection();
+const orders = conn.channel(`orders.${orderId}`);
+const handler = vi.fn();
+orders.on('updated', handler);
+conn.simulateIncoming(`orders.${orderId}`, 'updated', { status: 'shipped' });
+expect(handler).toHaveBeenCalledWith({ status: 'shipped' });
+
+// Presence channels support the same trick via simulateJoining / simulateLeaving
 ```
+
+Every mock channel records whispers into `conn.whispers`, so assertions on
+client-side broadcasts are one array away.
 
 ## Configuration
 

@@ -139,12 +139,22 @@ function CreateOrderButton() {
 ### Testing helper — `@stackra/events/testing`
 
 ```typescript
-import { createMockEmitter } from '@stackra/events/testing';
+import { createMockEvents } from '@stackra/events/testing';
 
-const events = createMockEmitter();
+const events = createMockEvents();
 await orders.place(order);
-events.assertEmitted('order.created').with(order).once();
+
+// Fluent assertion DSL
+events.$.assertCalled('emit').with('order.created', order).once();
+
+// Or introspect the recorded ledger directly
+expect(events.emittedEvents).toHaveLength(1);
+expect(events.getEmitsFor('order.created')[0]?.payload).toEqual(order);
 ```
+
+The mock fully implements `IEventEmitter` — `on()` subscriptions fire on
+`emit()`, `eventNames()` / `listenerCount()` reflect real subscription
+state, and `removeAllListeners()` clears them.
 
 ## Error handling
 
@@ -184,7 +194,7 @@ cp node_modules/@stackra/events/config/events.config.ts src/config/events.config
 | ------------------------- | ------------------------------------- |
 | `@stackra/events`         | Core `EventEmitterModule`, decorators |
 | `@stackra/events/react`   | `useEvent`, `useEmit`                 |
-| `@stackra/events/testing` | `createMockEmitter()`                 |
+| `@stackra/events/testing` | `createMockEvents()`                  |
 
 ## License
 

@@ -7,7 +7,7 @@ import {
   redirect,
   notFound,
   abort,
-} from '@/middleware';
+} from '@/core/middleware';
 
 describe('redirect()', () => {
   it('throws RedirectSignal with default 302 status', () => {

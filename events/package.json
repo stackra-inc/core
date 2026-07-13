@@ -74,11 +74,15 @@
     "@stackra/contracts": "workspace:^",
     "@stackra/logger": "workspace:^",
     "@stackra/support": "workspace:^",
+    "@stackra/testing": "workspace:^",
     "react": "*",
     "reflect-metadata": "*"
   },
   "peerDependenciesMeta": {
     "@stackra/logger": {
+      "optional": true
+    },
+    "@stackra/testing": {
       "optional": true
     },
     "react": {

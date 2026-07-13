@@ -1,34 +1,25 @@
 /**
  * @file index.ts
  * @module @stackra/scheduler/testing
- * @description Mock implementation of ISchedulerService for testing.
- *   Provides an in-memory, assertable implementation that records all operations.
- */
-
-import { createAssertableProxy } from '@stackra/testing';
-
-class MockScheduler {
-  private tasks: Array<{ name: string; cron?: string; interval?: number }> = [];
-
-  register(name: string, cron?: string, interval?: number): void {
-    this.tasks.push({ name, cron, interval });
-  }
-
-  getScheduledTasks() {
-    return [...this.tasks];
-  }
-  clearScheduledTasks(): void {
-    this.tasks = [];
-  }
-}
-
-/**
- * Create an assertable mock for ISchedulerService.
+ * @description Public API for `@stackra/scheduler/testing`.
  *
- * @returns Assertable mock with call recording and assertion methods
+ *   Assertable mock scheduler + task runner, following the standard
+ *   testing pattern used across the Stackra monorepo:
+ *   - `mock-*.ts` — in-memory implementations of the interface contracts
+ *   - `create-mock-*.ts` — factories that wrap mocks in `createAssertableProxy`
+ *   - `index.ts` — barrel re-exports
+ *
+ * @example
+ * ```ts
+ * import { createMockScheduler } from '@stackra/scheduler/testing';
+ *
+ * const scheduler = createMockScheduler();
+ * scheduler.register('sync-orders', async () => {}, { interval: 1000 });
+ * expect(scheduler.getRegistered()).toHaveLength(1);
+ * expect(scheduler.$.wasCalled('register')).toBe(true);
+ * ```
  */
-export function createMockScheduler() {
-  return createAssertableProxy(new MockScheduler());
-}
 
-export { MockScheduler };
+export { MockScheduler } from './mock-scheduler';
+export { MockTaskRunner } from './mock-task-runner';
+export { createMockScheduler, createMockTaskRunner } from './create-mock-scheduler';

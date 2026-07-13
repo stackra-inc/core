@@ -6,7 +6,7 @@ import {
   MiddlewareRegistry,
   MiddlewareResolver,
   MiddlewareResolutionError,
-} from '@/middleware';
+} from '@/core/middleware';
 import { createMockContainer } from '@/testing';
 
 describe('MiddlewareResolver', () => {

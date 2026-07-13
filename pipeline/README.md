@@ -307,6 +307,48 @@ try {
 
 See the [SSR middleware docs](../ssr/README.md#middleware) for the full integration story.
 
+## Testing helper — `@stackra/pipeline/testing`
+
+Two helpers for exercising pipes in isolation:
+
+```typescript
+import { runPipe, createMockPipeline } from '@stackra/pipeline/testing';
+
+// Run a single pipe end-to-end — great for unit-testing middleware
+const result = runPipe<Request>(
+  (req, next) => next({ ...req, userId: 'ada' }),
+  new Request('http://x/'),
+  (req) => new Response(JSON.stringify(req))
+);
+
+// Object-form pipe
+class AuthPipe {
+  handle(req: Request, next: (req: Request) => unknown) {
+    if (!req.headers.get('authorization')) throw new Error('unauth');
+    return next(req);
+  }
+}
+const authed = runPipe(new AuthPipe(), authRequest, (r) => r);
+
+// Assertable Pipeline — real Pipeline instance wrapped for call recording
+const pipeline = createMockPipeline<Request, Response>();
+pipeline
+  .send(req)
+  .through([AuthPipe])
+  .then((r) => handle(r));
+pipeline.$.assertCalled('through').once();
+```
+
+`runPipe` supports function, object, and tuple pipe forms. String pipes require
+a container — use `createMockPipeline(container)` (or a real `Pipeline`) for those.
+
+## Subpaths
+
+| Import                      | Purpose                                     |
+| --------------------------- | ------------------------------------------- |
+| `@stackra/pipeline`         | `PipelineModule`, `Pipeline`, `PipelineHub` |
+| `@stackra/pipeline/testing` | `runPipe()`, `createMockPipeline()`         |
+
 ## License
 
 MIT © Stackra L.L.C

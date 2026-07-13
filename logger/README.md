@@ -157,12 +157,23 @@ Also ships `<LogLevelSwitcher />`, `<LogChannelInspector />`, and `<LogEventStre
 ### Testing helper — `@stackra/logger/testing`
 
 ```typescript
-import { createMockLogger } from '@stackra/logger/testing';
+import { createMockLogger, createMockLoggerManager } from '@stackra/logger/testing';
 
+// Standalone logger — for tests that inject a single ILogger
 const logger = createMockLogger();
 service.doThing(logger);
-logger.assertCalled('info').with('did the thing').once();
+logger.$.assertCalled('info').with('did the thing').once();
+
+// Full manager — for tests that resolve LOGGER_MANAGER and call .create()
+const manager = createMockLoggerManager();
+service.setup(manager);
+const scoped = manager.getLogger('UserService');
+expect(scoped?.getLogsByLevel('error')).toHaveLength(1);
 ```
+
+Both mocks fully implement their contracts (`ILogger` — all 11 methods,
+`ILoggerManager` — `create()` and `channel()`). Logs are appended to
+`.logs` in the order they occurred with level, message, and context intact.
 
 ## Configuration
 

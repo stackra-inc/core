@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import 'reflect-metadata';
 
-import { defineMiddleware, toPipe, MiddlewareExecutionError } from '@/middleware';
+import { defineMiddleware, toPipe, MiddlewareExecutionError } from '@/core/middleware';
 import { createMockContainer } from '@/testing';
 
 describe('toPipe', () => {

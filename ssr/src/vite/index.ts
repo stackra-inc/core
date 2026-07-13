@@ -1,8 +1,9 @@
 /**
  * @file index.ts
  * @module @stackra/ssr/vite
- * @description Vite subpath — placeholder for the Vite plugin and
- *   virtual modules. Content is populated by a follow-up spec.
+ * @description Public API surface of the `@stackra/ssr/vite` subpath.
  */
 
-export {};
+export { stackraSsr } from './plugins';
+export type { StackraSsrOptions } from './interfaces';
+export { VIRTUAL_ROUTES_ID, VIRTUAL_MIDDLEWARE_ID, isHtmlRequest } from './utils';

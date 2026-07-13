@@ -211,6 +211,46 @@ events.on(COLLABORATION_EVENTS.THREAD_RESOLVE, ({ roomId, threadId, resolvedBy }
 events.on(COLLABORATION_EVENTS.THREAD_DELETE, ({ roomId, threadId }) => {});
 ```
 
+## Testing helper — `@stackra/collaboration/testing`
+
+```typescript
+import { createMockRoomManager } from '@stackra/collaboration/testing';
+
+const rooms = createMockRoomManager();
+const transport = rooms.getTransport();
+
+// Connect the current user
+await transport.connect('doc-42', 'user-1', { name: 'Alice', color: '#e74c3c' });
+expect(transport.getMembers('doc-42')).toHaveLength(1);
+
+// Simulate an external member joining — fires every onMemberJoin listener
+transport.simulateMemberJoin('doc-42', {
+  userId: 'user-2',
+  name: 'Bob',
+  color: '#3498db',
+  joinedAt: Date.now(),
+  presence: {},
+});
+
+// Fluent assertion on broadcasts
+transport.broadcast('doc-42', 'cursor', { x: 100, y: 200 });
+transport.$.assertCalled('broadcast').with('doc-42', 'cursor', { x: 100, y: 200 }).once();
+
+// Or introspect the recorded ledger
+expect(transport.broadcasts).toHaveLength(1);
+```
+
+The mock transport fully implements `CollaborationTransport` — presence,
+broadcasts, and shared state all round-trip in-process without any
+BroadcastChannel or Reverb backend.
+
+## Subpaths
+
+| Import                           | Purpose                                                         |
+| -------------------------------- | --------------------------------------------------------------- |
+| `@stackra/collaboration`         | `CollaborationModule`, `RoomManager`, hooks, decorators         |
+| `@stackra/collaboration/testing` | `createMockRoomManager()`, `createMockCollaborationTransport()` |
+
 ## License
 
 MIT

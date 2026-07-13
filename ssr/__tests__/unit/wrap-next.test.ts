@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import { wrapNext, MiddlewareExecutionError } from '@/middleware';
+import { wrapNext, MiddlewareExecutionError } from '@/core/middleware';
 
 describe('wrapNext', () => {
   it('forwards to the pipeline next callback', async () => {

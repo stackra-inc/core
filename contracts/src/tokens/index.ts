@@ -11,6 +11,15 @@ export { COLLABORATION_ROOM_MANAGER, COLLABORATION_CONFIG } from './collaboratio
 export { COORDINATOR_CONFIG, TAB_COORDINATOR } from './coordinator.tokens';
 export { DISCOVERY_SERVICE } from './discovery-service.token';
 export { EVENT_EMITTER, EVENT_EMITTER_CONFIG } from './events.tokens';
+export {
+  // NOTE: HTTP event names live in ../events/http.events.ts (HTTP_EVENTS).
+  HTTP_MANAGER,
+  HTTP_CLIENT,
+  HTTP_CONFIG,
+  DEFAULT_HTTP_CONNECTION_TOKEN,
+  HTTP_TOKEN_PROVIDER,
+  getHttpConnectionToken,
+} from './http.tokens';
 export { LOGGER_MANAGER, LOGGER_CONFIG } from './logger.tokens';
 export { MIDDLEWARE_REGISTRY, MIDDLEWARE_RESOLVER, MIDDLEWARE_CONFIG } from './middleware.tokens';
 export {
@@ -26,3 +35,13 @@ export {
   TASK_RUNNER,
   SCHEDULED_METADATA_KEY,
 } from './scheduler.tokens';
+export {
+  ROUTE_REGISTRY,
+  API_ROUTE_REGISTRY,
+  SSR_RENDERER,
+  SSR_CONFIG,
+  ROUTE_METADATA_KEY,
+  API_ROUTE_METADATA_KEY,
+  SEO_SERVICE,
+  SEO_CONFIG,
+} from './ssr.tokens';

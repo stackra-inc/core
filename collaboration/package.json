@@ -43,6 +43,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
+    },
+    "./testing": {
+      "types": "./dist/testing.d.ts",
+      "import": "./dist/testing.mjs",
+      "require": "./dist/testing.js"
     }
   },
   "files": [
@@ -64,11 +69,15 @@
     "@stackra/contracts": "workspace:^",
     "@stackra/logger": "workspace:^",
     "@stackra/realtime": "workspace:^",
+    "@stackra/testing": "workspace:^",
     "react": ">=19",
     "reflect-metadata": "*"
   },
   "peerDependenciesMeta": {
     "@stackra/realtime": {
+      "optional": true
+    },
+    "@stackra/testing": {
       "optional": true
     }
   },

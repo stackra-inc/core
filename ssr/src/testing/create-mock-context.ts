@@ -4,9 +4,9 @@
  * @description Test helper that produces stage-appropriate mock contexts.
  */
 
-import type { HttpContext, PipeContext, UiContext } from '../middleware/interfaces';
-import type { MiddlewareDefinition } from '../middleware/types/middleware-definition.type';
-import type { MiddlewareNext } from '../middleware/types/middleware-next.type';
+import type { HttpContext, PipeContext, UiContext } from '../core/middleware/interfaces';
+import type { MiddlewareDefinition } from '../core/middleware/types/middleware-definition.type';
+import type { MiddlewareNext } from '../core/middleware/types/middleware-next.type';
 import { runMiddleware } from './run-middleware';
 import { createMockContainer } from './mock-container';
 import type { MockContainer } from './mock-container';

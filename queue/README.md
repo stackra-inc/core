@@ -179,9 +179,20 @@ function DispatchButton() {
 import { createMockQueue } from '@stackra/queue/testing';
 
 const queue = createMockQueue();
-await orders.submit(order);
-queue.assertDispatched('send-email').with({ to: order.email }).once();
+await orders.submit(order); // internally: queue.dispatch('send-email', { to: order.email })
+
+// Fluent assertion on the manager itself
+queue.$.assertCalled('dispatch').with('send-email', { to: order.email }).once();
+
+// Or reach into the underlying connection ledger for structural assertions
+const conn = await queue.connection();
+expect(conn.dispatchedJobs).toHaveLength(1);
+expect(conn.dispatchedJobs[0]).toMatchObject({ name: 'send-email' });
 ```
+
+The mock connection fully implements `IQueueConnection` — jobs pushed via
+`.push()` / `.later()` / `.bulk()` are retrievable with `.pop()`, respect
+`.pause()` / `.resume()`, and honor delay via `scheduledFor`.
 
 ## Configuration
 

@@ -14,6 +14,7 @@
 
 import type { ICallRecord } from './interfaces/call-record.interface';
 import type { IStubEntry } from './interfaces/stub-entry.interface';
+import { CallAssertion } from './call-assertion';
 
 /**
  * Bookkeeper attached to every proxy returned by `createAssertableProxy`.
@@ -128,6 +129,35 @@ export class Assertable {
   public wasCalledWith(method: string, ...args: unknown[]): boolean {
     const target = JSON.stringify(args);
     return this.callsFor(method).some((c) => JSON.stringify(c.args) === target);
+  }
+
+  // ── Fluent assertion DSL ─────────────────────────────────────────────
+
+  /**
+   * Open a fluent, self-throwing assertion for the given method.
+   *
+   * Chain `.with(...)` to narrow by arguments, then terminate with
+   * `.once()` / `.twice()` / `.times(n)` / `.never()` / `.atLeast(n)` /
+   * `.atMost(n)` — the terminal throws with a descriptive error when
+   * the expectation isn't met.
+   *
+   * @example
+   * ```ts
+   * mock.$.assertCalled('getUser').with('42').once();
+   * mock.$.assertCalled('save').times(3);
+   * mock.$.assertCalled('close').never();
+   * ```
+   */
+  public assertCalled(method: string): CallAssertion {
+    return new CallAssertion(method, this._calls);
+  }
+
+  /**
+   * Sugar for `assertCalled(method).never()` — throws when the method
+   * was called at all (with any args).
+   */
+  public assertNotCalled(method: string): void {
+    this.assertCalled(method).never();
   }
 
   // ── Lifecycle ─────────────────────────────────────────────────────────

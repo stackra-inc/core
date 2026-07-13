@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import 'reflect-metadata';
 
-import { defineMiddleware, MiddlewareRegistry } from '@/middleware';
+import { defineMiddleware, MiddlewareRegistry } from '@/core/middleware';
 
 describe('MiddlewareRegistry', () => {
   let registry: MiddlewareRegistry;

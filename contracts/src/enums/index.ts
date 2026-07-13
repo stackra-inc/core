@@ -4,6 +4,9 @@
  * @description Barrel for every enum shipped by contracts.
  */
 
+export { CircuitBreakerState } from './circuit-breaker-state.enum';
+export { HttpMethod } from './http-method.enum';
+export { HttpStreamFormat } from './http-stream-format.enum';
 export { LogLevel, LOG_LEVEL_PRIORITY } from './log-level.enum';
 export { Scope } from './scope.enum';
 export { ShutdownSignal } from './shutdown-signal.enum';

@@ -153,6 +153,40 @@ function TabInfo() {
 cp node_modules/@stackra/coordinator/config/coordinator.config.ts src/config/coordinator.config.ts
 ```
 
+## Testing helper — `@stackra/coordinator/testing`
+
+```typescript
+import { createMockCoordinator, createMockLockManager } from '@stackra/coordinator/testing';
+
+// Coordinator starts as leader — flip roles to exercise both branches
+const coordinator = createMockCoordinator();
+expect(coordinator.isLeader()).toBe(true);
+service.subscribeToRoleChanges(coordinator); // wires onRoleChange
+
+coordinator.simulateRole('follower');
+service.$.assertCalled('teardown').once();
+
+coordinator.simulateRole('leader');
+service.$.assertCalled('bootstrap').once();
+
+// Lock manager — real promise-based serialisation, no real Web Locks
+const locks = createMockLockManager();
+const result = await locks.run('token-refresh', async () => 'new-token');
+expect(result).toBe('new-token');
+locks.$.assertCalled('run').with('token-refresh').once();
+```
+
+Neither mock touches `BroadcastChannel`, `navigator.locks`, or `localStorage`
+— every operation runs in-process, so tests are deterministic and fast.
+
+## Subpaths
+
+| Import                         | Purpose                                                          |
+| ------------------------------ | ---------------------------------------------------------------- |
+| `@stackra/coordinator`         | `CoordinatorModule`, `TabCoordinator`, `LockManager`, decorators |
+| `@stackra/coordinator/react`   | `useCoordinator`, `useIsLeader`, `useLock`                       |
+| `@stackra/coordinator/testing` | `createMockCoordinator()`, `createMockLockManager()`             |
+
 ## License
 
 MIT

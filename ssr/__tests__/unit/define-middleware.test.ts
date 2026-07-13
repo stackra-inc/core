@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import 'reflect-metadata';
 
-import { defineMiddleware, MIDDLEWARE_METADATA_KEY } from '@/middleware';
+import { defineMiddleware, MIDDLEWARE_METADATA_KEY } from '@/core/middleware';
 
 describe('defineMiddleware', () => {
   it('is a runtime identity for the function form', () => {

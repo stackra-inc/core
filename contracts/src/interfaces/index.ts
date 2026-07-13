@@ -17,4 +17,5 @@ export * from './cache';
 export * from './container';
 export * from './discovery';
 export * from './events';
+export * from './http';
 export * from './logger';

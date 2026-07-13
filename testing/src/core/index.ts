@@ -10,6 +10,7 @@
 // ============================================================================
 export { Assertable } from './assertable';
 export { createAssertableProxy, ASSERTABLE_SYMBOL, type AssertableProxy } from './assertable-proxy';
+export { CallAssertion } from './call-assertion';
 export type { ICallRecord, IStubEntry } from './interfaces';
 
 // ============================================================================

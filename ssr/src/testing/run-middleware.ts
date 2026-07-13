@@ -11,11 +11,11 @@
 import type {
   MiddlewareClassRef,
   MiddlewareOptions,
-} from '../middleware/interfaces/middleware-options.interface';
-import type { MiddlewareDefinition } from '../middleware/types/middleware-definition.type';
-import type { MiddlewareHandler } from '../middleware/types/middleware-handler.type';
-import type { MiddlewareNext } from '../middleware/types/middleware-next.type';
-import { isClass } from '../middleware/utils/is-class.util';
+} from '../core/middleware/interfaces/middleware-options.interface';
+import type { MiddlewareDefinition } from '../core/middleware/types/middleware-definition.type';
+import type { MiddlewareHandler } from '../core/middleware/types/middleware-handler.type';
+import type { MiddlewareNext } from '../core/middleware/types/middleware-next.type';
+import { isClass } from '../core/middleware/utils/is-class.util';
 
 /**
  * Execute a middleware against a context. If `next` is omitted, a no-op

@@ -232,6 +232,40 @@ import { containerConfig } from '@/config/container.config';
 await ApplicationFactory.create(AppModule, containerConfig);
 ```
 
+## Testing helper — `@stackra/container/testing`
+
+Assertable `IApplication`-compatible mock for services that inject `APPLICATION`
+or otherwise depend on a container:
+
+```typescript
+import { createMockApplication } from '@stackra/container/testing';
+import { LOGGER_MANAGER } from '@stackra/contracts';
+import { createMockLoggerManager } from '@stackra/logger/testing';
+
+// Pre-populate the container with the tokens your service under test needs
+const logger = createMockLoggerManager();
+const app = createMockApplication([[LOGGER_MANAGER, logger]]);
+
+service.setup(app);
+app.$.assertCalled('get').with(LOGGER_MANAGER).once();
+
+// Or use the classic API
+expect(app.has(LOGGER_MANAGER)).toBe(true);
+expect(app.get(LOGGER_MANAGER)).toBe(logger);
+```
+
+Implements the full public `IApplication` surface (`get`, `getOptional`, `has`,
+`resolve`, `provide`, `close`) — no real DI graph, no module scanning, just a
+`Map<InjectionToken, unknown>` you can seed and interrogate.
+
+## Subpaths
+
+| Import                       | Purpose                                                       |
+| ---------------------------- | ------------------------------------------------------------- |
+| `@stackra/container`         | `Injectable`, `Module`, `Inject`, `ApplicationFactory`, hooks |
+| `@stackra/container/react`   | `ContainerProvider`, `useInject`, `useOptionalInject`         |
+| `@stackra/container/testing` | `createMockApplication()`, `MockApplication`                  |
+
 ## License
 
 MIT
