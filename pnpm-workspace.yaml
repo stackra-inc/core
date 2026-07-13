@@ -12,6 +12,7 @@ packages:
   - 'contracts'
   - 'coordinator'
   - 'events'
+  - 'http'
   - 'logger'
   - 'pipeline'
   - 'queue'
